@@ -12,7 +12,9 @@ function Header({ setNavbarActive, navbarActive }) {
         `py-2 sm:py-4  px-3 sm:px-6 bg-red-500 
     flex justify-between ` +
         `${
-          navbarActive ? "ml-[300px] headerAnimation" : "w-full headerAnimation"
+          navbarActive
+            ? "md:ml-[300px] headerAnimation"
+            : "w-full headerAnimation"
         }`
       }
     >
