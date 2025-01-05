@@ -7,8 +7,8 @@ import { FaRegBell } from "react-icons/fa";
 
 function Header() {
   return (
-    <header className="w-full py-4 px-6 bg-red-500 flex justify-between">
-      <div className="flex gap-4 items-center text-white">
+    <header className="w-full  py-2 sm:py-4  px-3 sm:px-6 bg-red-500 flex justify-between ">
+      <div className="flex gap-1 sm:gap-4 items-center text-white">
         <RxHamburgerMenu
           className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
           size={34}
@@ -20,14 +20,14 @@ function Header() {
         <div className="text-white bg-white bg-opacity-45 flex items-center px-2 py-1 rounded-full">
           <IoSearchOutline size={26} />
           <input
-            className="bg-transparent text-white border-none focus:outline-none 
+            className="w-20 sm:w-[200px] bg-transparent text-white border-none focus:outline-none 
             placeholder:text-white ml-2"
             type="text"
             placeholder="Search"
           />
         </div>
       </div>
-      <div className="flex items-center text-white gap-5">
+      <div className="flex items-center text-white gap-2 sm:gap-5">
         <IoMdAdd
           size={35}
           title="add task"
