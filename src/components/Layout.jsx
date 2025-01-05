@@ -4,7 +4,7 @@ const Layout = ({ navbarActive }) => {
   return (
     <div
       className={
-        `bg-blue-300 ` +
+        ` flex items-center justify-center ` +
         `${
           navbarActive
             ? "md:ml-[300px] mt-[300px]  md:mt-0 headerAnimation"
