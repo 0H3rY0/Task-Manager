@@ -5,11 +5,22 @@ import { IoMdAdd } from "react-icons/io";
 import { MdOutlineInfo } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
 
-function Header() {
+function Header({ setNavbarActive, navbarActive }) {
   return (
-    <header className="w-full  py-2 sm:py-4  px-3 sm:px-6 bg-red-500 flex justify-between ">
+    <header
+      className={
+        `py-2 sm:py-4  px-3 sm:px-6 bg-red-500 
+    flex justify-between ` +
+        `${
+          navbarActive
+            ? "md:ml-[300px] headerAnimation"
+            : "w-full headerAnimation"
+        }`
+      }
+    >
       <div className="flex gap-1 sm:gap-4 items-center text-white">
         <RxHamburgerMenu
+          onClick={() => setNavbarActive((curr) => !curr)}
           className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
           size={34}
         />
