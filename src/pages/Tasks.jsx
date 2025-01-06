@@ -1,8 +1,10 @@
 import { CgGoogleTasks } from "react-icons/cg";
 import { IoMdAdd } from "react-icons/io";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import { RxUpdate } from "react-icons/rx";
+import ModalModifyTask from "../components/ModalModifyTask";
+import * as Dialog from "@radix-ui/react-dialog";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -54,11 +56,18 @@ const Tasks = () => {
                   </li>
                   <div className=" w-1/5 py-4 px-2 flex items-center gap-5 justify-end mr-5">
                     <TiDelete
-                      className="text-red-500"
+                      className="text-red-500 hover:text-red-300 cursor-pointer"
                       size={40}
                       onClick={() => removeTask(index)}
                     />
-                    <RxUpdate className="text-purple-500" size={32} />
+                    <ModalModifyTask>
+                      <Dialog.Trigger>
+                        <RxUpdate
+                          className="text-purple-500 hover:text-purple-300"
+                          size={30}
+                        />
+                      </Dialog.Trigger>
+                    </ModalModifyTask>
                   </div>
                 </div>
               </>
