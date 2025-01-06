@@ -53,6 +53,7 @@ const Tasks = () => {
                     key={index}
                   >
                     {item}
+                    <input type="text" />
                   </li>
                   <div className=" w-1/5 py-4 px-2 flex items-center gap-5 justify-end mr-5">
                     <TiDelete
@@ -60,7 +61,7 @@ const Tasks = () => {
                       size={40}
                       onClick={() => removeTask(index)}
                     />
-                    <ModalModifyTask>
+                    <ModalModifyTask value={item}>
                       <Dialog.Trigger>
                         <RxUpdate
                           className="text-purple-500 hover:text-purple-300"
