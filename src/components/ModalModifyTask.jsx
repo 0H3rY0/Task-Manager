@@ -1,9 +1,13 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { useState } from "react";
 import { MdClose } from "react-icons/md";
 
-const ModalModifyTask = ({ children, value }) => {
+const ModalModifyTask = ({ children, value, index, modifyTask }) => {
+  const [newItem, setNewItem] = useState(value);
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       {children}
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/50">
@@ -27,14 +31,19 @@ const ModalModifyTask = ({ children, value }) => {
                 </h3>
                 <input
                   type="text"
-                  value={value}
+                  defaultValue={value}
+                  onChange={(e) => setNewItem(e.target.value)}
                   className="w-full px-1 rounded-full focus:border-white focus:ring-2 focus:ring-red-300 focus:outline-none transition"
                 />
               </div>
               <div className="flex justify-end items-center">
                 <button
+                  onClick={() => {
+                    modifyTask(index, newItem);
+                    setOpen(false);
+                  }}
                   className="font-bold bg-red-500 rounded py-2 px-3
-                 hover:bg-red-400 text-slate-800 hover:text-slate-600 "
+                 hover:bg-red-400 text-white "
                 >
                   Confirm
                 </button>

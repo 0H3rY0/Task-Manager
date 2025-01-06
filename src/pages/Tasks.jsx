@@ -19,6 +19,18 @@ const Tasks = () => {
     setTasks(tasks.filter((item, i) => i !== index));
   };
 
+  const modifyTask = (i, newItem) => {
+    setTasks(
+      tasks.map((item, index) => {
+        if (index === i) {
+          item = newItem;
+        }
+
+        return item;
+      })
+    );
+  };
+
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
       addTask(inputText);
@@ -53,7 +65,6 @@ const Tasks = () => {
                     key={index}
                   >
                     {item}
-                    <input type="text" />
                   </li>
                   <div className=" w-1/5 py-4 px-2 flex items-center gap-5 justify-end mr-5">
                     <TiDelete
@@ -61,7 +72,11 @@ const Tasks = () => {
                       size={40}
                       onClick={() => removeTask(index)}
                     />
-                    <ModalModifyTask value={item}>
+                    <ModalModifyTask
+                      value={item}
+                      index={index}
+                      modifyTask={modifyTask}
+                    >
                       <Dialog.Trigger>
                         <RxUpdate
                           className="text-purple-500 hover:text-purple-300"
