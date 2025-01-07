@@ -14,12 +14,10 @@ const Layout = ({ navbarActive }) => {
         }`
       }
     >
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Test />}></Route>
-          <Route path="/tasks" element={<Tasks />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Test />}></Route>
+        <Route path="/tasks" element={<Tasks />} />
+      </Routes>
     </div>
   );
 };

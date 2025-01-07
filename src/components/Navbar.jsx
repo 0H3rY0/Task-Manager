@@ -2,6 +2,7 @@ import { BiTask } from "react-icons/bi";
 import { SiTask } from "react-icons/si";
 import { GoProjectSymlink } from "react-icons/go";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import { NavLink } from "react-router";
 
 const Navbar = ({ navbarActive }) => {
   return (
@@ -17,11 +18,15 @@ const Navbar = ({ navbarActive }) => {
       <div className="flex flex-col gap-4 ">
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
           <BiTask className="text-blue-500" size={32} />
-          <span>Tasks</span>
+          <NavLink to="/tasks">
+            <span>Tasks</span>
+          </NavLink>
         </p>
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
           <GoProjectSymlink className="text-orange-500" size={32} />
-          <span>Projects</span>
+          <NavLink to="/">
+            <span>Projects</span>
+          </NavLink>
         </p>
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
           <FaRegCalendarAlt className="text-purple-500" size={32} />
