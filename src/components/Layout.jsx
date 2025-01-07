@@ -1,4 +1,6 @@
 import Tasks from "../pages/Tasks";
+import Test from "../pages/Test";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 const Layout = ({ navbarActive }) => {
   return (
@@ -12,7 +14,10 @@ const Layout = ({ navbarActive }) => {
         }`
       }
     >
-      <Tasks />
+      <Routes>
+        <Route path="/" element={<Test />}></Route>
+        <Route path="/tasks" element={<Tasks />} />
+      </Routes>
     </div>
   );
 };
