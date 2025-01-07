@@ -5,6 +5,7 @@ import { TiDelete } from "react-icons/ti";
 import { RxUpdate } from "react-icons/rx";
 import ModalModifyTask from "../components/ModalModifyTask";
 import * as Dialog from "@radix-ui/react-dialog";
+import ModalDeleteTask from "../components/ModalDeleteTask";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -58,20 +59,27 @@ const Tasks = () => {
           {tasks.map((item, index) => {
             return (
               <>
-                <div className="flex items-center border-2 border-slate-200 mt-5 rounded-md">
+                <div
+                  key={index}
+                  className="flex items-center border-2 border-slate-200 mt-5 rounded-md"
+                >
                   <li
                     className="py-4 px-2 
                 text-lg font-semibold text-slate-700 w-4/5"
-                    key={index}
                   >
                     {item}
                   </li>
                   <div className=" w-1/5 py-4 px-2 flex items-center gap-5 justify-end mr-5">
-                    <TiDelete
-                      className="text-red-500 hover:text-red-300 cursor-pointer"
-                      size={40}
-                      onClick={() => removeTask(index)}
-                    />
+                    <ModalDeleteTask removeTask={removeTask} index={index}>
+                      <Dialog.Trigger>
+                        <TiDelete
+                          className="text-red-500 hover:text-red-300 cursor-pointer"
+                          size={40}
+                          // onClick={() => removeTask(index)}
+                        />
+                      </Dialog.Trigger>
+                    </ModalDeleteTask>
+
                     <ModalModifyTask
                       value={item}
                       index={index}
