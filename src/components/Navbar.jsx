@@ -18,13 +18,23 @@ const Navbar = ({ navbarActive }) => {
       <div className="flex flex-col gap-4 ">
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
           <BiTask className="text-blue-500" size={32} />
-          <NavLink to="/tasks">
+          <NavLink
+            to="/tasks"
+            className={({ isActive }) =>
+              isActive ? "text-red-500" : "text-black"
+            }
+          >
             <span>Tasks</span>
           </NavLink>
         </p>
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
           <GoProjectSymlink className="text-orange-500" size={32} />
-          <NavLink to="/">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "text-red-500" : "text-black"
+            }
+          >
             <span>Projects</span>
           </NavLink>
         </p>

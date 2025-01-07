@@ -4,6 +4,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlineInfo } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
+import { NavLink } from "react-router";
 
 function Header({ setNavbarActive, navbarActive }) {
   return (
@@ -39,11 +40,17 @@ function Header({ setNavbarActive, navbarActive }) {
         </div>
       </div>
       <div className="flex items-center text-white gap-2 sm:gap-5">
-        <IoMdAdd
-          size={35}
-          title="add task"
-          className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
-        />
+        <NavLink
+          to="/tasks"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-white bg-opacity-45 rounded-sm"
+              : "hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
+          }
+        >
+          <IoMdAdd size={35} title="add task" className="p-1" />
+        </NavLink>
+
         <MdOutlineInfo
           size={35}
           title="show information"
