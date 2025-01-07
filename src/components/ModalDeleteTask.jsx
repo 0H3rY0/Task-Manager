@@ -1,9 +1,12 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { useState } from "react";
 import { MdClose } from "react-icons/md";
 
-const ModalDeleteTask = ({ children }) => {
+const ModalDeleteTask = ({ children, removeTask, index }) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       {children}
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/50">
@@ -33,6 +36,10 @@ const ModalDeleteTask = ({ children }) => {
                 Cancel
               </Dialog.Close>
               <button
+                onClick={() => {
+                  removeTask(index);
+                  setOpen(false);
+                }}
                 className="font-bold bg-red-500 border-2 border-red-500 rounded py-2 px-4
                  hover:bg-red-400 hover:border-red-400 text-white"
               >
