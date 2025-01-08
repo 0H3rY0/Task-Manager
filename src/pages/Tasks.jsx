@@ -3,9 +3,9 @@ import { IoMdAdd } from "react-icons/io";
 import { useRef, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import { RxUpdate } from "react-icons/rx";
-import ModalModifyTask from "../components/ModalModifyTask";
 import * as Dialog from "@radix-ui/react-dialog";
-import ModalDeleteTask from "../components/ModalDeleteTask";
+import ModalModifyTask from "../components/modals/ModalModifyTask";
+import ModalDeleteTask from "../components/modals/ModalDeleteTask";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
