@@ -9,11 +9,8 @@ const ModalDeleteTask = ({ children, removeTask, index }) => {
     <Dialog.Root open={open} onOpenChange={setOpen}>
       {children}
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50">
-          <Dialog.Content
-            className="fixed w-full max-w-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white shadow rounded-md p-8
-        "
-          >
+        <Dialog.Overlay className="modal-overlay">
+          <Dialog.Content className="modal-content">
             <div
               className="flex justify-between items-center text-2xl font-bold
              "
