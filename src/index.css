@@ -36,3 +36,18 @@
 .headerAnimation {
   transition: margin 0.2s ease-in-out;
 }
+
+.classicInput {
+  width: 100%; /* w-full */
+  padding: 0.25rem; /* px-1 */
+  border-radius: 9999px; /* rounded-full */
+  transition: all 0.2s ease-in-out; /* transition */
+
+  outline: none; /* focus:outline-none */
+  border: 2px solid transparent; /* Placeholder for border before focus */
+}
+
+.classicInput:focus {
+  border-color: white; /* focus:border-white */
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5); /* focus:ring-2 focus:ring-red-300 */
+}

@@ -33,7 +33,7 @@ const ModalModifyTask = ({ children, value, index, modifyTask }) => {
                   type="text"
                   defaultValue={value}
                   onChange={(e) => setNewItem(e.target.value)}
-                  className="w-full px-1 rounded-full focus:border-white focus:ring-2 focus:ring-red-300 focus:outline-none transition"
+                  className="classicInput px-1"
                 />
               </div>
               <div className="flex justify-end items-center">

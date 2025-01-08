@@ -1,6 +1,6 @@
 import { CgGoogleTasks } from "react-icons/cg";
 import { IoMdAdd } from "react-icons/io";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import { RxUpdate } from "react-icons/rx";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -51,7 +51,7 @@ const Tasks = () => {
           onKeyDown={handleEnterPress}
           type="text"
           placeholder="Add task"
-          className="w-full px-3 rounded-full focus:border-white focus:ring-2 focus:ring-red-300 focus:outline-none transition"
+          className="classicInput"
         />
       </div>
       <div>
@@ -75,7 +75,6 @@ const Tasks = () => {
                         <TiDelete
                           className="text-red-500 hover:text-red-300 cursor-pointer"
                           size={40}
-                          // onClick={() => removeTask(index)}
                         />
                       </Dialog.Trigger>
                     </ModalDeleteTask>
