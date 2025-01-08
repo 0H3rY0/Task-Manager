@@ -38,8 +38,7 @@ const ModalModifyTask = ({ children, value, index, modifyTask }) => {
                     modifyTask(index, newItem);
                     setOpen(false);
                   }}
-                  className="font-bold bg-red-500 rounded py-2 px-3
-                 hover:bg-red-400 text-white "
+                  className="btn-red "
                 >
                   Confirm
                 </button>

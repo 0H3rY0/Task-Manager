@@ -26,19 +26,13 @@ const ModalDeleteTask = ({ children, removeTask, index }) => {
               </h3>
             </div>
             <div className="flex gap-5 justify-center mt-4">
-              <Dialog.Close
-                className="bg-white px-4 py-2 border-2 border-slate-600
-              rounded-md text-slate-700 font-bold hover:bg-slate-200 hover:text-slate-600"
-              >
-                Cancel
-              </Dialog.Close>
+              <Dialog.Close className="btn-gray">Cancel</Dialog.Close>
               <button
                 onClick={() => {
                   removeTask(index);
                   setOpen(false);
                 }}
-                className="font-bold bg-red-500 border-2 border-red-500 rounded py-2 px-4
-                 hover:bg-red-400 hover:border-red-400 text-white"
+                className="btn-red"
               >
                 Delete
               </button>
