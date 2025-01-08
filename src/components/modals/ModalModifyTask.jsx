@@ -1,6 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
+import PropTypes from "prop-types";
 
 const ModalModifyTask = ({ children, value, index, modifyTask }) => {
   const [newItem, setNewItem] = useState(value);
@@ -49,6 +50,13 @@ const ModalModifyTask = ({ children, value, index, modifyTask }) => {
       </Dialog.Portal>
     </Dialog.Root>
   );
+};
+
+ModalModifyTask.propTypes = {
+  children: PropTypes.node.isRequired, // Any renderable React content
+  value: PropTypes.string.isRequired, // Initial value for the task being modified
+  index: PropTypes.number.isRequired, // Index of the task in the list
+  modifyTask: PropTypes.func.isRequired, // Function to modify the task
 };
 
 export default ModalModifyTask;

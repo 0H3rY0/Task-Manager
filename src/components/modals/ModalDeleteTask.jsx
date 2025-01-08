@@ -1,6 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
+import PropTypes from "prop-types";
 
 const ModalDeleteTask = ({ children, removeTask, index }) => {
   const [open, setOpen] = useState(false);
@@ -42,6 +43,12 @@ const ModalDeleteTask = ({ children, removeTask, index }) => {
       </Dialog.Portal>
     </Dialog.Root>
   );
+};
+
+ModalDeleteTask.propTypes = {
+  children: PropTypes.node.isRequired, // Any renderable React content
+  removeTask: PropTypes.func.isRequired, // Function to remove the task
+  index: PropTypes.number.isRequired, // Index of the task to be deleted
 };
 
 export default ModalDeleteTask;
