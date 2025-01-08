@@ -4,7 +4,7 @@ import { GoProjectSymlink } from "react-icons/go";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { NavLink } from "react-router";
 
-const Navbar = ({ navbarActive }) => {
+const Navbar = () => {
   return (
     <div
       className="w-full top-18 md:w-[300px] absolute md:top-0 left-0 md:h-full

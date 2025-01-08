@@ -1,6 +1,7 @@
 import Tasks from "../pages/Tasks";
 import Test from "../pages/Test";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { Routes, Route } from "react-router";
+import PropTypes from "prop-types";
 
 const Layout = ({ navbarActive }) => {
   return (
@@ -20,6 +21,10 @@ const Layout = ({ navbarActive }) => {
       </Routes>
     </div>
   );
+};
+
+Layout.propTypes = {
+  navbarActive: PropTypes.bool,
 };
 
 export default Layout;

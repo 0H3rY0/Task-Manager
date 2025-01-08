@@ -5,6 +5,7 @@ import { IoMdAdd } from "react-icons/io";
 import { MdOutlineInfo } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
 import { NavLink } from "react-router";
+import PropTypes from "prop-types";
 
 function Header({ setNavbarActive, navbarActive }) {
   return (
@@ -70,5 +71,10 @@ function Header({ setNavbarActive, navbarActive }) {
     </header>
   );
 }
+
+Header.propTypes = {
+  navbarActive: PropTypes.bool.isRequired, // Prop is required, must be boolean
+  setNavbarActive: PropTypes.func.isRequired, // Prop is required, must be a function
+};
 
 export default Header;

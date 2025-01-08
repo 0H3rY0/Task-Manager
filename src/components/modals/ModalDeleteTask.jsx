@@ -1,6 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
+import PropTypes from "prop-types";
 
 const ModalDeleteTask = ({ children, removeTask, index }) => {
   const [open, setOpen] = useState(false);
@@ -9,11 +10,8 @@ const ModalDeleteTask = ({ children, removeTask, index }) => {
     <Dialog.Root open={open} onOpenChange={setOpen}>
       {children}
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50">
-          <Dialog.Content
-            className="fixed w-full max-w-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white shadow rounded-md p-8
-        "
-          >
+        <Dialog.Overlay className="modal-overlay">
+          <Dialog.Content className="modal-content">
             <div
               className="flex justify-between items-center text-2xl font-bold
              "
@@ -29,19 +27,13 @@ const ModalDeleteTask = ({ children, removeTask, index }) => {
               </h3>
             </div>
             <div className="flex gap-5 justify-center mt-4">
-              <Dialog.Close
-                className="bg-white px-4 py-2 border-2 border-slate-600
-              rounded-md text-slate-700 font-bold hover:bg-slate-200 hover:text-slate-600"
-              >
-                Cancel
-              </Dialog.Close>
+              <Dialog.Close className="btn-gray">Cancel</Dialog.Close>
               <button
                 onClick={() => {
                   removeTask(index);
                   setOpen(false);
                 }}
-                className="font-bold bg-red-500 border-2 border-red-500 rounded py-2 px-4
-                 hover:bg-red-400 hover:border-red-400 text-white"
+                className="btn-red"
               >
                 Delete
               </button>
@@ -51,6 +43,12 @@ const ModalDeleteTask = ({ children, removeTask, index }) => {
       </Dialog.Portal>
     </Dialog.Root>
   );
+};
+
+ModalDeleteTask.propTypes = {
+  children: PropTypes.node.isRequired, // Any renderable React content
+  removeTask: PropTypes.func.isRequired, // Function to remove the task
+  index: PropTypes.number.isRequired, // Index of the task to be deleted
 };
 
 export default ModalDeleteTask;
