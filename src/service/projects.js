@@ -1,4 +1,4 @@
-const projects = [
+export const projects = [
   {
     id: 1,
     Title: "Personal project",
@@ -8,9 +8,9 @@ const projects = [
   },
   {
     id: 2,
-    Title: "Personal project",
-    Description: "This is a project about my daily routine",
+    Title: "Work Project",
+    Description: "There i only using this for job",
     Deadline: "12.09.2025",
-    Importance: "Low",
+    Importance: "Medium",
   },
 ];
