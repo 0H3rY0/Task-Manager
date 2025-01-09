@@ -3,6 +3,7 @@ import Test from "../pages/Test";
 import { Routes, Route } from "react-router";
 import PropTypes from "prop-types";
 import ProjectList from "../pages/ProjectList";
+import CreateProject from "../pages/CreateProject";
 
 const Layout = ({ navbarActive }) => {
   return (
@@ -18,7 +19,8 @@ const Layout = ({ navbarActive }) => {
     >
       <Routes>
         <Route path="/" element={<Test />}></Route>
-        <Route path="/projects" element={<ProjectList />}></Route>
+        <Route path="/project" element={<ProjectList />}></Route>
+        <Route path="/project/create" element={<CreateProject />}></Route>
         <Route path="/tasks" element={<Tasks />} />
       </Routes>
     </div>
