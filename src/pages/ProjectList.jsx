@@ -5,9 +5,15 @@ import { SiTask } from "react-icons/si";
 const ProjectList = () => {
   return (
     <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
-      <h2 className="font-bold text-2xl text-slate-700 flex gap-2 items-center">
-        Projects <FaProjectDiagram className="text-orange-500" size={26} />
-      </h2>
+      <div className="flex items-center justify-between">
+        <h2 className="font-bold text-2xl text-slate-700 flex gap-2 items-center">
+          Projects <FaProjectDiagram className="text-orange-500" size={26} />
+        </h2>
+        <button className="btn-gray flex items-center gap-2">
+          <span className="text-2xl">+</span> Create Project
+        </button>
+      </div>
+
       <div>
         <ul className="flex flex-col gap-6">
           <li className=" py-4 px-4 rounded-md flex items-center min-h-30 shadow-md">
