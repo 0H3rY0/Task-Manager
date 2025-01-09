@@ -30,7 +30,7 @@ const Navbar = () => {
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
           <GoProjectSymlink className="text-orange-500" size={32} />
           <NavLink
-            to="/"
+            to="/project/all"
             className={({ isActive }) =>
               isActive ? "text-red-500" : "text-black"
             }
