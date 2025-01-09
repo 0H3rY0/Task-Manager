@@ -1,6 +1,7 @@
 import { FaProjectDiagram } from "react-icons/fa";
 import { SiTask } from "react-icons/si";
-<SiTask size={70} />;
+import { NavLink } from "react-router";
+import { IoMdAdd } from "react-icons/io";
 
 const ProjectList = () => {
   return (
@@ -9,9 +10,11 @@ const ProjectList = () => {
         <h2 className="font-bold text-2xl text-slate-700 flex gap-2 items-center">
           Projects <FaProjectDiagram className="text-orange-500" size={26} />
         </h2>
-        <button className="btn-gray flex items-center gap-2">
-          <span className="text-2xl">+</span> Create Project
-        </button>
+        <NavLink to="/project/create">
+          <button className="btn-gray flex items-center gap-2">
+            <IoMdAdd size={20} /> Create Project
+          </button>
+        </NavLink>
       </div>
 
       <div>

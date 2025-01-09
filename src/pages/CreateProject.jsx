@@ -1,4 +1,5 @@
 import { MdOutlineCreateNewFolder } from "react-icons/md";
+import { NavLink } from "react-router";
 
 const CreateProject = () => {
   return (
@@ -8,9 +9,11 @@ const CreateProject = () => {
           Projects{" "}
           <MdOutlineCreateNewFolder className="text-orange-500" size={26} />
         </h2>
-        <button className="btn-gray flex items-center gap-2">
-          Back to Projects
-        </button>
+        <NavLink to="/project/all">
+          <button className="btn-gray flex items-center gap-2">
+            Back to Projects
+          </button>
+        </NavLink>
       </div>
       <div>
         <form action="">

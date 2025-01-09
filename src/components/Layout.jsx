@@ -19,7 +19,7 @@ const Layout = ({ navbarActive }) => {
     >
       <Routes>
         <Route path="/" element={<Test />}></Route>
-        <Route path="/project" element={<ProjectList />}></Route>
+        <Route path="/project/all" element={<ProjectList />}></Route>
         <Route path="/project/create" element={<CreateProject />}></Route>
         <Route path="/tasks" element={<Tasks />} />
       </Routes>
