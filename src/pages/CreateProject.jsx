@@ -1,8 +1,14 @@
 import { MdOutlineCreateNewFolder } from "react-icons/md";
 import { NavLink } from "react-router";
 import AddProjectForm from "../components/ui/AddProjectForm";
+import { projects } from "../service/projects";
+import { useState } from "react";
 
 const CreateProject = () => {
+  const [projectsList, setProjectsList] = useState(projects);
+
+  console.log(projectsList);
+
   return (
     <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
       <div className="flex items-center justify-between">
@@ -17,7 +23,10 @@ const CreateProject = () => {
         </NavLink>
       </div>
       <div>
-        <AddProjectForm />
+        <AddProjectForm
+          setProjectsList={setProjectsList}
+          projectsList={projectsList}
+        />
       </div>
     </div>
   );
