@@ -78,29 +78,71 @@
 .btn-red {
   font-weight: bold; /* font-bold */
   background-color: #ef4444; /* bg-red-500 */
-  /* border: 2px solid #ef4444; border-2 border-red-500 */
   border-radius: 0.25rem; /* rounded (4px) */
-  padding: 0.5rem 1rem; /* py-2 px-4 (2 * 0.25rem = 0.5rem for top/bottom, 4 * 0.25rem = 1rem for left/right) */
+  padding: 0.5rem 1rem; /* py-2 px-4 */
   color: white; /* text-white */
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease,
+    /* Dodajemy transformację dla efektu powiększenia */ box-shadow 0.3s ease; /* Animacja dla cienia */
+}
+
+.btn-red {
+  font-weight: bold; /* font-bold */
+  background-color: #ef4444; /* bg-red-500 */
+  border-radius: 0.25rem; /* rounded (4px) */
+  padding: 0.5rem 1rem; /* py-2 px-4 */
+  color: white; /* text-white */
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease,
+    /* Dodajemy transformację dla efektu powiększenia */ box-shadow 0.3s ease; /* Animacja dla cienia */
 }
 
 .btn-red:hover {
   background-color: #f87171; /* hover:bg-red-400 */
   border-color: #f87171; /* hover:border-red-400 */
+  transform: scale(1.05); /* Powiększenie przy najechaniu */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Cień podczas hover */
+}
+
+.btn-red:active {
+  background-color: #dc2626; /* Zmiana koloru tła przy kliknięciu (ciemniejszy odcień czerwonego) */
+  border-color: #dc2626; /* Zmiana koloru obramowania przy kliknięciu */
+  transform: scale(0.95); /* Zmniejszenie przy kliknięciu (bardziej wyraźne) */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* Wyraźniejszy cień przy kliknięciu */
+}
+
+.btn-red:focus {
+  outline: none; /* Usuwamy domyślną ramkę focus */
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.4); /* Fokus z czerwoną poświatą */
 }
 
 .btn-gray {
   background-color: white; /* bg-white */
-  padding: 0.5rem 1rem; /* py-2 px-4 (2 * 0.25rem = 0.5rem, 4 * 0.25rem = 1rem) */
+  padding: 0.5rem 1rem; /* py-2 px-4 */
   border: 2px solid #64748b; /* border-2 border-slate-600 */
   border-radius: 0.375rem; /* rounded-md (6px) */
   color: #334155; /* text-slate-700 */
   font-weight: bold; /* font-bold */
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease,
+    /* Animacja dla efektu powiększenia */ box-shadow 0.3s ease; /* Animacja dla cienia */
 }
 
 .btn-gray:hover {
   background-color: #e2e8f0; /* hover:bg-slate-200 */
   color: #64748b; /* hover:text-slate-600 */
+  transform: scale(1.05); /* Powiększenie przy najechaniu */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Cień podczas hover */
+}
+
+.btn-gray:active {
+  background-color: #cbd5e1; /* Zmiana koloru tła przy kliknięciu (ciemniejszy odcień szarości) */
+  border-color: #475569; /* Zmiana koloru obramowania przy kliknięciu */
+  color: #1e293b; /* Zmiana koloru tekstu przy kliknięciu */
+  transform: scale(0.95); /* Zmniejszenie przy kliknięciu */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Wyraźniejszy cień przy kliknięciu */
+}
+
+.btn-gray:focus {
+  outline: none; /* Usuwamy domyślną ramkę focus */
+  box-shadow: 0 0 0 4px rgba(156, 163, 175, 0.4); /* Fokus z niebieską poświatą wokół przycisku */
 }

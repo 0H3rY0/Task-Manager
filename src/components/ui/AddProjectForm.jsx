@@ -3,6 +3,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ProjectService from "../../service/api/projects";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
+import { useNavigate } from "react-router";
 
 const AddProjectForm = () => {
   const [project, setProject] = useState({
@@ -12,6 +13,8 @@ const AddProjectForm = () => {
     Deadline: "",
     Importance: "",
   });
+
+  const navigator = useNavigate();
 
   const onInputChnage = (e) => {
     setProject((prev) => ({
@@ -37,6 +40,8 @@ const AddProjectForm = () => {
       Deadline: "",
       Importance: "",
     });
+
+    navigator("/project/all");
   };
 
   return (

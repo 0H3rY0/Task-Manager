@@ -47,7 +47,7 @@ ModalCheckAgreement.propTypes = {
   children: PropTypes.node.isRequired, // Any renderable React content
   titleText: PropTypes.string,
   btnText: PropTypes.string,
-  removeTask: PropTypes.func, // Function to remove the task
+  func: PropTypes.func, // Function to remove the task
   index: PropTypes.number, // Index of the task to be deleted
 };
 
