@@ -2,7 +2,7 @@ import { FaProjectDiagram } from "react-icons/fa";
 import { SiTask } from "react-icons/si";
 import { NavLink } from "react-router";
 import { IoMdAdd } from "react-icons/io";
-import { projects } from "../service/projects";
+import { projects } from "../service/data/projects";
 import { useEffect, useState } from "react";
 
 const ProjectList = () => {
