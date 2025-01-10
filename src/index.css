@@ -78,7 +78,7 @@
 .btn-red {
   font-weight: bold; /* font-bold */
   background-color: #ef4444; /* bg-red-500 */
-  border: 2px solid #ef4444; /* border-2 border-red-500 */
+  /* border: 2px solid #ef4444; border-2 border-red-500 */
   border-radius: 0.25rem; /* rounded (4px) */
   padding: 0.5rem 1rem; /* py-2 px-4 (2 * 0.25rem = 0.5rem for top/bottom, 4 * 0.25rem = 1rem for left/right) */
   color: white; /* text-white */
