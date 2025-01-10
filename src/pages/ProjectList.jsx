@@ -2,7 +2,6 @@ import { FaProjectDiagram } from "react-icons/fa";
 import { SiTask } from "react-icons/si";
 import { NavLink } from "react-router";
 import { IoMdAdd } from "react-icons/io";
-// import { projects } from "../service/data/projects";
 import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
 
@@ -51,7 +50,7 @@ const ProjectList = () => {
                   </p>
                 </div>
                 <div>
-                  <p className="text-md text-slate-500">
+                  <p className="text-md text-slate-500 break-words">
                     maybe count of taks in project
                   </p>
                 </div>
@@ -63,7 +62,9 @@ const ProjectList = () => {
                 </p>
                 <p className="flex gap-1 font-semibold text-slate-700">
                   DeadLine:{" "}
-                  <span className="text-orange-500">{item.Deadline}</span>
+                  <span className="text-orange-500 whitespace-nowrap">
+                    {item.Deadline}
+                  </span>
                 </p>
               </div>
             </li>

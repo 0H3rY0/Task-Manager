@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ProjectService from "../../service/api/projects";
 
-const AddProjectForm = ({ setProjectsList, projectsList }) => {
+const AddProjectForm = () => {
   const [project, setProject] = useState({
     id: null,
     Title: "",
@@ -28,7 +28,6 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
 
     ProjectService.createProject(newProject);
 
-    setProjectsList([...projectsList, newProject]);
     setProject({
       id: null,
       Title: "",
@@ -45,6 +44,7 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
       </label>
       <input
         name="Title"
+        value={project.Title}
         onChange={(e) => onInputChnage(e)}
         type="text"
         className="classicInput mb-3"
@@ -59,6 +59,7 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
       </label>
       <input
         name="Description"
+        value={project.Description}
         onChange={(e) => onInputChnage(e)}
         type="text"
         className="classicInput mb-3"
@@ -74,6 +75,7 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
       <input
         defaultValue={""}
         name="Deadline"
+        value={project.Deadline}
         onChange={(e) => onInputChnage(e)}
         type="date"
         className="classicInput mb-3 text-slate-400"
@@ -88,6 +90,7 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
       <select
         className="block text-slate-400"
         name="Importance"
+        value={project.Importance}
         onChange={(e) => onInputChnage(e)}
       >
         <option value="High">High</option>
