@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import ProjectService from "../../service/api/projects";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const AddProjectForm = () => {
   const [project, setProject] = useState({
@@ -41,6 +42,7 @@ const AddProjectForm = () => {
       Importance: "",
     });
 
+    toast("Success!!");
     navigator("/project/all");
   };
 

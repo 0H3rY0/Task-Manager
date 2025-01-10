@@ -6,6 +6,7 @@ import { RxUpdate } from "react-icons/rx";
 import * as Dialog from "@radix-ui/react-dialog";
 import ModalModifyTask from "../components/modals/ModalModifyTask";
 import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
+import { toast } from "react-toastify";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -14,10 +15,12 @@ const Tasks = () => {
   const addTask = () => {
     setTasks([...tasks, inputText]);
     setInputText("");
+    toast("Success! Your task has been added");
   };
 
   const removeTask = (index) => {
     setTasks(tasks.filter((item, i) => i !== index));
+    toast("Success! Your task has been deleted");
   };
 
   const modifyTask = (i, newItem) => {
