@@ -1,6 +1,8 @@
+import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ProjectService from "../../service/api/projects";
+import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 
 const AddProjectForm = () => {
   const [project, setProject] = useState({
@@ -18,8 +20,8 @@ const AddProjectForm = () => {
     }));
   };
 
-  const handleSubmitProject = (e) => {
-    e.preventDefault();
+  const handleSubmitProject = () => {
+    // e.preventDefault();
 
     const newProject = {
       ...project,
@@ -38,7 +40,7 @@ const AddProjectForm = () => {
   };
 
   return (
-    <form action="" onSubmit={(e) => handleSubmitProject(e)}>
+    <form action="">
       <label htmlFor="Title" className="font-bold text-lg text-slate-700 ml-1">
         Title
       </label>
@@ -100,9 +102,17 @@ const AddProjectForm = () => {
         </option>
       </select>
 
-      <button className="btn-gray mt-10" type="submit">
-        Add Project
-      </button>
+      <ModalCheckAgreement
+        func={handleSubmitProject}
+        titleText={"Are you sure you want to add this project?"}
+        btnText={"Confirm"}
+      >
+        <Dialog.Trigger>
+          <div className="btn-gray mt-10" type="submit">
+            Add Project
+          </div>
+        </Dialog.Trigger>
+      </ModalCheckAgreement>
     </form>
   );
 };
