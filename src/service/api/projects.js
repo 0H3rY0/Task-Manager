@@ -11,6 +11,15 @@ class ProjectService {
       console.log("get projects error: " + err);
     }
   }
+
+  static async createProject(project) {
+    try {
+      const response = await axios.post(`${this.BASE_URL}/projects`, project);
+      return response.data;
+    } catch (err) {
+      console.log("error with creating project: " + err);
+    }
+  }
 }
 
 export default ProjectService;

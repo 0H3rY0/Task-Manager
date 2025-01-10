@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import ProjectService from "../../service/api/projects";
 
 const AddProjectForm = ({ setProjectsList, projectsList }) => {
   const [project, setProject] = useState({
@@ -24,6 +25,8 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
       ...project,
       id: uuidv4(),
     };
+
+    ProjectService.createProject(newProject);
 
     setProjectsList([...projectsList, newProject]);
     setProject({
