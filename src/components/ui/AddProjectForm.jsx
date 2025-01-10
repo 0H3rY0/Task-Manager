@@ -1,7 +1,12 @@
+import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import ProjectService from "../../service/api/projects";
+import ModalCheckAgreement from "../modals/ModalCheckAgreement";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
-const AddProjectForm = ({ setProjectsList, projectsList }) => {
+const AddProjectForm = () => {
   const [project, setProject] = useState({
     id: null,
     Title: "",
@@ -10,6 +15,8 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
     Importance: "",
   });
 
+  const navigator = useNavigate();
+
   const onInputChnage = (e) => {
     setProject((prev) => ({
       ...prev,
@@ -17,15 +24,16 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
     }));
   };
 
-  const handleSubmitProject = (e) => {
-    e.preventDefault();
+  const handleSubmitProject = () => {
+    // e.preventDefault();
 
     const newProject = {
       ...project,
       id: uuidv4(),
     };
 
-    setProjectsList([...projectsList, newProject]);
+    ProjectService.createProject(newProject);
+
     setProject({
       id: null,
       Title: "",
@@ -33,15 +41,19 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
       Deadline: "",
       Importance: "",
     });
+
+    toast("Success!!");
+    navigator("/project/all");
   };
 
   return (
-    <form action="" onSubmit={(e) => handleSubmitProject(e)}>
+    <form action="">
       <label htmlFor="Title" className="font-bold text-lg text-slate-700 ml-1">
         Title
       </label>
       <input
         name="Title"
+        value={project.Title}
         onChange={(e) => onInputChnage(e)}
         type="text"
         className="classicInput mb-3"
@@ -56,6 +68,7 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
       </label>
       <input
         name="Description"
+        value={project.Description}
         onChange={(e) => onInputChnage(e)}
         type="text"
         className="classicInput mb-3"
@@ -71,6 +84,7 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
       <input
         defaultValue={""}
         name="Deadline"
+        value={project.Deadline}
         onChange={(e) => onInputChnage(e)}
         type="date"
         className="classicInput mb-3 text-slate-400"
@@ -85,6 +99,7 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
       <select
         className="block text-slate-400"
         name="Importance"
+        value={project.Importance}
         onChange={(e) => onInputChnage(e)}
       >
         <option value="High">High</option>
@@ -94,9 +109,17 @@ const AddProjectForm = ({ setProjectsList, projectsList }) => {
         </option>
       </select>
 
-      <button className="btn-gray mt-10" type="submit">
-        Add Project
-      </button>
+      <ModalCheckAgreement
+        func={handleSubmitProject}
+        titleText={"Are you sure you want to add this project?"}
+        btnText={"Confirm"}
+      >
+        <Dialog.Trigger>
+          <div className="btn-gray mt-10" type="submit">
+            Add Project
+          </div>
+        </Dialog.Trigger>
+      </ModalCheckAgreement>
     </form>
   );
 };

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import PropTypes from "prop-types";
 
-const ModalDeleteTask = ({ children, removeTask, index }) => {
+const ModalCheckAgreement = ({ children, func, index, titleText, btnText }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -22,20 +22,18 @@ const ModalDeleteTask = ({ children, removeTask, index }) => {
               </Dialog.Close>
             </div>
             <div>
-              <h3 className="font-semibold text-slate-600">
-                Are you sure you want to delete this task?
-              </h3>
+              <h3 className="font-semibold text-slate-600">{titleText}</h3>
             </div>
             <div className="flex gap-5 justify-center mt-4">
               <Dialog.Close className="btn-gray">Cancel</Dialog.Close>
               <button
                 onClick={() => {
-                  removeTask(index);
+                  func(index);
                   setOpen(false);
                 }}
                 className="btn-red"
               >
-                Delete
+                {btnText}
               </button>
             </div>
           </Dialog.Content>
@@ -45,10 +43,12 @@ const ModalDeleteTask = ({ children, removeTask, index }) => {
   );
 };
 
-ModalDeleteTask.propTypes = {
+ModalCheckAgreement.propTypes = {
   children: PropTypes.node.isRequired, // Any renderable React content
-  removeTask: PropTypes.func.isRequired, // Function to remove the task
-  index: PropTypes.number.isRequired, // Index of the task to be deleted
+  titleText: PropTypes.string,
+  btnText: PropTypes.string,
+  func: PropTypes.func, // Function to remove the task
+  index: PropTypes.number, // Index of the task to be deleted
 };
 
-export default ModalDeleteTask;
+export default ModalCheckAgreement;

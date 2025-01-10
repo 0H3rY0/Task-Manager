@@ -5,7 +5,8 @@ import { TiDelete } from "react-icons/ti";
 import { RxUpdate } from "react-icons/rx";
 import * as Dialog from "@radix-ui/react-dialog";
 import ModalModifyTask from "../components/modals/ModalModifyTask";
-import ModalDeleteTask from "../components/modals/ModalDeleteTask";
+import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
+import { toast } from "react-toastify";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -14,10 +15,12 @@ const Tasks = () => {
   const addTask = () => {
     setTasks([...tasks, inputText]);
     setInputText("");
+    toast("Success! Your task has been added");
   };
 
   const removeTask = (index) => {
     setTasks(tasks.filter((item, i) => i !== index));
+    toast("Success! Your task has been deleted");
   };
 
   const modifyTask = (i, newItem) => {
@@ -69,14 +72,19 @@ const Tasks = () => {
                   {item}
                 </li>
                 <div className=" w-1/5 py-4 px-2 flex items-center gap-5 justify-end mr-5">
-                  <ModalDeleteTask removeTask={removeTask} index={index}>
+                  <ModalCheckAgreement
+                    func={removeTask}
+                    index={index}
+                    titleText={"Are you sure you want to delete this task?"}
+                    btnText={"Confirm"}
+                  >
                     <Dialog.Trigger>
                       <TiDelete
                         className="text-red-500 hover:text-red-300 cursor-pointer"
                         size={40}
                       />
                     </Dialog.Trigger>
-                  </ModalDeleteTask>
+                  </ModalCheckAgreement>
 
                   <ModalModifyTask
                     value={item}
