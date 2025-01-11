@@ -2,8 +2,17 @@ import { AiOutlineProject } from "react-icons/ai";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 import profile from "../assets/images/profile.jpg";
 import Tasks from "./Tasks";
+import { useParams } from "react-router";
+import { useEffect } from "react";
+import ProjectService from "../service/api/projects";
 
 const Project = () => {
+  const { id } = useParams();
+
+  useEffect(() => {
+    console.log(ProjectService.getProject(1));
+  }, []);
+
   return (
     <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
       <div className="flex items-center justify-between">
@@ -38,8 +47,8 @@ const Project = () => {
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout. The point
             of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using 'Content here, content
-            here', making it look like readable English. Many desktop publishing
+            distribution of letters, as opposed to using Content here, content
+            making it look like readable English. Many desktop publishing
           </p>
         </div>
       </div>

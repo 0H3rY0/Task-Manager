@@ -20,6 +20,17 @@ class ProjectService {
       console.log("error with creating project: " + err);
     }
   }
+
+  // http://localhost:3031/projects?id=1
+
+  static async getProject(id) {
+    try {
+      const response = await axios.get(`${this.BASE_URL}/projects?id=${id}`);
+      return response.data;
+    } catch (err) {
+      console.log("can not download project: " + err);
+    }
+  }
 }
 
 export default ProjectService;
