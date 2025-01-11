@@ -7,6 +7,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import ModalModifyTask from "../components/modals/ModalModifyTask";
 import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
 import { toast } from "react-toastify";
+import ProjectService from "../service/api/projects";
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -14,6 +15,11 @@ const Tasks = () => {
 
   const addTask = () => {
     setTasks([...tasks, inputText]);
+    const newTask = {
+      id: 2,
+      content: inputText,
+    };
+    ProjectService.updateProject(newTask, 1);
     setInputText("");
     toast("Success! Your task has been added");
   };

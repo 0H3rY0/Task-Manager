@@ -5,7 +5,17 @@
       "Title": "Personal project",
       "Description": "This is a project about my daily routine",
       "Deadline": "12.09.2025",
-      "Importance": "Low"
+      "Importance": "Low",
+      "Tasks": [
+        {
+          "id": 1,
+          "content": "i need to do homewordk"
+        },
+        {
+          "id": 2,
+          "content": "fffff"
+        }
+      ]
     },
     {
       "id": "2",

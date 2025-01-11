@@ -12,15 +12,6 @@ class ProjectService {
     }
   }
 
-  static async createProject(project) {
-    try {
-      const response = await axios.post(`${this.BASE_URL}/projects`, project);
-      return response.data;
-    } catch (err) {
-      console.log("error with creating project: " + err);
-    }
-  }
-
   // http://localhost:3031/projects?id=1
 
   static async getProject(id) {
@@ -33,6 +24,15 @@ class ProjectService {
     }
   }
 
+  static async createProject(project) {
+    try {
+      const response = await axios.post(`${this.BASE_URL}/projects`, project);
+      return response.data;
+    } catch (err) {
+      console.log("error with creating project: " + err);
+    }
+  }
+
   static async deleteProject(id) {
     try {
       const response = await axios.delete(`${this.BASE_URL}/projects/${id}`);
@@ -41,6 +41,23 @@ class ProjectService {
       console.log(
         "Sorry! something went wrong with deleting your project: " + err
       );
+    }
+  }
+
+  static async updateProject(newTask, id) {
+    try {
+      const project = await this.getProject(id);
+
+      console.log(project.Tasks);
+
+      const updatedTasks = [...project.Tasks, newTask];
+
+      const response = await axios.patch(`${this.BASE_URL}/projects/${id}`, {
+        Tasks: updatedTasks,
+      });
+      return response.data;
+    } catch (err) {
+      console.log("something goes wrong during updating project: " + err);
     }
   }
 }

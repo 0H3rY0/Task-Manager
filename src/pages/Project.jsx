@@ -55,9 +55,9 @@ const Project = () => {
             funcParam={id}
           >
             <Dialog.Trigger>
-              <button className="btn-red flex items-center gap-2">
+              <div className="btn-red flex items-center gap-2">
                 <RiDeleteBack2Fill size={20} /> Delete Project
-              </button>
+              </div>
             </Dialog.Trigger>
           </ModalCheckAgreement>
         </div>
