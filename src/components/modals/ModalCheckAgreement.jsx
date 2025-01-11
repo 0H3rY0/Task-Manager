@@ -7,6 +7,7 @@ const ModalCheckAgreement = ({
   children,
   func,
   funcParam,
+  funcParam2,
   titleText,
   btnText,
 }) => {
@@ -34,7 +35,7 @@ const ModalCheckAgreement = ({
               <Dialog.Close className="btn-gray">Cancel</Dialog.Close>
               <button
                 onClick={() => {
-                  func(funcParam);
+                  func(funcParam, funcParam2);
                   setOpen(false);
                 }}
                 className="btn-red"

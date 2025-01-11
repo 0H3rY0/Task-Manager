@@ -53,6 +53,26 @@ class ProjectService {
     }
   }
 
+  static async deleteAppropriateTask(taskId, projectId) {
+    try {
+      const project = await this.getProject(projectId);
+
+      const updatedTasks = project.Tasks.filter((task) => {
+        return task.id !== taskId;
+      });
+
+      const response = await axios.patch(
+        `${this.BASE_URL}/projects/${projectId}`,
+        {
+          Tasks: updatedTasks,
+        }
+      );
+      return response;
+    } catch (err) {
+      console.log("something goes wrong with deleting task: " + err);
+    }
+  }
+
   static async updateProject(newTask, id) {
     try {
       const project = await this.getProject(id);

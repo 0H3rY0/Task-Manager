@@ -23,7 +23,7 @@ const Tasks = ({ id }) => {
     };
 
     getTasks(id);
-  }, [tasks, id]);
+  }, [id]);
 
   const addTask = () => {
     // setTasks([...tasks, inputText]);
@@ -36,8 +36,9 @@ const Tasks = ({ id }) => {
     toast("Success! Your task has been added");
   };
 
-  const removeTask = (index) => {
-    setTasks(tasks.filter((item, i) => i !== index));
+  const removeTask = (taskId, projectId = id) => {
+    // setTasks(tasks.filter((item, i) => i !== index));
+    ProjectService.deleteAppropriateTask(taskId, projectId);
     toast("Success! Your task has been deleted");
   };
 
@@ -92,7 +93,8 @@ const Tasks = ({ id }) => {
                 <div className=" w-1/5 py-4 px-2 flex items-center gap-5 justify-end mr-5">
                   <ModalCheckAgreement
                     func={removeTask}
-                    funcParam={index}
+                    funcParam={item.id}
+                    funcParam2={id}
                     titleText={"Are you sure you want to delete this task?"}
                     btnText={"Confirm"}
                   >
