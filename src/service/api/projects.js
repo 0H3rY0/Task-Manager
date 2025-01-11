@@ -24,6 +24,15 @@ class ProjectService {
     }
   }
 
+  static async getAppropriateTasks(id) {
+    console.log("id:" + id);
+    const project = await this.getProject(id);
+
+    console.log("project project: " + project);
+
+    return project.Tasks;
+  }
+
   static async createProject(project) {
     try {
       const response = await axios.post(`${this.BASE_URL}/projects`, project);

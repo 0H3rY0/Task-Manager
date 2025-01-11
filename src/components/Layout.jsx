@@ -1,4 +1,4 @@
-import Tasks from "../pages/Tasks";
+// import Tasks from "../pages/Tasks";
 import Test from "../pages/Test";
 import { Routes, Route } from "react-router";
 import PropTypes from "prop-types";
@@ -24,7 +24,7 @@ const Layout = ({ navbarActive }) => {
         <Route path="/project/:id" element={<Project />} />
         <Route path="/project/all" element={<ProjectList />} />
         <Route path="/project/create" element={<CreateProject />} />
-        <Route path="/tasks" element={<Tasks />} />
+        {/* <Route path="/tasks" element={<Tasks />} /> i am changing all structure about task */}
       </Routes>
       <ToastContainer />
     </div>

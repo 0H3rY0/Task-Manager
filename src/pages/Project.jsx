@@ -1,7 +1,7 @@
 import { AiOutlineProject } from "react-icons/ai";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 import profile from "../assets/images/profile.jpg";
-import Tasks from "./Tasks";
+import Tasks from "../components/ui/Tasks";
 import { NavLink, useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
@@ -88,7 +88,7 @@ const Project = () => {
           </p>
         </div>
       </div>
-      <Tasks />
+      <Tasks id={id} />
     </div>
   );
 };
