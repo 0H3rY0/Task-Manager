@@ -1,25 +1,44 @@
 import { CgGoogleTasks } from "react-icons/cg";
 import { IoMdAdd } from "react-icons/io";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TiDelete } from "react-icons/ti";
 import { RxUpdate } from "react-icons/rx";
 import * as Dialog from "@radix-ui/react-dialog";
-import ModalModifyTask from "../components/modals/ModalModifyTask";
-import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
+import ModalModifyTask from "../modals/ModalModifyTask";
+import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { toast } from "react-toastify";
+import ProjectService from "../../service/api/projects";
+import { v4 as uuidv4 } from "uuid";
 
-const Tasks = () => {
+const Tasks = ({ id }) => {
   const [tasks, setTasks] = useState([]);
   const [inputText, setInputText] = useState("");
 
+  const [testTasks, setTestTasks] = useState([]);
+
+  useEffect(() => {
+    const getTasks = async (id) => {
+      const data = await ProjectService.getAppropriateTasks(id);
+      setTestTasks(data);
+    };
+
+    getTasks(id);
+  }, [id]);
+
   const addTask = () => {
-    setTasks([...tasks, inputText]);
+    // setTasks([...tasks, inputText]);
+    const newTask = {
+      id: uuidv4(),
+      content: inputText,
+    };
+    ProjectService.updateProject(newTask, id);
     setInputText("");
     toast("Success! Your task has been added");
   };
 
-  const removeTask = (index) => {
-    setTasks(tasks.filter((item, i) => i !== index));
+  const removeTask = (taskId, projectId = id) => {
+    // setTasks(tasks.filter((item, i) => i !== index));
+    ProjectService.deleteAppropriateTask(taskId, projectId);
     toast("Success! Your task has been deleted");
   };
 
@@ -59,7 +78,7 @@ const Tasks = () => {
       </div>
       <div>
         <ul className="flex flex-col">
-          {tasks.map((item, index) => {
+          {testTasks.map((item, index) => {
             return (
               <div
                 key={index}
@@ -69,12 +88,13 @@ const Tasks = () => {
                   className="py-4 px-2 
                 text-lg font-semibold text-slate-700 w-4/5"
                 >
-                  {item}
+                  {item.content}
                 </li>
                 <div className=" w-1/5 py-4 px-2 flex items-center gap-5 justify-end mr-5">
                   <ModalCheckAgreement
                     func={removeTask}
-                    index={index}
+                    funcParam={item.id}
+                    funcParam2={id}
                     titleText={"Are you sure you want to delete this task?"}
                     btnText={"Confirm"}
                   >

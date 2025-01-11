@@ -1,164 +1,47 @@
 {
   "projects": [
     {
-      "id": 1,
+      "id": "1",
       "Title": "Personal project",
       "Description": "This is a project about my daily routine",
       "Deadline": "12.09.2025",
-      "Importance": "Low"
+      "Importance": "Low",
+      "Tasks": [
+        {
+          "id": 1,
+          "content": "i need to do homewordk"
+        }
+      ]
     },
     {
-      "id": 2,
+      "id": "2",
       "Title": "Work Project",
       "Description": "There i only using this for job",
       "Deadline": "12.09.2025",
-      "Importance": "Medium"
+      "Importance": "Medium",
+      "Tasks": [
+        {
+          "id": 1,
+          "content": "i need to do homewordk"
+        }
+      ]
     },
     {
-      "id": 3,
+      "id": "3",
       "Title": "Project with by friends",
       "Description": "There i only using this for job",
       "Deadline": "12.09.2025",
-      "Importance": "Medium"
-    },
-    {
-      "id": "4098",
-      "project": {
-        "id": "ef98eaa5-f418-4d4c-989b-726f563ea1f1",
-        "Title": "a",
-        "Description": "a",
-        "Deadline": "2025-01-11",
-        "Importance": "Medium"
-      }
-    },
-    {
-      "id": "b676",
-      "project": {
-        "id": "0d0db7e2-5912-44eb-9ae8-378a9a34b2b0",
-        "Title": "Project",
-        "Description": "this is a new project",
-        "Deadline": "2025-01-11",
-        "Importance": "Medium"
-      }
-    },
-    {
-      "id": "7060e832-b201-46a3-9340-f6c2212301d8",
-      "Title": "a",
-      "Description": "a",
-      "Deadline": "2025-01-05",
-      "Importance": "Medium"
-    },
-    {
-      "id": "89a80778-f273-4fc4-92bd-d52c73877c26",
-      "Title": "b",
-      "Description": "b",
-      "Deadline": "2025-01-04",
-      "Importance": "Low"
-    },
-    {
-      "id": "5536c3a8-77e9-4259-9f1d-5bced1fe2b4a",
-      "Title": "f",
-      "Description": "f",
-      "Deadline": "",
-      "Importance": ""
-    },
-    {
-      "id": "b71d6288-fb76-4f2f-b974-4d242df4e1dc",
-      "Title": "test",
-      "Description": "test",
-      "Deadline": "2025-01-11",
-      "Importance": "Medium"
-    },
-    {
-      "id": "0849570c-8fc6-4cf8-a1e9-78856338d1f8",
-      "Title": "test2",
-      "Description": "test2",
-      "Deadline": "2025-01-11",
-      "Importance": "Medium"
-    },
-    {
-      "id": "1da4eb9f-b395-4574-9079-d3a04f03f235",
-      "Title": "a",
-      "Description": "",
-      "Deadline": "",
-      "Importance": ""
-    },
-    {
-      "id": "68b04585-c4cd-4370-ad2e-af000c78fa55",
-      "Title": "test",
-      "Description": "test",
-      "Deadline": "2025-01-03",
-      "Importance": "Medium"
-    },
-    {
-      "id": "69c62c1e-af04-4ff8-8483-0cb6176d4c11",
-      "Title": "",
-      "Description": "",
-      "Deadline": "",
-      "Importance": ""
-    },
-    {
-      "id": "83e5b127-830c-4565-9f3f-9fc01fb5a1e7",
-      "Title": "hh",
-      "Description": "hhh",
-      "Deadline": "",
-      "Importance": "Medium"
-    },
-    {
-      "id": "4852407c-ae86-4ece-8d5c-696aeae6ecb6",
-      "Title": "",
-      "Description": "",
-      "Deadline": "",
-      "Importance": ""
-    },
-    {
-      "id": "60b0c338-259a-4e81-b24f-09944932a59f",
-      "Title": "",
-      "Description": "",
-      "Deadline": "",
-      "Importance": ""
-    },
-    {
-      "id": "8ef0a541-5628-45d1-9bca-098a416c508e",
-      "Title": "",
-      "Description": "",
-      "Deadline": "",
-      "Importance": ""
-    },
-    {
-      "id": "f028dd0d-b8dd-4aa2-82c6-611e1852e889",
-      "Title": "",
-      "Description": "",
-      "Deadline": "",
-      "Importance": ""
-    },
-    {
-      "id": "d12e3100-927b-4bb3-9f52-5c1668e58155",
-      "Title": "",
-      "Description": "",
-      "Deadline": "",
-      "Importance": ""
-    },
-    {
-      "id": "1db786b3-e350-40f5-befd-b0a7232a4bed",
-      "Title": "",
-      "Description": "",
-      "Deadline": "",
-      "Importance": ""
-    },
-    {
-      "id": "83d593d7-4c05-4347-bd8d-62e946883148",
-      "Title": "",
-      "Description": "",
-      "Deadline": "",
-      "Importance": ""
-    },
-    {
-      "id": "5ffbc0d1-e9d7-4a6d-a52b-30f72f892560",
-      "Title": "",
-      "Description": "",
-      "Deadline": "",
-      "Importance": ""
+      "Importance": "Medium",
+      "Tasks": [
+        {
+          "id": 1,
+          "content": "i need to do homewordk"
+        },
+        {
+          "id": "151e4391-350a-4505-ab71-7f1c578411f9",
+          "content": "test 3"
+        }
+      ]
     }
   ]
 }

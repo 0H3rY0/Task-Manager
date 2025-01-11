@@ -3,7 +3,14 @@ import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import PropTypes from "prop-types";
 
-const ModalCheckAgreement = ({ children, func, index, titleText, btnText }) => {
+const ModalCheckAgreement = ({
+  children,
+  func,
+  funcParam,
+  funcParam2,
+  titleText,
+  btnText,
+}) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -28,7 +35,7 @@ const ModalCheckAgreement = ({ children, func, index, titleText, btnText }) => {
               <Dialog.Close className="btn-gray">Cancel</Dialog.Close>
               <button
                 onClick={() => {
-                  func(index);
+                  func(funcParam, funcParam2);
                   setOpen(false);
                 }}
                 className="btn-red"
