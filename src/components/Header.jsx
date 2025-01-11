@@ -6,6 +6,7 @@ import { MdOutlineInfo } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
 import { NavLink } from "react-router";
 import PropTypes from "prop-types";
+import profile from "../assets/images/profile.jpg";
 
 function Header({ setNavbarActive, navbarActive }) {
   return (
@@ -62,11 +63,7 @@ function Header({ setNavbarActive, navbarActive }) {
           title="notifications"
           className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
         />
-        <img
-          src="src/assets/profile.jpg"
-          className="w-8 h-8 rounded-full"
-          title="profile"
-        />
+        <img src={profile} className="w-8 h-8 rounded-full" title="profile" />
       </div>
     </header>
   );
