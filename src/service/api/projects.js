@@ -32,6 +32,17 @@ class ProjectService {
       console.log("can not download project: " + err);
     }
   }
+
+  static async deleteProject(id) {
+    try {
+      const response = await axios.delete(`${this.BASE_URL}/projects/${id}`);
+      return response.data;
+    } catch (err) {
+      console.log(
+        "Sorry! something went wrong with deleting your project: " + err
+      );
+    }
+  }
 }
 
 export default ProjectService;

@@ -2,14 +2,16 @@ import { AiOutlineProject } from "react-icons/ai";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 import profile from "../assets/images/profile.jpg";
 import Tasks from "./Tasks";
-import { NavLink, useParams } from "react-router";
+import { NavLink, useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { toast } from "react-toastify";
 
 const Project = () => {
   const { id } = useParams();
   const [project, setProject] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getProject = async () => {
@@ -19,6 +21,14 @@ const Project = () => {
 
     getProject(id);
   }, [id]);
+
+  const deleteProject = (id) => {
+    console.log(id);
+    ProjectService.deleteProject(id);
+
+    navigate("/project/all");
+    toast("Your project has been deleted");
+  };
 
   console.log(project);
 
@@ -36,7 +46,10 @@ const Project = () => {
             </button>
           </NavLink>
 
-          <button className="btn-red flex items-center gap-2">
+          <button
+            onClick={() => deleteProject(id)}
+            className="btn-red flex items-center gap-2"
+          >
             <RiDeleteBack2Fill size={20} /> Delete Project
           </button>
         </div>
