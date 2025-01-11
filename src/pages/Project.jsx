@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { toast } from "react-toastify";
+import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
+import * as Dialog from "@radix-ui/react-dialog";
 
 const Project = () => {
   const { id } = useParams();
@@ -46,12 +48,18 @@ const Project = () => {
             </button>
           </NavLink>
 
-          <button
-            onClick={() => deleteProject(id)}
-            className="btn-red flex items-center gap-2"
+          <ModalCheckAgreement
+            btnText={"Confirm"}
+            titleText={"Are you sure you want to delete this project"}
+            func={deleteProject}
+            funcParam={id}
           >
-            <RiDeleteBack2Fill size={20} /> Delete Project
-          </button>
+            <Dialog.Trigger>
+              <button className="btn-red flex items-center gap-2">
+                <RiDeleteBack2Fill size={20} /> Delete Project
+              </button>
+            </Dialog.Trigger>
+          </ModalCheckAgreement>
         </div>
       </div>
       <div className="flex w-full gap-10 ">

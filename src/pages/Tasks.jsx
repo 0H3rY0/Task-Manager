@@ -74,7 +74,7 @@ const Tasks = () => {
                 <div className=" w-1/5 py-4 px-2 flex items-center gap-5 justify-end mr-5">
                   <ModalCheckAgreement
                     func={removeTask}
-                    index={index}
+                    funcParam={index}
                     titleText={"Are you sure you want to delete this task?"}
                     btnText={"Confirm"}
                   >
