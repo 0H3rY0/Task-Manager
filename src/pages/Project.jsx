@@ -2,9 +2,10 @@ import { AiOutlineProject } from "react-icons/ai";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 import profile from "../assets/images/profile.jpg";
 import Tasks from "./Tasks";
-import { useParams } from "react-router";
+import { NavLink, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const Project = () => {
   const { id } = useParams();
@@ -21,8 +22,6 @@ const Project = () => {
 
   console.log(project);
 
-  const { Title, Description } = project;
-
   return (
     <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
       <div className="flex items-center justify-between">
@@ -30,9 +29,17 @@ const Project = () => {
           Project <AiOutlineProject className="text-orange-500" size={26} />
         </h2>
 
-        <button className="btn-red flex items-center gap-2">
-          <RiDeleteBack2Fill size={20} /> Delete Project
-        </button>
+        <div className="flex gap-6">
+          <NavLink to={"/project/all"}>
+            <button className="btn-gray flex items-center gap-2">
+              <IoMdArrowRoundBack size={20} /> Back
+            </button>
+          </NavLink>
+
+          <button className="btn-red flex items-center gap-2">
+            <RiDeleteBack2Fill size={20} /> Delete Project
+          </button>
+        </div>
       </div>
       <div className="flex w-full gap-10 ">
         <div className="w-2/5 flex flex-col items-start gap-3">

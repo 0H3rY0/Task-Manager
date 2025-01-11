@@ -50,9 +50,9 @@ const ProjectList = () => {
                   </p>
                 </div>
                 <div>
-                  <p className="text-md text-slate-500 break-words">
-                    maybe count of taks in project
-                  </p>
+                  <NavLink to={`/project/${item.id}`}>
+                    <button className="btn-gray px-24">Watch more</button>
+                  </NavLink>
                 </div>
               </div>
               <div className="flex flex-col justify-end items-end w-1/5 gap-14">
