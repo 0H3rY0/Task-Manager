@@ -26,7 +26,8 @@ class ProjectService {
   static async getProject(id) {
     try {
       const response = await axios.get(`${this.BASE_URL}/projects?id=${id}`);
-      return response.data;
+      const project = response.data[0];
+      return project;
     } catch (err) {
       console.log("can not download project: " + err);
     }

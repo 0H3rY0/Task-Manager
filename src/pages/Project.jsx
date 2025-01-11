@@ -3,15 +3,25 @@ import { RiDeleteBack2Fill } from "react-icons/ri";
 import profile from "../assets/images/profile.jpg";
 import Tasks from "./Tasks";
 import { useParams } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
 
 const Project = () => {
   const { id } = useParams();
+  const [project, setProject] = useState([]);
 
   useEffect(() => {
-    console.log(ProjectService.getProject(1));
-  }, []);
+    const getProject = async () => {
+      const data = await ProjectService.getProject(id);
+      setProject(data);
+    };
+
+    getProject(id);
+  }, [id]);
+
+  console.log(project);
+
+  const { Title, Description } = project;
 
   return (
     <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
@@ -32,11 +42,13 @@ const Project = () => {
             className="w-full h-[200px] border-4 border-orange-500 rounded-md"
           />
           <h3 className="text-2xl font-bold text-slate-600 tracking-wide leading-relaxed">
-            Title: <span className="text-red-500">Project Title</span>
+            Title: <span className="text-red-500">{project.Title}</span>
           </h3>
           <h4 className="text-lg font-bold text-slate-600 tracking-wide leading-relaxed">
-            Pioreiety: <span className="text-orange-500">Low</span> <br />
-            Deadline: <span className="text-orange-500">2025-12-12</span>
+            Pioreiety:{" "}
+            <span className="text-orange-500">{project.Importance}</span> <br />
+            Deadline:{" "}
+            <span className="text-orange-500">{project.Deadline}</span>
           </h4>
         </div>
         <div className="w-3/5 flex flex-col justify-start gap-2">
@@ -44,11 +56,7 @@ const Project = () => {
             Description:{" "}
           </h3>
           <p className="font-semibold text-md text-gray-600 tracking-wide leading-relaxed">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using Content here, content
-            making it look like readable English. Many desktop publishing
+            {project.Description}
           </p>
         </div>
       </div>
