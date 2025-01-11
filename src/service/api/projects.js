@@ -73,11 +73,11 @@ class ProjectService {
     }
   }
 
-  static async updateProject(newTask, id) {
+  static async addTaskToProject(newTask, id) {
     try {
       const project = await this.getProject(id);
 
-      console.log(project.Tasks);
+      console.log("project: " + project.Tasks);
 
       const updatedTasks = [...project.Tasks, newTask];
 
@@ -88,6 +88,28 @@ class ProjectService {
     } catch (err) {
       console.log("something goes wrong during updating project: " + err);
     }
+  }
+
+  static async updateProjectTask(taskId, projectId, newTask) {
+    const project = await this.getProject(projectId);
+
+    const updatedTasks = project.Tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, content: newTask.content };
+      }
+      return task;
+    });
+
+    console.log(updatedTasks);
+
+    const response = await axios.patch(
+      `${this.BASE_URL}/projects/${projectId}`,
+      {
+        Tasks: updatedTasks,
+      }
+    );
+
+    return response;
   }
 }
 

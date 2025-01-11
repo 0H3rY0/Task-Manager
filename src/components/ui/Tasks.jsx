@@ -11,45 +11,49 @@ import ProjectService from "../../service/api/projects";
 import { v4 as uuidv4 } from "uuid";
 
 const Tasks = ({ id }) => {
-  const [tasks, setTasks] = useState([]);
   const [inputText, setInputText] = useState("");
 
-  const [testTasks, setTestTasks] = useState([]);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const getTasks = async (id) => {
       const data = await ProjectService.getAppropriateTasks(id);
-      setTestTasks(data);
+      setTasks(data);
     };
 
     getTasks(id);
   }, [id]);
 
   const addTask = () => {
-    // setTasks([...tasks, inputText]);
     const newTask = {
       id: uuidv4(),
       content: inputText,
     };
-    ProjectService.updateProject(newTask, id);
+    ProjectService.addTaskToProject(newTask, id);
+    setTasks((prev) => [...prev, newTask]);
     setInputText("");
     toast("Success! Your task has been added");
   };
 
   const removeTask = (taskId, projectId = id) => {
-    // setTasks(tasks.filter((item, i) => i !== index));
     ProjectService.deleteAppropriateTask(taskId, projectId);
+    setTasks(tasks.filter((task) => task.id !== taskId));
     toast("Success! Your task has been deleted");
   };
 
-  const modifyTask = (i, newItem) => {
-    setTasks(
-      tasks.map((item, index) => {
-        if (index === i) {
-          item = newItem;
-        }
+  const modifyTask = (taskId, newItemText, projectId = id) => {
+    const newItem = {
+      id: taskId,
+      content: newItemText,
+    };
 
-        return item;
+    ProjectService.updateProjectTask(taskId, projectId, newItem);
+    setTasks((prev) =>
+      prev.map((task) => {
+        if (task.id === taskId) {
+          return { ...task, content: newItem.content };
+        }
+        return task;
       })
     );
   };
@@ -78,7 +82,7 @@ const Tasks = ({ id }) => {
       </div>
       <div>
         <ul className="flex flex-col">
-          {testTasks.map((item, index) => {
+          {tasks.map((item, index) => {
             return (
               <div
                 key={index}
@@ -107,8 +111,8 @@ const Tasks = ({ id }) => {
                   </ModalCheckAgreement>
 
                   <ModalModifyTask
-                    value={item}
-                    index={index}
+                    value={item.content}
+                    taskId={item.id}
                     modifyTask={modifyTask}
                   >
                     <Dialog.Trigger>
