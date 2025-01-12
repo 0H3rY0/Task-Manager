@@ -5,6 +5,7 @@ import ProjectService from "../../service/api/projects";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import * as Yup from "yup";
 
 const AddProjectForm = () => {
   const [project, setProject] = useState({
@@ -12,7 +13,24 @@ const AddProjectForm = () => {
     Title: "",
     Description: "",
     Deadline: "",
-    Importance: "",
+    Importance: "Low",
+    ImageUrl: "",
+    Tasks: [],
+  });
+
+  const [errors, setErrors] = useState({});
+
+  let projectSchema = Yup.object({
+    Title: Yup.string().required("Title is required"),
+    Description: Yup.string().required("Description is required"),
+    Deadline: Yup.date()
+      .nullable()
+      .transform((value, originalValue) =>
+        originalValue === "" ? null : value
+      )
+      .required("Date is required")
+      .min(new Date(), "Date must be later then today"),
+    Importance: Yup.string(),
   });
 
   const navigator = useNavigate();
@@ -24,26 +42,36 @@ const AddProjectForm = () => {
     }));
   };
 
-  const handleSubmitProject = () => {
-    // e.preventDefault();
+  const handleSubmitProject = async () => {
+    try {
+      await projectSchema.validate(project, { abortEarly: false });
 
-    const newProject = {
-      ...project,
-      id: uuidv4(),
-    };
+      const newProject = {
+        ...project,
+        id: uuidv4(),
+      };
 
-    ProjectService.createProject(newProject);
+      ProjectService.createProject(newProject);
 
-    setProject({
-      id: null,
-      Title: "",
-      Description: "",
-      Deadline: "",
-      Importance: "",
-    });
+      setProject({
+        id: null,
+        Title: "",
+        Description: "",
+        Deadline: "",
+        Importance: "",
+      });
 
-    toast("Success!!");
-    navigator("/project/all");
+      toast("Success!!");
+      navigator("/project/all");
+    } catch (error) {
+      const newError = {};
+
+      error.inner.forEach((err) => {
+        newError[err.path] = err.message;
+      });
+
+      setErrors(newError);
+    }
   };
 
   return (
@@ -56,9 +84,14 @@ const AddProjectForm = () => {
         value={project.Title}
         onChange={(e) => onInputChnage(e)}
         type="text"
-        className="classicInput mb-3"
+        className={`classicInput ${errors.Title ? "mb-0" : "mb-3"}`}
         placeholder="Write a title "
       />
+      {errors.Title && (
+        <p className="text-md font-normal text-red-400 ml-1 mb-3">
+          {errors.Title}
+        </p>
+      )}
 
       <label
         htmlFor="Description"
@@ -71,9 +104,14 @@ const AddProjectForm = () => {
         value={project.Description}
         onChange={(e) => onInputChnage(e)}
         type="text"
-        className="classicInput mb-3"
+        className={`classicInput ${errors.Description ? "mb-0" : "mb-3"}`}
         placeholder="Write a Description"
       />
+      {errors.Description && (
+        <p className="text-md font-normal text-red-400 ml-1 mb-3">
+          {errors.Description}
+        </p>
+      )}
 
       <label
         htmlFor="Deadline"
@@ -83,12 +121,20 @@ const AddProjectForm = () => {
       </label>
       <input
         defaultValue={""}
+        onClick={(e) => e.target.showPicker()}
         name="Deadline"
         value={project.Deadline}
         onChange={(e) => onInputChnage(e)}
         type="date"
-        className="classicInput mb-3 text-slate-400"
+        className={`classicInput ${
+          errors.Deadline ? "mb-0" : "mb-3"
+        } text-slate-400`}
       />
+      {errors.Deadline && (
+        <p className="text-md font-normal text-red-400 ml-1 mb-3">
+          {errors.Deadline}
+        </p>
+      )}
 
       <label
         htmlFor="Importance"
@@ -108,10 +154,9 @@ const AddProjectForm = () => {
           Low
         </option>
       </select>
-
       <ModalCheckAgreement
         func={handleSubmitProject}
-        titleText={"Are you sure you want to add this project?"}
+        titleText={"Are you sure you want to add this proejct"}
         btnText={"Confirm"}
       >
         <Dialog.Trigger>
