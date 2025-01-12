@@ -12,7 +12,8 @@ const AddProjectForm = () => {
     Title: "",
     Description: "",
     Deadline: "",
-    Importance: "",
+    Importance: "Low",
+    Tasks: [],
   });
 
   const navigator = useNavigate();
