@@ -3,8 +3,8 @@ import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import PropTypes from "prop-types";
 
-const ModalModifyTask = ({ children, value, index, modifyTask }) => {
-  const [newItem, setNewItem] = useState(value);
+const ModalModifyTask = ({ children, value, taskId, modifyTask }) => {
+  const [newItemText, setNewItem] = useState(value);
   const [open, setOpen] = useState(false);
 
   return (
@@ -36,7 +36,7 @@ const ModalModifyTask = ({ children, value, index, modifyTask }) => {
               <div className="flex justify-end items-center">
                 <button
                   onClick={() => {
-                    modifyTask(index, newItem);
+                    modifyTask(taskId, newItemText);
                     setOpen(false);
                   }}
                   className="btn-red "
@@ -55,7 +55,7 @@ const ModalModifyTask = ({ children, value, index, modifyTask }) => {
 ModalModifyTask.propTypes = {
   children: PropTypes.node.isRequired, // Any renderable React content
   value: PropTypes.string.isRequired, // Initial value for the task being modified
-  index: PropTypes.number.isRequired, // Index of the task in the list
+  taskId: PropTypes.number.isRequired, // Index of the task in the list
   modifyTask: PropTypes.func.isRequired, // Function to modify the task
 };
 
