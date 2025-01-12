@@ -6,10 +6,7 @@
       "Description": "This is a project about my daily routine",
       "Deadline": "12.09.2025",
       "Importance": "Low",
-      "Image": {
-        "url": "",
-        "alt": "this photo is about wood"
-      },
+      "ImageUrl": "",
       "Tasks": [
         {
           "id": 1,
@@ -35,10 +32,7 @@
       "Description": "There i only using this for job",
       "Deadline": "12.09.2025",
       "Importance": "Medium",
-      "Image": {
-        "url": "https://picsum.photos/200/300",
-        "alt": "this photo is about wood"
-      },
+      "ImageUrl": "https://picsum.photos/200/300",
       "Tasks": []
     },
     {
@@ -47,16 +41,22 @@
       "Description": "There i only using this for job",
       "Deadline": "12.09.2025",
       "Importance": "Medium",
-      "Image": {
-        "url": "",
-        "alt": "this photo is about wood"
-      },
+      "ImageUrl": "",
       "Tasks": [
         {
           "id": 1,
           "content": "i need to do homewordk"
         }
       ]
+    },
+    {
+      "id": "f3a02d86-a5c8-4858-b856-70c5d49497fa",
+      "Title": "a",
+      "Description": "a",
+      "Deadline": "2025-01-16",
+      "Importance": "Medium",
+      "ImageUrl": "",
+      "Tasks": []
     }
   ]
 }

@@ -14,6 +14,7 @@ const AddProjectForm = () => {
     Description: "",
     Deadline: "",
     Importance: "Low",
+    ImageUrl: "",
     Tasks: [],
   });
 
