@@ -6,6 +6,10 @@
       "Description": "This is a project about my daily routine",
       "Deadline": "12.09.2025",
       "Importance": "Low",
+      "Image": {
+        "url": "",
+        "alt": "this photo is about wood"
+      },
       "Tasks": [
         {
           "id": 1,
@@ -31,12 +35,11 @@
       "Description": "There i only using this for job",
       "Deadline": "12.09.2025",
       "Importance": "Medium",
-      "Tasks": [
-        {
-          "id": 1,
-          "content": "i need to do homewordk"
-        }
-      ]
+      "Image": {
+        "url": "https://picsum.photos/200/300",
+        "alt": "this photo is about wood"
+      },
+      "Tasks": []
     },
     {
       "id": "3",
@@ -44,57 +47,16 @@
       "Description": "There i only using this for job",
       "Deadline": "12.09.2025",
       "Importance": "Medium",
+      "Image": {
+        "url": "",
+        "alt": "this photo is about wood"
+      },
       "Tasks": [
         {
           "id": 1,
           "content": "i need to do homewordk"
         }
       ]
-    },
-    {
-      "id": "59a1de71-103a-4619-820e-ab6909ca75c8",
-      "Title": "1",
-      "Description": "1",
-      "Deadline": "2025-01-14",
-      "Importance": "Low",
-      "Tasks": [
-        {
-          "id": "6d785693-23ec-4662-97fc-0f219164f918",
-          "content": "task"
-        },
-        {
-          "id": "08417cc4-d04c-47b2-87e1-880b36292139",
-          "content": "new task"
-        },
-        {
-          "id": "e47cd75a-1ce3-4e8c-accc-e5763fe343d3",
-          "content": "ssss"
-        },
-        {
-          "id": "dd0b2a9a-83fc-4894-879f-d22e735a6085",
-          "content": "ssss"
-        },
-        {
-          "id": "a14f5a0f-4dfc-4410-a609-ac5e2018426c",
-          "content": "sss"
-        }
-      ]
-    },
-    {
-      "id": "afd689ce-5422-48c7-b6e5-d6ff671e6b95",
-      "Title": "aaa",
-      "Description": "aa",
-      "Deadline": "2025-01-16",
-      "Importance": "Low",
-      "Tasks": []
-    },
-    {
-      "id": "16ff1b41-df21-4714-83a5-015ee5c25dcf",
-      "Title": "s",
-      "Description": "s",
-      "Deadline": "2025-01-16",
-      "Importance": "Medium",
-      "Tasks": []
     }
   ]
 }

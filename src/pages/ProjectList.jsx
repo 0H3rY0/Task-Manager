@@ -38,7 +38,14 @@ const ProjectList = () => {
               className=" py-4 px-4 rounded-md flex items-center min-h-30 shadow-md"
             >
               <div className="flex justify-center items-center w-1/5">
-                <SiTask size={70} className="text-orange-500" />;
+                {item.Image.url !== "" ? (
+                  <img
+                    className="w-[100px] h-[100px]"
+                    src={item.Image.url}
+                  ></img>
+                ) : (
+                  <SiTask size={70} className="text-orange-500" />
+                )}
               </div>
               <div className="w-3/5 flex flex-col gap-3">
                 <div>
