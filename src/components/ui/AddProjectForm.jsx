@@ -36,6 +36,15 @@ const AddProjectForm = () => {
   const navigator = useNavigate();
 
   const onInputChnage = (e) => {
+    if (e.target.name === "ImageUrl") {
+      setProject((prev) => ({
+        ...prev,
+        [e.target.name]: URL.createObjectURL(e.target.files[0]),
+      }));
+
+      return;
+    }
+
     setProject((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -92,7 +101,6 @@ const AddProjectForm = () => {
           {errors.Title}
         </p>
       )}
-
       <label
         htmlFor="Description"
         className="font-bold text-lg text-slate-700 ml-1"
@@ -107,18 +115,18 @@ const AddProjectForm = () => {
         className={`classicInput ${errors.Description ? "mb-0" : "mb-3"}`}
         placeholder="Write a Description"
       />
-      {errors.Description && (
+      {/* {errors.Description && (
         <p className="text-md font-normal text-red-400 ml-1 mb-3">
           {errors.Description}
         </p>
-      )}
-
+      )} */}
       <label
         htmlFor="Deadline"
         className="font-bold text-lg text-slate-700 ml-1"
       >
         Deadline
       </label>
+      <img src="" alt="" />
       <input
         defaultValue={""}
         onClick={(e) => e.target.showPicker()}
@@ -135,7 +143,6 @@ const AddProjectForm = () => {
           {errors.Deadline}
         </p>
       )}
-
       <label
         htmlFor="Importance"
         className="font-bold text-lg text-slate-700 ml-1"
@@ -154,6 +161,20 @@ const AddProjectForm = () => {
           Low
         </option>
       </select>
+
+      <label
+        htmlFor="ImageUrl"
+        className="font-bold text-lg text-slate-700 ml-1"
+      >
+        Description
+      </label>
+      <input
+        name="ImageUrl"
+        onChange={(e) => onInputChnage(e)}
+        type="file"
+        className={`classicInput ${errors.Description ? "mb-0" : "mb-3"}`}
+        placeholder="Write a Description"
+      />
       <ModalCheckAgreement
         func={handleSubmitProject}
         titleText={"Are you sure you want to add this proejct"}
