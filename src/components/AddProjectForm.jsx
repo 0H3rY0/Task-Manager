@@ -22,7 +22,7 @@ const AddProjectForm = () => {
   });
   const [errors, setErrors] = useState({});
   const navigator = useNavigate();
-  const [priority, setPriority] = useState(["High", "Medium", "Low"]);
+  let priority = ["High", "Medium", "Low"];
 
   let projectSchema = Yup.object({
     Title: Yup.string().required("Title is required"),
@@ -35,13 +35,6 @@ const AddProjectForm = () => {
       .required("Date is required")
       .min(new Date(), "Date must be later than today"),
     Importance: Yup.string(),
-    ImageUrl: Yup.mixed()
-      .nullable()
-      .test("fileType", "Only image files are allowed", (value) => {
-        if (!value) return true;
-        const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
-        return allowedTypes.includes(value.type);
-      }),
   });
 
   const onInputChnage = (e) => {
@@ -88,11 +81,35 @@ const AddProjectForm = () => {
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
 
+    const imageSchema = Yup.object({
+      ImageUrl: Yup.mixed().test(
+        "fileType",
+        "Only image files are allowed! If you dont't change your file the image wont't be added ",
+        (value) => {
+          console.log("Validating file:", value);
+          if (!value) return false;
+          const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/jpg",
+            "image/gif",
+          ];
+          return allowedTypes.includes(value.type);
+        }
+      ),
+    });
+
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
 
       try {
+        await imageSchema.validate({ ImageUrl: file }, { abortEarly: false });
+        setErrors((prev) => ({
+          ...prev,
+          ImageUrl: "",
+        }));
+
         const response = await axios.post(
           "http://localhost:3000/upload",
           formData
@@ -106,7 +123,11 @@ const AddProjectForm = () => {
           ImageUrl: data.url,
         }));
       } catch (error) {
-        console.error("Error uploading file:", error);
+        console.error("Error uploading file:", error.inner[0].message);
+        setErrors((prev) => ({
+          ...prev,
+          ImageUrl: error.inner[0].message,
+        }));
       }
     }
   };
