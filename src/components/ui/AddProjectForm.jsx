@@ -6,6 +6,7 @@ import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import axios from "axios";
 
 const AddProjectForm = () => {
   const [project, setProject] = useState({
@@ -17,8 +18,8 @@ const AddProjectForm = () => {
     ImageUrl: "",
     Tasks: [],
   });
-
   const [errors, setErrors] = useState({});
+  const navigator = useNavigate();
 
   let projectSchema = Yup.object({
     Title: Yup.string().required("Title is required"),
@@ -33,18 +34,7 @@ const AddProjectForm = () => {
     Importance: Yup.string(),
   });
 
-  const navigator = useNavigate();
-
   const onInputChnage = (e) => {
-    if (e.target.name === "ImageUrl") {
-      setProject((prev) => ({
-        ...prev,
-        [e.target.name]: URL.createObjectURL(e.target.files[0]),
-      }));
-
-      return;
-    }
-
     setProject((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -67,7 +57,9 @@ const AddProjectForm = () => {
         Title: "",
         Description: "",
         Deadline: "",
-        Importance: "",
+        Importance: "Low",
+        ImageUrl: "",
+        Tasks: [],
       });
 
       toast("Success!!");
@@ -91,24 +83,18 @@ const AddProjectForm = () => {
       formData.append("file", file);
 
       try {
-        // Wyślij plik do serwera
-        const response = await fetch("http://localhost:3000/upload", {
-          method: "POST",
-          body: formData,
-        });
+        const response = await axios.post(
+          "http://localhost:3000/upload",
+          formData
+        );
 
-        if (response.ok) {
-          const data = await response.json();
-          console.log("Uploaded file URL:", data.url);
+        const data = response.data;
+        console.log("Uploaded file URL:", data.url);
 
-          // Zapisz URL obrazu w stanie lub gdziekolwiek jest potrzebny
-          setProject((prev) => ({
-            ...prev,
-            ImageUrl: data.url,
-          }));
-        } else {
-          console.error("File upload failed");
-        }
+        setProject((prev) => ({
+          ...prev,
+          ImageUrl: data.url,
+        }));
       } catch (error) {
         console.error("Error uploading file:", error);
       }
