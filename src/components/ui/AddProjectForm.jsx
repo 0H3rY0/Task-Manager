@@ -6,6 +6,7 @@ import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import axios from "axios";
 
 const AddProjectForm = () => {
   const [project, setProject] = useState({
@@ -17,8 +18,8 @@ const AddProjectForm = () => {
     ImageUrl: "",
     Tasks: [],
   });
-
   const [errors, setErrors] = useState({});
+  const navigator = useNavigate();
 
   let projectSchema = Yup.object({
     Title: Yup.string().required("Title is required"),
@@ -32,8 +33,6 @@ const AddProjectForm = () => {
       .min(new Date(), "Date must be later then today"),
     Importance: Yup.string(),
   });
-
-  const navigator = useNavigate();
 
   const onInputChnage = (e) => {
     setProject((prev) => ({
@@ -58,7 +57,9 @@ const AddProjectForm = () => {
         Title: "",
         Description: "",
         Deadline: "",
-        Importance: "",
+        Importance: "Low",
+        ImageUrl: "",
+        Tasks: [],
       });
 
       toast("Success!!");
@@ -71,6 +72,32 @@ const AddProjectForm = () => {
       });
 
       setErrors(newError);
+    }
+  };
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/upload",
+          formData
+        );
+
+        const data = response.data;
+        console.log("Uploaded file URL:", data.url);
+
+        setProject((prev) => ({
+          ...prev,
+          ImageUrl: data.url,
+        }));
+      } catch (error) {
+        console.error("Error uploading file:", error);
+      }
     }
   };
 
@@ -92,7 +119,6 @@ const AddProjectForm = () => {
           {errors.Title}
         </p>
       )}
-
       <label
         htmlFor="Description"
         className="font-bold text-lg text-slate-700 ml-1"
@@ -107,18 +133,18 @@ const AddProjectForm = () => {
         className={`classicInput ${errors.Description ? "mb-0" : "mb-3"}`}
         placeholder="Write a Description"
       />
-      {errors.Description && (
+      {/* {errors.Description && (
         <p className="text-md font-normal text-red-400 ml-1 mb-3">
           {errors.Description}
         </p>
-      )}
-
+      )} */}
       <label
         htmlFor="Deadline"
         className="font-bold text-lg text-slate-700 ml-1"
       >
         Deadline
       </label>
+      <img src="" alt="" />
       <input
         defaultValue={""}
         onClick={(e) => e.target.showPicker()}
@@ -135,7 +161,6 @@ const AddProjectForm = () => {
           {errors.Deadline}
         </p>
       )}
-
       <label
         htmlFor="Importance"
         className="font-bold text-lg text-slate-700 ml-1"
@@ -154,6 +179,20 @@ const AddProjectForm = () => {
           Low
         </option>
       </select>
+
+      <label
+        htmlFor="ImageUrl"
+        className="font-bold text-lg text-slate-700 ml-1"
+      >
+        Description
+      </label>
+      <input
+        name="ImageUrl"
+        onChange={(e) => handleFileUpload(e)}
+        type="file"
+        className={`classicInput ${errors.Description ? "mb-0" : "mb-3"}`}
+        placeholder="Write a Description"
+      />
       <ModalCheckAgreement
         func={handleSubmitProject}
         titleText={"Are you sure you want to add this proejct"}
