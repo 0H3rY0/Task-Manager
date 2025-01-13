@@ -83,6 +83,38 @@ const AddProjectForm = () => {
     }
   };
 
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        // Wyślij plik do serwera
+        const response = await fetch("http://localhost:3000/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Uploaded file URL:", data.url);
+
+          // Zapisz URL obrazu w stanie lub gdziekolwiek jest potrzebny
+          setProject((prev) => ({
+            ...prev,
+            ImageUrl: data.url,
+          }));
+        } else {
+          console.error("File upload failed");
+        }
+      } catch (error) {
+        console.error("Error uploading file:", error);
+      }
+    }
+  };
+
   return (
     <form action="">
       <label htmlFor="Title" className="font-bold text-lg text-slate-700 ml-1">
@@ -170,7 +202,7 @@ const AddProjectForm = () => {
       </label>
       <input
         name="ImageUrl"
-        onChange={(e) => onInputChnage(e)}
+        onChange={(e) => handleFileUpload(e)}
         type="file"
         className={`classicInput ${errors.Description ? "mb-0" : "mb-3"}`}
         placeholder="Write a Description"
