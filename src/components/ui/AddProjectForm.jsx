@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import axios from "axios";
+import FileInput from "./FileInput";
 
 const AddProjectForm = () => {
   const [project, setProject] = useState({
@@ -103,64 +104,26 @@ const AddProjectForm = () => {
 
   return (
     <form action="">
-      <label htmlFor="Title" className="font-bold text-lg text-slate-700 ml-1">
-        Title
-      </label>
-      <input
-        name="Title"
-        value={project.Title}
+      <FileInput
+        name={"Title"}
+        description={"Title"}
         onChange={(e) => onInputChnage(e)}
-        type="text"
-        className={`classicInput ${errors.Title ? "mb-0" : "mb-3"}`}
-        placeholder="Write a title "
+        errors={errors.Title}
       />
-      {errors.Title && (
-        <p className="text-md font-normal text-red-400 ml-1 mb-3">
-          {errors.Title}
-        </p>
-      )}
-      <label
-        htmlFor="Description"
-        className="font-bold text-lg text-slate-700 ml-1"
-      >
-        Description
-      </label>
-      <input
-        name="Description"
-        value={project.Description}
+      <FileInput
+        name={"Description"}
+        description={"Description"}
         onChange={(e) => onInputChnage(e)}
-        type="text"
-        className={`classicInput ${errors.Description ? "mb-0" : "mb-3"}`}
-        placeholder="Write a Description"
+        errors={errors.Description}
       />
-      {/* {errors.Description && (
-        <p className="text-md font-normal text-red-400 ml-1 mb-3">
-          {errors.Description}
-        </p>
-      )} */}
-      <label
-        htmlFor="Deadline"
-        className="font-bold text-lg text-slate-700 ml-1"
-      >
-        Deadline
-      </label>
-      <img src="" alt="" />
-      <input
-        defaultValue={""}
+      <FileInput
+        name={"Deadline"}
+        description={"Deadline"}
+        onChange={(e) => onInputChnage(e)}
+        type={"date"}
         onClick={(e) => e.target.showPicker()}
-        name="Deadline"
-        value={project.Deadline}
-        onChange={(e) => onInputChnage(e)}
-        type="date"
-        className={`classicInput ${
-          errors.Deadline ? "mb-0" : "mb-3"
-        } text-slate-400`}
+        errors={errors.Deadline}
       />
-      {errors.Deadline && (
-        <p className="text-md font-normal text-red-400 ml-1 mb-3">
-          {errors.Deadline}
-        </p>
-      )}
       <label
         htmlFor="Importance"
         className="font-bold text-lg text-slate-700 ml-1"
@@ -179,19 +142,11 @@ const AddProjectForm = () => {
           Low
         </option>
       </select>
-
-      <label
-        htmlFor="ImageUrl"
-        className="font-bold text-lg text-slate-700 ml-1"
-      >
-        Description
-      </label>
-      <input
-        name="ImageUrl"
+      <FileInput
+        name={"ImageUrl"}
+        description={"Add image if you want"}
         onChange={(e) => handleFileUpload(e)}
-        type="file"
-        className={`classicInput ${errors.Description ? "mb-0" : "mb-3"}`}
-        placeholder="Write a Description"
+        type={"file"}
       />
       <ModalCheckAgreement
         func={handleSubmitProject}
