@@ -31,8 +31,15 @@ const AddProjectForm = () => {
         originalValue === "" ? null : value
       )
       .required("Date is required")
-      .min(new Date(), "Date must be later then today"),
+      .min(new Date(), "Date must be later than today"),
     Importance: Yup.string(),
+    ImageUrl: Yup.mixed()
+      .nullable()
+      .test("fileType", "Only image files are allowed", (value) => {
+        if (!value) return true;
+        const allowedTypes = ["image/jpeg", "image/png", "image/gif"];
+        return allowedTypes.includes(value.type);
+      }),
   });
 
   const onInputChnage = (e) => {
@@ -147,6 +154,7 @@ const AddProjectForm = () => {
         description={"Add image if you want"}
         onChange={(e) => handleFileUpload(e)}
         type={"file"}
+        errors={errors.ImageUrl}
       />
       <ModalCheckAgreement
         func={handleSubmitProject}
