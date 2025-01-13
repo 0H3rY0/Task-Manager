@@ -1,6 +1,6 @@
 import { MdOutlineCreateNewFolder } from "react-icons/md";
 import { NavLink } from "react-router";
-import AddProjectForm from "../components/ui/AddProjectForm";
+import AddProjectForm from "../components/AddProjectForm";
 
 const CreateProject = () => {
   return (

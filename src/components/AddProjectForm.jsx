@@ -1,13 +1,14 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import ProjectService from "../../service/api/projects";
-import ModalCheckAgreement from "../modals/ModalCheckAgreement";
+import ProjectService from "../service/api/projects";
+import ModalCheckAgreement from "./modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 import axios from "axios";
-import FileInput from "./FileInput";
+import FileInput from "./ui/FileInput";
+import FileSelect from "./ui/FileSelect";
 
 const AddProjectForm = () => {
   const [project, setProject] = useState({
@@ -21,6 +22,7 @@ const AddProjectForm = () => {
   });
   const [errors, setErrors] = useState({});
   const navigator = useNavigate();
+  const [priority, setPriority] = useState(["High", "Medium", "Low"]);
 
   let projectSchema = Yup.object({
     Title: Yup.string().required("Title is required"),
@@ -131,24 +133,11 @@ const AddProjectForm = () => {
         onClick={(e) => e.target.showPicker()}
         errors={errors.Deadline}
       />
-      <label
-        htmlFor="Importance"
-        className="font-bold text-lg text-slate-700 ml-1"
-      >
-        priority
-      </label>
-      <select
-        className="block text-slate-400"
-        name="Importance"
+      <FileSelect
         value={project.Importance}
         onChange={(e) => onInputChnage(e)}
-      >
-        <option value="High">High</option>
-        <option value="Medium">Medium</option>
-        <option value="Low" defaultChecked>
-          Low
-        </option>
-      </select>
+        options={priority}
+      />
       <FileInput
         name={"ImageUrl"}
         description={"Add image if you want"}
