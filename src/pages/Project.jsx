@@ -1,7 +1,7 @@
 import { AiOutlineProject } from "react-icons/ai";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 import profile from "../assets/images/profile.jpg";
-import Tasks from "../components/ui/Tasks";
+import Tasks from "../components/Tasks";
 import { NavLink, useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
