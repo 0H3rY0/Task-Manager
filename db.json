@@ -136,7 +136,16 @@
       "Deadline": "2025-01-31",
       "Importance": "Low",
       "ImageUrl": "http://localhost:3000/uploads/917bafd189b267e5efd0957964784cfb",
-      "Tasks": []
+      "Tasks": [
+        {
+          "id": "7497ea75-6c86-4191-bbfd-82b6ae15249c",
+          "content": "ssss"
+        },
+        {
+          "id": "8c391914-d116-4573-908e-076e2c671738",
+          "content": "ggg"
+        }
+      ]
     }
   ]
 }
