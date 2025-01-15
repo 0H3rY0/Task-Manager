@@ -6,13 +6,13 @@ export const useFileUpload = () => {
   const [UploadImageError, setUploadImageError] = useState(null);
   const [uploadedFileUrl, setUploadedFileUrl] = useState("");
 
-  const handleFileUpload = async (e) => {
+  const handleFileUpload = async (e, callback) => {
     const file = e.target.files[0];
 
     const imageSchema = Yup.object({
       ImageUrl: Yup.mixed().test(
         "fileType",
-        "Only image files are allowed! If you don't change your file, the image won't be added.",
+        "Only image files are allowed!",
         (value) => {
           if (!value) return false;
           const allowedTypes = [
@@ -41,6 +41,7 @@ export const useFileUpload = () => {
 
         const data = response.data;
         setUploadedFileUrl(data.url);
+        if (callback) callback(data.url);
       } catch (error) {
         console.log("image failded to load: " + error);
         setUploadImageError(error.inner[0].message || "image failed to load");
@@ -52,5 +53,6 @@ export const useFileUpload = () => {
     handleFileUpload,
     UploadImageError,
     uploadedFileUrl,
+    setUploadImageError,
   };
 };

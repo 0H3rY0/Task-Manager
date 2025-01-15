@@ -1,6 +1,5 @@
 import { AiOutlineProject } from "react-icons/ai";
 import { RiDeleteBack2Fill } from "react-icons/ri";
-import profile from "../assets/images/profile.jpg";
 import Tasks from "../components/Tasks";
 import { NavLink, useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
@@ -11,12 +10,15 @@ import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
 import * as Dialog from "@radix-ui/react-dialog";
 import ClipLoader from "react-spinners/ClipLoader";
 import { SiTask } from "react-icons/si";
+import { useFileUpload } from "../hooks/useFileUpload";
 
 const Project = () => {
   const { id } = useParams();
   const [project, setProject] = useState({});
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+
+  const { handleFileUpload, UploadImageError } = useFileUpload();
 
   useEffect(() => {
     const getProject = async () => {
@@ -33,15 +35,19 @@ const Project = () => {
   }, [id]);
 
   const deleteProject = (id) => {
-    console.log(id);
     ProjectService.deleteProject(id);
 
     navigate("/project/all");
     toast("Your project has been deleted");
   };
 
-  const handleUpdateProjectImage = (e) => {
-    console.log(e);
+  const handleUpdateProjectImage = async (e) => {
+    await handleFileUpload(e, (uploadedUrl) => {
+      setProject((prev) => ({
+        ...prev,
+        ImageUrl: uploadedUrl,
+      }));
+    });
   };
 
   return (
@@ -104,6 +110,11 @@ const Project = () => {
                   </span>
                 </div>
               </div>
+              {UploadImageError && (
+                <p className="text-md font-normal text-red-400 ml-1 mb-3">
+                  {UploadImageError}
+                </p>
+              )}
 
               <h3 className="text-2xl font-bold text-slate-900 tracking-wide leading-relaxed text-center">
                 {project.Title}
