@@ -6,9 +6,10 @@ import ModalCheckAgreement from "./modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
-import axios from "axios";
+// import axios from "axios";
 import FileInput from "./ui/FileInput";
 import FileSelect from "./ui/FileSelect";
+import { useFileUpload } from "../hooks/useFileUpload";
 
 const AddProjectForm = () => {
   const [project, setProject] = useState({
@@ -23,6 +24,8 @@ const AddProjectForm = () => {
   const [errors, setErrors] = useState({});
   const navigator = useNavigate();
   let priority = ["High", "Medium", "Low"];
+  const { handleFileUpload, UploadImageError, uploadedFileUrl } =
+    useFileUpload();
 
   let projectSchema = Yup.object({
     Title: Yup.string().required("Title is required"),
@@ -51,6 +54,7 @@ const AddProjectForm = () => {
       const newProject = {
         ...project,
         id: uuidv4(),
+        ImageUrl: uploadedFileUrl,
       };
 
       ProjectService.createProject(newProject);
@@ -75,60 +79,6 @@ const AddProjectForm = () => {
       });
 
       setErrors(newError);
-    }
-  };
-
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-
-    const imageSchema = Yup.object({
-      ImageUrl: Yup.mixed().test(
-        "fileType",
-        "Only image files are allowed! If you dont't change your file the image wont't be added ",
-        (value) => {
-          console.log("Validating file:", value);
-          if (!value) return false;
-          const allowedTypes = [
-            "image/jpeg",
-            "image/png",
-            "image/jpg",
-            "image/gif",
-          ];
-          return allowedTypes.includes(value.type);
-        }
-      ),
-    });
-
-    if (file) {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      try {
-        await imageSchema.validate({ ImageUrl: file }, { abortEarly: false });
-        setErrors((prev) => ({
-          ...prev,
-          ImageUrl: "",
-        }));
-
-        const response = await axios.post(
-          "http://localhost:3000/upload",
-          formData
-        );
-
-        const data = response.data;
-        console.log("Uploaded file URL:", data.url);
-
-        setProject((prev) => ({
-          ...prev,
-          ImageUrl: data.url,
-        }));
-      } catch (error) {
-        console.error("Error uploading file:", error.inner[0].message);
-        setErrors((prev) => ({
-          ...prev,
-          ImageUrl: error.inner[0].message,
-        }));
-      }
     }
   };
 
@@ -164,7 +114,7 @@ const AddProjectForm = () => {
         description={"Add image if you want"}
         onChange={(e) => handleFileUpload(e)}
         type={"file"}
-        errors={errors.ImageUrl}
+        errors={UploadImageError}
       />
       <ModalCheckAgreement
         func={handleSubmitProject}

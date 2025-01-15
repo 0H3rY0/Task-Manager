@@ -1,8 +1,7 @@
 import { AiOutlineProject } from "react-icons/ai";
 import { RiDeleteBack2Fill } from "react-icons/ri";
-import profile from "../assets/images/profile.jpg";
 import Tasks from "../components/Tasks";
-import { NavLink, useParams, useNavigate, data } from "react-router";
+import { NavLink, useParams, useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -10,12 +9,17 @@ import { toast } from "react-toastify";
 import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
 import * as Dialog from "@radix-ui/react-dialog";
 import ClipLoader from "react-spinners/ClipLoader";
+import { SiTask } from "react-icons/si";
+import { useFileUpload } from "../hooks/useFileUpload";
 
 const Project = () => {
   const { id } = useParams();
   const [project, setProject] = useState({});
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+
+  const { handleFileUpload, UploadImageError, animationClass } =
+    useFileUpload();
 
   useEffect(() => {
     const getProject = async () => {
@@ -32,14 +36,24 @@ const Project = () => {
   }, [id]);
 
   const deleteProject = (id) => {
-    console.log(id);
     ProjectService.deleteProject(id);
 
     navigate("/project/all");
     toast("Your project has been deleted");
   };
 
-  console.log(project);
+  const handleUpdateProjectImage = async (e) => {
+    await handleFileUpload(
+      e,
+      (uploadedUrl) => {
+        setProject((prev) => ({
+          ...prev,
+          ImageUrl: uploadedUrl,
+        }));
+      },
+      false
+    );
+  };
 
   return (
     <>
@@ -73,13 +87,44 @@ const Project = () => {
           </div>
           <div className="flex w-full gap-10 ">
             <div className="w-2/5 flex flex-col items-start gap-3">
-              <img
-                src={profile}
-                alt=""
-                className="w-full h-[200px] border-4 border-orange-500 rounded-md"
-              />
-              <h3 className="text-2xl font-bold text-slate-600 tracking-wide leading-relaxed">
-                Title: <span className="text-red-500">{project.Title}</span>
+              <div
+                className="relative min-h-[250px] w-full p-4 border-2 rounded-lg 
+  border-orange-200 flex items-center justify-center group bg-white"
+              >
+                {project.ImageUrl ? (
+                  <img
+                    src={project.ImageUrl}
+                    alt=""
+                    className="object-cover w-full h-full rounded-lg"
+                  />
+                ) : (
+                  <SiTask size={150} className="text-orange-500" />
+                )}
+                <div
+                  className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center 
+    opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
+                >
+                  <span className="text-white text-lg font-semibold cursor-pointer">
+                    <input
+                      type="file"
+                      id="fileInput"
+                      className="hidden"
+                      onChange={(e) => handleUpdateProjectImage(e)}
+                    />
+                    <label htmlFor="fileInput">Change image</label>
+                  </span>
+                </div>
+              </div>
+              {UploadImageError && (
+                <p
+                  className={`text-md font-normal text-red-400 ml-1 mb-3 ${animationClass}`}
+                >
+                  {UploadImageError}
+                </p>
+              )}
+
+              <h3 className="text-2xl font-bold text-slate-900 tracking-wide leading-relaxed text-center">
+                {project.Title}
               </h3>
               <h4 className="text-lg font-bold text-slate-600 tracking-wide leading-relaxed">
                 Pioreiety:{" "}
