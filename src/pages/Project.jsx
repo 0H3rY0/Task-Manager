@@ -42,12 +42,16 @@ const Project = () => {
   };
 
   const handleUpdateProjectImage = async (e) => {
-    await handleFileUpload(e, (uploadedUrl) => {
-      setProject((prev) => ({
-        ...prev,
-        ImageUrl: uploadedUrl,
-      }));
-    });
+    await handleFileUpload(
+      e,
+      (uploadedUrl) => {
+        setProject((prev) => ({
+          ...prev,
+          ImageUrl: uploadedUrl,
+        }));
+      },
+      false
+    );
   };
 
   return (

@@ -6,7 +6,7 @@ export const useFileUpload = () => {
   const [UploadImageError, setUploadImageError] = useState(null);
   const [uploadedFileUrl, setUploadedFileUrl] = useState("");
 
-  const handleFileUpload = async (e, callback) => {
+  const handleFileUpload = async (e, callback, isErrorVisible = true) => {
     const file = e.target.files[0];
 
     const imageSchema = Yup.object({
@@ -45,6 +45,11 @@ export const useFileUpload = () => {
       } catch (error) {
         console.log("image failded to load: " + error);
         setUploadImageError(error.inner[0].message || "image failed to load");
+        if (!isErrorVisible) {
+          setTimeout(() => {
+            setUploadImageError(null);
+          }, 5000);
+        }
       }
     }
   };
