@@ -5,6 +5,7 @@ import axios from "axios";
 export const useFileUpload = () => {
   const [UploadImageError, setUploadImageError] = useState(null);
   const [uploadedFileUrl, setUploadedFileUrl] = useState("");
+  const [animationClass, setAnimationClass] = useState("");
 
   const handleFileUpload = async (e, callback, isErrorVisible = true) => {
     const file = e.target.files[0];
@@ -46,8 +47,12 @@ export const useFileUpload = () => {
         console.log("image failded to load: " + error);
         setUploadImageError(error.inner[0].message || "image failed to load");
         if (!isErrorVisible) {
+          setAnimationClass("fade-in");
           setTimeout(() => {
-            setUploadImageError(null);
+            setAnimationClass("fade-out");
+            setTimeout(() => {
+              setUploadImageError(null);
+            }, 500);
           }, 5000);
         }
       }
@@ -59,5 +64,6 @@ export const useFileUpload = () => {
     UploadImageError,
     uploadedFileUrl,
     setUploadImageError,
+    animationClass,
   };
 };

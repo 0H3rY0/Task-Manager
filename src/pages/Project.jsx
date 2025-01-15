@@ -18,7 +18,8 @@ const Project = () => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  const { handleFileUpload, UploadImageError } = useFileUpload();
+  const { handleFileUpload, UploadImageError, animationClass } =
+    useFileUpload();
 
   useEffect(() => {
     const getProject = async () => {
@@ -115,7 +116,9 @@ const Project = () => {
                 </div>
               </div>
               {UploadImageError && (
-                <p className="text-md font-normal text-red-400 ml-1 mb-3">
+                <p
+                  className={`text-md font-normal text-red-400 ml-1 mb-3 ${animationClass}`}
+                >
                   {UploadImageError}
                 </p>
               )}
