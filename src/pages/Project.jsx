@@ -14,18 +14,17 @@ import ClipLoader from "react-spinners/ClipLoader";
 const Project = () => {
   const { id } = useParams();
   const [project, setProject] = useState({});
-  // const [error, setError] = useState(false);
-  const [spinnerLoading, setSpinnerLoading] = useState(true);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const getProject = async () => {
       try {
         const data = await ProjectService.getProject(id);
-        data ? setProject(data) : setSpinnerLoading(false);
-        // setProject(data);
+        setProject(data);
       } catch (error) {
-        setError(error);
+        console.log("failed to load project: " + error);
+        setError(true);
       }
     };
 
@@ -103,7 +102,13 @@ const Project = () => {
         </div>
       ) : (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-          <ClipLoader className="text-center" color="#ff6300" size={150} />
+          {error ? (
+            <p className="font-bold text-2xl text-slate-500 text-center">
+              File failed to load
+            </p>
+          ) : (
+            <ClipLoader className="text-center" color="#ff6300" size={150} />
+          )}
         </div>
       )}
     </>

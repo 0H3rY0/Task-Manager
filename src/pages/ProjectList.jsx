@@ -89,16 +89,12 @@ const ProjectList = () => {
         ) : (
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
             {error ? (
-              // <ClipLoader className="text-center" color="#ff6300" size={150} />
               <p className="font-bold text-2xl text-slate-500 text-center">
                 Project Failed to Load{" "}
               </p>
             ) : spinnserLoader ? (
               <ClipLoader className="text-center" color="#ff6300" size={150} />
             ) : (
-              // <p className="font-bold text-2xl text-slate-500 text-center">
-              //   Project Failed to Load{" "}
-              // </p>
               <p className="font-bold text-2xl text-slate-500 text-center">
                 No tasks Added yet
               </p>
