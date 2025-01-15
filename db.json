@@ -1,151 +1,31 @@
 {
   "projects": [
     {
-      "id": "1",
-      "Title": "Personal project",
-      "Description": "This is a project about my daily routine",
-      "Deadline": "12.09.2025",
-      "Importance": "Low",
-      "ImageUrl": "",
-      "Tasks": [
-        {
-          "id": 1,
-          "content": "i need to do homewordk"
-        },
-        {
-          "id": "bf9c19c5-417e-4275-9f46-f4a80b38f76f",
-          "content": "add some new tasks"
-        },
-        {
-          "id": "ccde3fc7-a8ac-4975-9dd8-855e986b04cd",
-          "content": "ffffff"
-        },
-        {
-          "id": "f61d06c9-dd87-4e11-a6b8-4c12e91a0513",
-          "content": "testaaaaaaaafffssss"
-        }
-      ]
-    },
-    {
-      "id": "2",
-      "Title": "Work Project",
-      "Description": "There i only using this for job",
-      "Deadline": "12.09.2025",
+      "id": "1fd04baf-7e8e-42f7-a831-e46f7c0d232c",
+      "Title": "ggg",
+      "Description": "gg",
+      "Deadline": "2025-01-21",
       "Importance": "Medium",
-      "ImageUrl": "https://picsum.photos/200/300",
+      "ImageUrl": "http://localhost:3000/uploads/7c3bdacca53962e5eaa027a1a759595d",
       "Tasks": []
     },
     {
-      "id": "3",
-      "Title": "Project with by friends",
-      "Description": "There i only using this for job",
-      "Deadline": "12.09.2025",
-      "Importance": "Medium",
-      "ImageUrl": "",
-      "Tasks": [
-        {
-          "id": 1,
-          "content": "i need to do homewordk"
-        },
-        {
-          "id": "370ca169-e575-4d4e-bf89-4b7e77c237ac",
-          "content": "fff"
-        },
-        {
-          "id": "a319eca8-4837-45cf-ab31-6748bba7ec7d",
-          "content": "fff"
-        }
-      ]
-    },
-    {
-      "id": "c3d1ac00-2a90-4bbe-84cd-aed4672676f1",
-      "Title": "d",
-      "Description": "d",
-      "Deadline": "2025-01-15",
-      "Importance": "Low",
-      "ImageUrl": "",
-      "Tasks": []
-    },
-    {
-      "id": "947a2e4c-760a-4707-9fe2-31d6df3ef72b",
-      "Title": "sssss",
-      "Description": "s",
-      "Deadline": "2025-01-30",
-      "Importance": "High",
-      "ImageUrl": "",
-      "Tasks": []
-    },
-    {
-      "id": "1c32db10-a088-4b48-9226-5b316aed98b5",
-      "Title": "sss",
-      "Description": "sss",
-      "Deadline": "2025-01-23",
-      "Importance": "Medium",
-      "ImageUrl": "",
-      "Tasks": []
-    },
-    {
-      "id": "0e24ad54-1f7d-465e-a85f-8e7ff4696e9f",
-      "Title": "ssss",
-      "Description": "sss",
-      "Deadline": "2025-01-16",
-      "Importance": "Medium",
-      "ImageUrl": "http://localhost:3000/uploads/d322451c0eb779d194a73c0d8c4dec0f",
-      "Tasks": []
-    },
-    {
-      "id": "d6e75f4f-2752-4a0e-bd20-26f81235d6dd",
-      "Title": "aaaa",
-      "Description": "aaa",
-      "Deadline": "2025-01-22",
-      "Importance": "Medium",
-      "ImageUrl": "http://localhost:3000/uploads/c7b4da32a2e8cb7a85af0415a582dbe8",
-      "Tasks": []
-    },
-    {
-      "id": "adbe10cf-b4f6-44ee-a871-b5ba03551703",
+      "id": "9cb74ce3-cc02-46b2-8786-32bfaf6d1661",
       "Title": "aa",
       "Description": "aa",
-      "Deadline": "2025-01-23",
-      "Importance": "Medium",
+      "Deadline": "2025-02-05",
+      "Importance": "Low",
       "ImageUrl": "",
       "Tasks": []
     },
     {
-      "id": "0af4b8cf-0d1c-43c3-8332-21b3375d7e76",
-      "Title": "aaa",
-      "Description": "aa",
-      "Deadline": "2025-01-16",
-      "Importance": "Low",
-      "ImageUrl": "http://localhost:3000/uploads/c3d327a490b457f095cf61732bb92592",
-      "Tasks": []
-    },
-    {
-      "id": "4b69c8f5-de8e-4a07-8861-b4e85f138b3d",
-      "Title": "gggg",
-      "Description": "aaa",
-      "Deadline": "2025-01-30",
+      "id": "59a559f2-af02-4dd0-bf30-ef018a8fa0f7",
+      "Title": "a",
+      "Description": "a",
+      "Deadline": "2025-01-21",
       "Importance": "Medium",
-      "ImageUrl": "http://localhost:3000/uploads/6719f45f595e139ed043cd7f4e4c9682",
+      "ImageUrl": "http://localhost:3000/uploads/0fe39c237a13d9f1254650677afd9eb2",
       "Tasks": []
-    },
-    {
-      "id": "a000d89a-eb99-458d-afc9-4ddbd892cf67",
-      "Title": "ssssss",
-      "Description": "sdfsdf",
-      "Deadline": "2025-01-31",
-      "Importance": "Low",
-      "ImageUrl": "http://localhost:3000/uploads/917bafd189b267e5efd0957964784cfb",
-      "Tasks": [
-        {
-          "id": "7497ea75-6c86-4191-bbfd-82b6ae15249c",
-          "content": "ssss"
-        },
-        {
-          "id": "8c391914-d116-4573-908e-076e2c671738",
-          "content": "ggg"
-        }
-      ]
     }
   ]
 }

@@ -1,11 +1,6 @@
 import { CgGoogleTasks } from "react-icons/cg";
 import { IoMdAdd } from "react-icons/io";
 import { useEffect, useState } from "react";
-// import { TiDelete } from "react-icons/ti";
-// import { RxUpdate } from "react-icons/rx";
-// import * as Dialog from "@radix-ui/react-dialog";
-// import ModalModifyTask from "./modals/ModalModifyTask";
-// import ModalCheckAgreement from "./modals/ModalCheckAgreement";
 import { toast } from "react-toastify";
 import ProjectService from "../service/api/projects";
 import { v4 as uuidv4 } from "uuid";
