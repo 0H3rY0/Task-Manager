@@ -2,23 +2,31 @@ import { AiOutlineProject } from "react-icons/ai";
 import { RiDeleteBack2Fill } from "react-icons/ri";
 import profile from "../assets/images/profile.jpg";
 import Tasks from "../components/Tasks";
-import { NavLink, useParams, useNavigate } from "react-router";
+import { NavLink, useParams, useNavigate, data } from "react-router";
 import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { toast } from "react-toastify";
 import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
 import * as Dialog from "@radix-ui/react-dialog";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Project = () => {
   const { id } = useParams();
-  const [project, setProject] = useState([]);
+  const [project, setProject] = useState({});
+  // const [error, setError] = useState(false);
+  const [spinnerLoading, setSpinnerLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const getProject = async () => {
-      const data = await ProjectService.getProject(id);
-      setProject(data);
+      try {
+        const data = await ProjectService.getProject(id);
+        data ? setProject(data) : setSpinnerLoading(false);
+        // setProject(data);
+      } catch (error) {
+        setError(error);
+      }
     };
 
     getProject(id);
@@ -35,61 +43,70 @@ const Project = () => {
   console.log(project);
 
   return (
-    <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
-      <div className="flex items-center justify-between">
-        <h2 className="font-bold text-2xl text-slate-700 flex gap-2 items-center">
-          Project <AiOutlineProject className="text-orange-500" size={26} />
-        </h2>
+    <>
+      {project.Title ? (
+        <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
+          <div className="flex items-center justify-between">
+            <h2 className="font-bold text-2xl text-slate-700 flex gap-2 items-center">
+              Project <AiOutlineProject className="text-orange-500" size={26} />
+            </h2>
 
-        <div className="flex gap-6">
-          <NavLink to={"/project/all"}>
-            <button className="btn-gray flex items-center gap-2">
-              <IoMdArrowRoundBack size={20} /> Back
-            </button>
-          </NavLink>
+            <div className="flex gap-6">
+              <NavLink to={"/project/all"}>
+                <button className="btn-gray flex items-center gap-2">
+                  <IoMdArrowRoundBack size={20} /> Back
+                </button>
+              </NavLink>
 
-          <ModalCheckAgreement
-            btnText={"Confirm"}
-            titleText={"Are you sure you want to delete this project"}
-            func={deleteProject}
-            funcParam={id}
-          >
-            <Dialog.Trigger>
-              <div className="btn-red flex items-center gap-2">
-                <RiDeleteBack2Fill size={20} /> Delete Project
-              </div>
-            </Dialog.Trigger>
-          </ModalCheckAgreement>
+              <ModalCheckAgreement
+                btnText={"Confirm"}
+                titleText={"Are you sure you want to delete this project"}
+                func={deleteProject}
+                funcParam={id}
+              >
+                <Dialog.Trigger>
+                  <div className="btn-red flex items-center gap-2">
+                    <RiDeleteBack2Fill size={20} /> Delete Project
+                  </div>
+                </Dialog.Trigger>
+              </ModalCheckAgreement>
+            </div>
+          </div>
+          <div className="flex w-full gap-10 ">
+            <div className="w-2/5 flex flex-col items-start gap-3">
+              <img
+                src={profile}
+                alt=""
+                className="w-full h-[200px] border-4 border-orange-500 rounded-md"
+              />
+              <h3 className="text-2xl font-bold text-slate-600 tracking-wide leading-relaxed">
+                Title: <span className="text-red-500">{project.Title}</span>
+              </h3>
+              <h4 className="text-lg font-bold text-slate-600 tracking-wide leading-relaxed">
+                Pioreiety:{" "}
+                <span className="text-orange-500">{project.Importance}</span>{" "}
+                <br />
+                Deadline:{" "}
+                <span className="text-orange-500">{project.Deadline}</span>
+              </h4>
+            </div>
+            <div className="w-3/5 flex flex-col justify-start gap-2">
+              <h3 className="text-lg font-bold text-slate-700 tracking-wide leading-relaxed ">
+                Description:{" "}
+              </h3>
+              <p className="font-semibold text-md text-gray-600 tracking-wide leading-relaxed">
+                {project.Description}
+              </p>
+            </div>
+          </div>
+          <Tasks id={id} />
         </div>
-      </div>
-      <div className="flex w-full gap-10 ">
-        <div className="w-2/5 flex flex-col items-start gap-3">
-          <img
-            src={profile}
-            alt=""
-            className="w-full h-[200px] border-4 border-orange-500 rounded-md"
-          />
-          <h3 className="text-2xl font-bold text-slate-600 tracking-wide leading-relaxed">
-            Title: <span className="text-red-500">{project.Title}</span>
-          </h3>
-          <h4 className="text-lg font-bold text-slate-600 tracking-wide leading-relaxed">
-            Pioreiety:{" "}
-            <span className="text-orange-500">{project.Importance}</span> <br />
-            Deadline:{" "}
-            <span className="text-orange-500">{project.Deadline}</span>
-          </h4>
+      ) : (
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+          <ClipLoader className="text-center" color="#ff6300" size={150} />
         </div>
-        <div className="w-3/5 flex flex-col justify-start gap-2">
-          <h3 className="text-lg font-bold text-slate-700 tracking-wide leading-relaxed ">
-            Description:{" "}
-          </h3>
-          <p className="font-semibold text-md text-gray-600 tracking-wide leading-relaxed">
-            {project.Description}
-          </p>
-        </div>
-      </div>
-      <Tasks id={id} />
-    </div>
+      )}
+    </>
   );
 };
 
