@@ -43,13 +43,21 @@ const Project = () => {
   };
 
   const handleUpdateProjectImage = async (e) => {
+    console.log("stary: " + project.Title);
     await handleFileUpload(
       e,
       (uploadedUrl) => {
+        const newProject = {
+          ...project,
+          ImageUrl: uploadedUrl,
+        };
+
         setProject((prev) => ({
           ...prev,
           ImageUrl: uploadedUrl,
         }));
+
+        ProjectService.updateProject(id, newProject);
       },
       false
     );

@@ -111,6 +111,22 @@ class ProjectService {
 
     return response;
   }
+
+  static async updateProject(projectId, newProject) {
+    try {
+      const response = await axios.patch(
+        `${this.BASE_URL}/projects/${projectId}`,
+        newProject
+      );
+
+      // Zwróć tylko dane projektu, jeśli potrzebujesz
+      return response.data;
+    } catch (error) {
+      // Obsługuje błąd, jeśli coś pójdzie nie tak
+      console.error("Error updating project:", error);
+      throw error; // Możesz wyrzucić błąd, żeby obsługiwać go wyżej
+    }
+  }
 }
 
 export default ProjectService;
