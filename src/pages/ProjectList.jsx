@@ -23,7 +23,7 @@ const ProjectList = () => {
     };
 
     getAllProjects();
-  }, [projectsList]);
+  }, []);
 
   return (
     <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
