@@ -136,7 +136,7 @@ const Project = () => {
                 {project.Title}
               </h3>
               <h4 className="text-lg font-bold text-slate-600 tracking-wide leading-relaxed">
-                <p className=" flex items-center justify-center gap-2">
+                <p className="flex items-center justify-start gap-2">
                   Pioreiety:
                   <span className="text-orange-500">{project.Importance}</span>
                   <MdDriveFileRenameOutline
@@ -144,9 +144,14 @@ const Project = () => {
                     className="text-slate-800 inline ml-2"
                   />
                 </p>
-                <br />
-                Deadline:{" "}
-                <span className="text-orange-500">{project.Deadline}</span>
+                <p className="flex items-center justify-start gap-2">
+                  Deadline:
+                  <span className="text-orange-500">{project.Deadline}</span>
+                  <MdDriveFileRenameOutline
+                    size={24}
+                    className="text-slate-800 inline ml-2"
+                  />
+                </p>
               </h4>
             </div>
             <div className="w-3/5 flex flex-col justify-start gap-2">
