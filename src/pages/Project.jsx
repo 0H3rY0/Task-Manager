@@ -11,6 +11,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import ClipLoader from "react-spinners/ClipLoader";
 import { SiTask } from "react-icons/si";
 import { useFileUpload } from "../hooks/useFileUpload";
+import { MdDriveFileRenameOutline } from "react-icons/md";
 
 const Project = () => {
   const { id } = useParams();
@@ -135,8 +136,14 @@ const Project = () => {
                 {project.Title}
               </h3>
               <h4 className="text-lg font-bold text-slate-600 tracking-wide leading-relaxed">
-                Pioreiety:{" "}
-                <span className="text-orange-500">{project.Importance}</span>{" "}
+                <p className=" flex items-center justify-center gap-2">
+                  Pioreiety:
+                  <span className="text-orange-500">{project.Importance}</span>
+                  <MdDriveFileRenameOutline
+                    size={24}
+                    className="text-slate-800 inline ml-2"
+                  />
+                </p>
                 <br />
                 Deadline:{" "}
                 <span className="text-orange-500">{project.Deadline}</span>
