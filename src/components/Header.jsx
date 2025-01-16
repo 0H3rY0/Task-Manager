@@ -13,7 +13,7 @@ function Header({ setNavbarActive, navbarActive }) {
     <header
       className={
         `py-2 sm:py-4  px-3 sm:px-6 bg-red-500 
-    flex justify-between sticky top-0 ` +
+    flex justify-between sticky top-0 z-50 ` +
         `${
           navbarActive
             ? "md:ml-[300px] headerAnimation"

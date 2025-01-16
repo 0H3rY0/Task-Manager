@@ -98,7 +98,7 @@ const Project = () => {
             <div className="w-2/5 flex flex-col items-start gap-3">
               <div
                 className="relative min-h-[250px] w-full p-4 border-2 rounded-lg 
-  border-orange-200 flex items-center justify-center group bg-white"
+  border-orange-200 flex items-center justify-center group bg-white z-0"
               >
                 {project.ImageUrl ? (
                   <img
@@ -144,7 +144,7 @@ const Project = () => {
                     className="text-slate-800 inline ml-2"
                   />
                 </p>
-                <p className="flex items-center justify-start gap-2">
+                <p className="flex items-center justify-start gap-2 whitespace-nowrap">
                   Deadline:
                   <span className="text-orange-500">{project.Deadline}</span>
                   <MdDriveFileRenameOutline
@@ -155,8 +155,12 @@ const Project = () => {
               </h4>
             </div>
             <div className="w-3/5 flex flex-col justify-start gap-2">
-              <h3 className="text-lg font-bold text-slate-700 tracking-wide leading-relaxed ">
-                Description:{" "}
+              <h3 className="text-lg font-bold text-slate-700 tracking-wide leading-relaxed flex justify-between items-center">
+                <p>Description: </p>
+                <MdDriveFileRenameOutline
+                  size={30}
+                  className="text-slate-800 inline ml-2"
+                />
               </h3>
               <p className="font-semibold text-md text-gray-600 tracking-wide leading-relaxed">
                 {project.Description}

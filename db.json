@@ -7,7 +7,16 @@
       "Deadline": "2025-01-21",
       "Importance": "Medium",
       "ImageUrl": "http://localhost:3000/uploads/8b43a5e1783539ac3ada4d0e04250c75",
-      "Tasks": []
+      "Tasks": [
+        {
+          "id": "688aa01d-4259-4ad9-b2a1-a31dc91b313c",
+          "content": "asdfffff"
+        },
+        {
+          "id": "2b33a7d6-0703-4d25-8496-6180378674dd",
+          "content": "aaaa"
+        }
+      ]
     },
     {
       "id": "bf4a4b1c-3050-4eed-8c5c-efea59de8935",
