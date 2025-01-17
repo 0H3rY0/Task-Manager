@@ -147,8 +147,20 @@ const Project = () => {
                 </p>
               )}
 
-              <h3 className="text-2xl font-bold text-slate-900 tracking-wide leading-relaxed text-center">
+              <h3 className="text-2xl font-bold text-slate-900 tracking-wide leading-relaxed text-center flex">
                 {project.Title}
+                <ModalModifyProject
+                  title={"Change your Title: "}
+                  name={"Title"}
+                  func={handelUpdateProject}
+                >
+                  <Dialog.Trigger>
+                    <MdDriveFileRenameOutline
+                      size={30}
+                      className="text-slate-800 inline ml-2"
+                    />
+                  </Dialog.Trigger>
+                </ModalModifyProject>
               </h3>
               <h4 className="text-lg font-bold text-slate-600 tracking-wide leading-relaxed">
                 <p className="flex items-center justify-start gap-2">
