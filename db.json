@@ -2,11 +2,11 @@
   "projects": [
     {
       "id": "1fd04baf-7e8e-42f7-a831-e46f7c0d232c",
-      "Title": "ggg",
-      "Description": "gg",
-      "Deadline": "2025-01-21",
-      "Importance": "Medium",
-      "ImageUrl": "http://localhost:3000/uploads/8b43a5e1783539ac3ada4d0e04250c75",
+      "Title": "abc i dgb",
+      "Description": "maciej jest szefem bo dziala i sie nauczyl z wczoraj i teraz juz wie co ma robic",
+      "Deadline": "",
+      "Importance": "abcd",
+      "ImageUrl": "http://localhost:3000/uploads/c3c989892fb8a9c32618a4f49efe39fe",
       "Tasks": [
         {
           "id": "688aa01d-4259-4ad9-b2a1-a31dc91b313c",
@@ -19,12 +19,12 @@
       ]
     },
     {
-      "id": "bf4a4b1c-3050-4eed-8c5c-efea59de8935",
-      "Title": "s",
-      "Description": "s",
-      "Deadline": "2025-01-22",
+      "id": "cbdf3ac0-4afc-4dc1-bdc8-52d5ed7dc416",
+      "Title": "skkk",
+      "Description": "we need to focus on this project",
+      "Deadline": "2025-01-30",
       "Importance": "Medium",
-      "ImageUrl": "http://localhost:3000/uploads/8420c630eb38ef388d8d81ed05750c41",
+      "ImageUrl": "http://localhost:3000/uploads/92687190befd53211803914ca7899796",
       "Tasks": []
     }
   ]

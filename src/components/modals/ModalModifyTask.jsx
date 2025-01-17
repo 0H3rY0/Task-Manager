@@ -55,7 +55,7 @@ const ModalModifyTask = ({ children, value, taskId, modifyTask }) => {
 ModalModifyTask.propTypes = {
   children: PropTypes.node.isRequired, // Any renderable React content
   value: PropTypes.string.isRequired, // Initial value for the task being modified
-  taskId: PropTypes.number.isRequired, // Index of the task in the list
+  taskId: PropTypes.string.isRequired, // Index of the task in the list
   modifyTask: PropTypes.func.isRequired, // Function to modify the task
 };
 

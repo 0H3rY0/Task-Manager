@@ -12,6 +12,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { SiTask } from "react-icons/si";
 import { useFileUpload } from "../hooks/useFileUpload";
 import { MdDriveFileRenameOutline } from "react-icons/md";
+import ModalModifyProject from "../components/modals/ModalModifyProject";
 
 const Project = () => {
   const { id } = useParams();
@@ -62,6 +63,20 @@ const Project = () => {
       },
       false
     );
+  };
+
+  const handelUpdateProject = (name, newValue) => {
+    setProject((prev) => ({
+      ...prev,
+      [name]: newValue,
+    }));
+
+    const newProject = {
+      ...project,
+      [name]: newValue,
+    };
+
+    ProjectService.updateProject(id, newProject);
   };
 
   return (
@@ -132,35 +147,75 @@ const Project = () => {
                 </p>
               )}
 
-              <h3 className="text-2xl font-bold text-slate-900 tracking-wide leading-relaxed text-center">
+              <h3 className="text-2xl font-bold text-slate-900 tracking-wide leading-relaxed text-center flex">
                 {project.Title}
+                <ModalModifyProject
+                  title={"Change your Title: "}
+                  name={"Title"}
+                  func={handelUpdateProject}
+                  defaultValue={project.Title}
+                >
+                  <Dialog.Trigger>
+                    <MdDriveFileRenameOutline
+                      size={30}
+                      className="text-slate-800 inline ml-2"
+                    />
+                  </Dialog.Trigger>
+                </ModalModifyProject>
               </h3>
               <h4 className="text-lg font-bold text-slate-600 tracking-wide leading-relaxed">
                 <p className="flex items-center justify-start gap-2">
                   Pioreiety:
                   <span className="text-orange-500">{project.Importance}</span>
-                  <MdDriveFileRenameOutline
-                    size={24}
-                    className="text-slate-800 inline ml-2"
-                  />
+                  <ModalModifyProject
+                    title={"Change your pioreiety: "}
+                    name={"Importance"}
+                    func={handelUpdateProject}
+                    defaultValue={project.Importance}
+                  >
+                    <Dialog.Trigger>
+                      <MdDriveFileRenameOutline
+                        size={24}
+                        className="text-slate-800 inline ml-2"
+                      />
+                    </Dialog.Trigger>
+                  </ModalModifyProject>
                 </p>
                 <p className="flex items-center justify-start gap-2 whitespace-nowrap">
                   Deadline:
                   <span className="text-orange-500">{project.Deadline}</span>
-                  <MdDriveFileRenameOutline
-                    size={24}
-                    className="text-slate-800 inline ml-2"
-                  />
+                  <ModalModifyProject
+                    title={"Change your deadline: "}
+                    name={"Deadline"}
+                    func={handelUpdateProject}
+                    defaultValue={project.Deadline}
+                  >
+                    <Dialog.Trigger>
+                      <MdDriveFileRenameOutline
+                        size={24}
+                        className="text-slate-800 inline ml-2"
+                      />
+                    </Dialog.Trigger>
+                  </ModalModifyProject>
                 </p>
               </h4>
             </div>
             <div className="w-3/5 flex flex-col justify-start gap-2">
               <h3 className="text-lg font-bold text-slate-700 tracking-wide leading-relaxed flex justify-between items-center">
                 <p>Description: </p>
-                <MdDriveFileRenameOutline
-                  size={30}
-                  className="text-slate-800 inline ml-2"
-                />
+                <ModalModifyProject
+                  title={"Change your description: "}
+                  name={"Description"}
+                  func={handelUpdateProject}
+                  defaultValue={project.Description}
+                >
+                  <Dialog.Trigger>
+                    <MdDriveFileRenameOutline
+                      size={24}
+                      className="text-slate-800 inline ml-2"
+                    />
+                  </Dialog.Trigger>
+                </ModalModifyProject>
               </h3>
               <p className="font-semibold text-md text-gray-600 tracking-wide leading-relaxed">
                 {project.Description}
