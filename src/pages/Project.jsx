@@ -140,7 +140,7 @@ const Project = () => {
                 <p className="flex items-center justify-start gap-2">
                   Pioreiety:
                   <span className="text-orange-500">{project.Importance}</span>
-                  <ModalModifyProject>
+                  <ModalModifyProject title={"Change your pioreiety: "}>
                     <Dialog.Trigger>
                       <MdDriveFileRenameOutline
                         size={24}
@@ -152,7 +152,7 @@ const Project = () => {
                 <p className="flex items-center justify-start gap-2 whitespace-nowrap">
                   Deadline:
                   <span className="text-orange-500">{project.Deadline}</span>
-                  <ModalModifyProject>
+                  <ModalModifyProject title={"Change your deadline: "}>
                     <Dialog.Trigger>
                       <MdDriveFileRenameOutline
                         size={24}
@@ -166,7 +166,7 @@ const Project = () => {
             <div className="w-3/5 flex flex-col justify-start gap-2">
               <h3 className="text-lg font-bold text-slate-700 tracking-wide leading-relaxed flex justify-between items-center">
                 <p>Description: </p>
-                <ModalModifyProject>
+                <ModalModifyProject title={"Change your description: "}>
                   <Dialog.Trigger>
                     <MdDriveFileRenameOutline
                       size={24}
