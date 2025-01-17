@@ -21,14 +21,35 @@ const ModalModifyProject = ({ title, children, name, func, defaultValue }) => {
             </div>
 
             <p>
-              <input
-                type="text"
-                className="classicInput ml-[-5px]"
-                placeholder="Write here"
-                name={name}
-                defaultValue={defaultValue}
-                onChange={(e) => setNewInputValue(e.target.value)}
-              />
+              {name === "Title" || name === "Description" ? (
+                <input
+                  type="text"
+                  className="classicInput ml-[-5px]"
+                  placeholder="Write here"
+                  name={name}
+                  defaultValue={defaultValue}
+                  onChange={(e) => setNewInputValue(e.target.value)}
+                />
+              ) : name === "Deadline" ? (
+                <input
+                  type="date"
+                  className="classicInput ml-[-5px]"
+                  placeholder="Write here"
+                  name={name}
+                  defaultValue={defaultValue}
+                  onChange={(e) => setNewInputValue(e.target.value)}
+                />
+              ) : (
+                <select
+                  className="mt-1 "
+                  onChange={(e) => setNewInputValue(e.target.value)}
+                  defaultValue={defaultValue}
+                >
+                  <option>High</option>
+                  <option>Medium</option>
+                  <option>Low</option>
+                </select>
+              )}
             </p>
             <div className="flex justify-end items-center">
               <button
