@@ -153,6 +153,7 @@ const Project = () => {
                   title={"Change your Title: "}
                   name={"Title"}
                   func={handelUpdateProject}
+                  defaultValue={project.Title}
                 >
                   <Dialog.Trigger>
                     <MdDriveFileRenameOutline
@@ -170,6 +171,7 @@ const Project = () => {
                     title={"Change your pioreiety: "}
                     name={"Importance"}
                     func={handelUpdateProject}
+                    defaultValue={project.Importance}
                   >
                     <Dialog.Trigger>
                       <MdDriveFileRenameOutline
@@ -186,6 +188,7 @@ const Project = () => {
                     title={"Change your deadline: "}
                     name={"Deadline"}
                     func={handelUpdateProject}
+                    defaultValue={project.Deadline}
                   >
                     <Dialog.Trigger>
                       <MdDriveFileRenameOutline
@@ -204,6 +207,7 @@ const Project = () => {
                   title={"Change your description: "}
                   name={"Description"}
                   func={handelUpdateProject}
+                  defaultValue={project.Description}
                 >
                   <Dialog.Trigger>
                     <MdDriveFileRenameOutline

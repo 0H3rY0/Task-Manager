@@ -2,7 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
 
-const ModalModifyProject = ({ title, children, name, func }) => {
+const ModalModifyProject = ({ title, children, name, func, defaultValue }) => {
   const [open, setOpen] = useState(false);
 
   const [newInputValue, setNewInputValue] = useState("");
@@ -26,13 +26,17 @@ const ModalModifyProject = ({ title, children, name, func }) => {
                 className="classicInput ml-[-5px]"
                 placeholder="Write here"
                 name={name}
+                defaultValue={defaultValue}
                 onChange={(e) => setNewInputValue(e.target.value)}
               />
             </p>
             <div className="flex justify-end items-center">
               <button
                 className="btn-red"
-                onClick={() => func(name, newInputValue)}
+                onClick={() => {
+                  func(name, newInputValue);
+                  setOpen(false);
+                }}
               >
                 Confirm
               </button>
