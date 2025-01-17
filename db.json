@@ -6,7 +6,7 @@
       "Description": "gg",
       "Deadline": "2025-01-21",
       "Importance": "Medium",
-      "ImageUrl": "http://localhost:3000/uploads/8b43a5e1783539ac3ada4d0e04250c75",
+      "ImageUrl": "http://localhost:3000/uploads/c3c989892fb8a9c32618a4f49efe39fe",
       "Tasks": [
         {
           "id": "688aa01d-4259-4ad9-b2a1-a31dc91b313c",
@@ -24,8 +24,13 @@
       "Description": "s",
       "Deadline": "2025-01-22",
       "Importance": "Medium",
-      "ImageUrl": "http://localhost:3000/uploads/8420c630eb38ef388d8d81ed05750c41",
-      "Tasks": []
+      "ImageUrl": "http://localhost:3000/uploads/942ad143ba6a88c3b086cadbccecbc50",
+      "Tasks": [
+        {
+          "id": "f214df01-d3a3-41dd-9637-12b35e0e8861",
+          "content": "sss"
+        }
+      ]
     }
   ]
 }
