@@ -3,9 +3,9 @@
     {
       "id": "1fd04baf-7e8e-42f7-a831-e46f7c0d232c",
       "Title": "ggg",
-      "Description": "gg",
-      "Deadline": "2025-01-21",
-      "Importance": "Medium",
+      "Description": "maciej jest szefem bo dziala i sie nauczyl z wczoraj i teraz juz wie co ma robic",
+      "Deadline": "225-221-11",
+      "Importance": "a",
       "ImageUrl": "http://localhost:3000/uploads/c3c989892fb8a9c32618a4f49efe39fe",
       "Tasks": [
         {
@@ -19,18 +19,13 @@
       ]
     },
     {
-      "id": "bf4a4b1c-3050-4eed-8c5c-efea59de8935",
-      "Title": "s",
-      "Description": "s",
-      "Deadline": "2025-01-22",
+      "id": "cbdf3ac0-4afc-4dc1-bdc8-52d5ed7dc416",
+      "Title": "a",
+      "Description": "a",
+      "Deadline": "2025-01-21",
       "Importance": "Medium",
-      "ImageUrl": "http://localhost:3000/uploads/942ad143ba6a88c3b086cadbccecbc50",
-      "Tasks": [
-        {
-          "id": "f214df01-d3a3-41dd-9637-12b35e0e8861",
-          "content": "sss"
-        }
-      ]
+      "ImageUrl": "http://localhost:3000/uploads/92687190befd53211803914ca7899796",
+      "Tasks": []
     }
   ]
 }

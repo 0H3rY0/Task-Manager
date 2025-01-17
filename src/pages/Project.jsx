@@ -65,6 +65,20 @@ const Project = () => {
     );
   };
 
+  const handelUpdateProject = (name, newValue) => {
+    setProject((prev) => ({
+      ...prev,
+      [name]: newValue,
+    }));
+
+    const newProject = {
+      ...project,
+      [name]: newValue,
+    };
+
+    ProjectService.updateProject(id, newProject);
+  };
+
   return (
     <>
       {project.Title ? (
@@ -140,7 +154,11 @@ const Project = () => {
                 <p className="flex items-center justify-start gap-2">
                   Pioreiety:
                   <span className="text-orange-500">{project.Importance}</span>
-                  <ModalModifyProject title={"Change your pioreiety: "}>
+                  <ModalModifyProject
+                    title={"Change your pioreiety: "}
+                    name={"Importance"}
+                    func={handelUpdateProject}
+                  >
                     <Dialog.Trigger>
                       <MdDriveFileRenameOutline
                         size={24}
@@ -152,7 +170,11 @@ const Project = () => {
                 <p className="flex items-center justify-start gap-2 whitespace-nowrap">
                   Deadline:
                   <span className="text-orange-500">{project.Deadline}</span>
-                  <ModalModifyProject title={"Change your deadline: "}>
+                  <ModalModifyProject
+                    title={"Change your deadline: "}
+                    name={"Deadline"}
+                    func={handelUpdateProject}
+                  >
                     <Dialog.Trigger>
                       <MdDriveFileRenameOutline
                         size={24}
@@ -166,7 +188,11 @@ const Project = () => {
             <div className="w-3/5 flex flex-col justify-start gap-2">
               <h3 className="text-lg font-bold text-slate-700 tracking-wide leading-relaxed flex justify-between items-center">
                 <p>Description: </p>
-                <ModalModifyProject title={"Change your description: "}>
+                <ModalModifyProject
+                  title={"Change your description: "}
+                  name={"Description"}
+                  func={handelUpdateProject}
+                >
                   <Dialog.Trigger>
                     <MdDriveFileRenameOutline
                       size={24}
