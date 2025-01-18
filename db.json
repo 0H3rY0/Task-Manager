@@ -29,7 +29,12 @@
       "Deadline": "2025-01-19",
       "Importance": "High",
       "ImageUrl": "http://localhost:3000/uploads/c45bdc4ece18c7a822eaba5dcf04b14c",
-      "Tasks": []
+      "Tasks": [
+        {
+          "id": "bb1c2c0c-6fa2-47cb-af57-1b8cb706bd86",
+          "content": "fffdd"
+        }
+      ]
     },
     {
       "id": "67318d8e-0f9b-46b8-a631-d19732d00692",

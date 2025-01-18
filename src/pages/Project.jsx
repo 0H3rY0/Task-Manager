@@ -93,8 +93,8 @@ const Project = () => {
     <>
       {project.Title ? (
         <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
-          <div className="flex items-center justify-between">
-            <h2 className="font-bold text-2xl text-slate-700 flex gap-2 items-center">
+          <div className="flex justify-between">
+            <h2 className="font-bold text-2xl text-slate-700 flex gap-2 whitespace-nowrap text-start">
               Project <AiOutlineProject className="text-orange-500" size={26} />
             </h2>
 
@@ -119,8 +119,11 @@ const Project = () => {
               </ModalCheckAgreement>
             </div>
           </div>
-          <div className="flex w-full gap-10 ">
-            <div className="w-2/5 flex flex-col items-start gap-3">
+
+          {/* second container */}
+          <div className="flex w-full gap-10 md:flex-row flex-col">
+            {/* image, title and Pioreiety container */}
+            <div className="w-5/5 md:w-2/5 flex flex-col items-start gap-3">
               <div
                 className="relative min-h-[250px] w-full p-4 border-2 rounded-lg 
   border-orange-200 flex items-center justify-center group bg-white z-0"
@@ -216,7 +219,7 @@ const Project = () => {
                 </p>
               </h4>
             </div>
-            <div className="w-3/5 flex flex-col justify-start gap-2">
+            <div className="md:w-3/5 w-5/5 flex flex-col justify-start gap-2 max-h-[220px]">
               <h3 className="text-lg font-bold text-slate-700 tracking-wide leading-relaxed flex justify-between items-center">
                 <p>Description: </p>
                 <ModalModifyProject
