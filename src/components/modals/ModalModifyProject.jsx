@@ -12,7 +12,8 @@ const ModalModifyProject = ({
   setError,
 }) => {
   const [open, setOpen] = useState(false);
-  const [newInputValue, setNewInputValue] = useState("");
+  const [newInputValue, setNewInputValue] = useState(defaultValue);
+  const [letterCounter, setLetterCounter] = useState(defaultValue.length);
 
   const updateProject = async () => {
     await func(name, newInputValue, () => {
@@ -23,6 +24,11 @@ const ModalModifyProject = ({
         setOpen(false);
       }
     });
+  };
+
+  const count = (e) => {
+    const text = e.target.value;
+    setLetterCounter(text.length);
   };
 
   return (
@@ -54,7 +60,10 @@ const ModalModifyProject = ({
                   placeholder="Write here"
                   name={name}
                   defaultValue={defaultValue}
-                  onChange={(e) => setNewInputValue(e.target.value)}
+                  onChange={(e) => {
+                    setNewInputValue(e.target.value);
+                    count(e);
+                  }}
                 />
               ) : name === "Deadline" ? (
                 <input
@@ -78,7 +87,23 @@ const ModalModifyProject = ({
               )}
             </p>
             <p className="text-md font-normal text-red-400">{error}</p>
-            <div className="flex justify-end items-center">
+            <div
+              className={
+                `flex justify-end items-center ` +
+                `${
+                  name === "Title" || name === "Description"
+                    ? "justify-between"
+                    : ""
+                }`
+              }
+            >
+              {name === "Title" || name === "Description" ? (
+                <p className="font-semibold border-2 px-4 py-2 border-slate-800 rounded-full ">
+                  {letterCounter}/100
+                </p>
+              ) : (
+                ""
+              )}
               <button className="btn-red" onClick={() => updateProject()}>
                 Confirm
               </button>

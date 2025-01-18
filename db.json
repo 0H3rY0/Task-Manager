@@ -3,8 +3,8 @@
     {
       "id": "1fd04baf-7e8e-42f7-a831-e46f7c0d232c",
       "Title": "Wymiana lodówki",
-      "Description": "trzeba wymienic lodowke poniewaz sie zepsola",
-      "Deadline": "2025-01-06",
+      "Description": "trzeba wymienic zepsola",
+      "Deadline": "2025-01-30",
       "Importance": "Low",
       "ImageUrl": "http://localhost:3000/uploads/afd360566209ad283e28665f5f0ccd8a",
       "Tasks": [
@@ -29,15 +29,20 @@
       "Deadline": "2025-01-19",
       "Importance": "High",
       "ImageUrl": "http://localhost:3000/uploads/c45bdc4ece18c7a822eaba5dcf04b14c",
-      "Tasks": []
+      "Tasks": [
+        {
+          "id": "bb1c2c0c-6fa2-47cb-af57-1b8cb706bd86",
+          "content": "fffdd"
+        }
+      ]
     },
     {
-      "id": "7250dbb3-e359-4113-a05b-90eb4ab77d0a",
-      "Title": "a",
-      "Description": "s",
-      "Deadline": "2025-01-28",
-      "Importance": "",
-      "ImageUrl": "",
+      "id": "ab442d92-96df-4af6-98fd-38ddcb5abb86",
+      "Title": "aaaaaddddfffssgffffggfgxxxxxxxxxxxxxxxxxxxxx",
+      "Description": "sssssssssssssssssssssssssssssssss",
+      "Deadline": "2025-01-31",
+      "Importance": "High",
+      "ImageUrl": "http://localhost:3000/uploads/007d967041da938df4349536edb7b20e",
       "Tasks": []
     }
   ]
