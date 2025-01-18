@@ -92,8 +92,8 @@ const Project = () => {
   return (
     <>
       {project.Title ? (
-        <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
-          <div className="flex justify-between">
+        <div className="w-4/5 flex justify-center py-16 flex-col gap-6">
+          <div className="flex justify-between md:flex-row flex-col md:gap-0 gap-2">
             <h2 className="font-bold text-2xl text-slate-700 flex gap-2 whitespace-nowrap text-start">
               Project <AiOutlineProject className="text-orange-500" size={26} />
             </h2>
