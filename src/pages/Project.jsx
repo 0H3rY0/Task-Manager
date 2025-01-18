@@ -13,11 +13,13 @@ import { SiTask } from "react-icons/si";
 import { useFileUpload } from "../hooks/useFileUpload";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import ModalModifyProject from "../components/modals/ModalModifyProject";
+import { projectSchema } from "../utils/projectSchema";
 
 const Project = () => {
   const { id } = useParams();
   const [project, setProject] = useState({});
   const [error, setError] = useState(false);
+  const [projectUpdateError, setProjectUpdateError] = useState({ Title: "" });
   const navigate = useNavigate();
 
   const { handleFileUpload, UploadImageError, animationClass } =
@@ -65,18 +67,30 @@ const Project = () => {
     );
   };
 
-  const handelUpdateProject = (name, newValue) => {
-    setProject((prev) => ({
-      ...prev,
-      [name]: newValue,
-    }));
-
+  const handelUpdateProject = async (name, newValue, callback) => {
     const newProject = {
       ...project,
       [name]: newValue,
     };
 
-    ProjectService.updateProject(id, newProject);
+    try {
+      await projectSchema.validate(newProject, { abortEarly: false });
+
+      setProject((prev) => ({
+        ...prev,
+        [name]: newValue,
+      }));
+
+      await ProjectService.updateProject(id, newProject);
+      if (callback) callback();
+      setProjectUpdateError({ Title: "" });
+    } catch (error) {
+      const firstError = error.inner?.[0]?.message || "Validation failed";
+      setProjectUpdateError((prev) => ({
+        ...prev,
+        [name]: firstError,
+      }));
+    }
   };
 
   return (
@@ -154,6 +168,8 @@ const Project = () => {
                   name={"Title"}
                   func={handelUpdateProject}
                   defaultValue={project.Title}
+                  error={projectUpdateError}
+                  setError={setProjectUpdateError}
                 >
                   <Dialog.Trigger>
                     <MdDriveFileRenameOutline

@@ -2,10 +2,29 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
 
-const ModalModifyProject = ({ title, children, name, func, defaultValue }) => {
+const ModalModifyProject = ({
+  title,
+  children,
+  name,
+  func,
+  defaultValue,
+  error = { Title: "" },
+  setError,
+}) => {
   const [open, setOpen] = useState(false);
 
   const [newInputValue, setNewInputValue] = useState("");
+
+  const updateProject = async () => {
+    await func(name, newInputValue, () => {
+      if (error.Title == "") {
+        setOpen(false);
+      } else {
+        setError({ Title: "" });
+        setOpen(false);
+      }
+    });
+  };
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -51,12 +70,14 @@ const ModalModifyProject = ({ title, children, name, func, defaultValue }) => {
                 </select>
               )}
             </p>
+            <p>{error.Title}</p>
             <div className="flex justify-end items-center">
               <button
                 className="btn-red"
                 onClick={() => {
-                  func(name, newInputValue);
-                  setOpen(false);
+                  updateProject();
+                  setError({ Title: "" });
+                  // setOpen(false);
                 }}
               >
                 Confirm
