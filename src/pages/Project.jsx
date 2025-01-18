@@ -13,11 +13,13 @@ import { SiTask } from "react-icons/si";
 import { useFileUpload } from "../hooks/useFileUpload";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import ModalModifyProject from "../components/modals/ModalModifyProject";
+import { projectSchema } from "../utils/projectSchema";
 
 const Project = () => {
   const { id } = useParams();
   const [project, setProject] = useState({});
   const [error, setError] = useState(false);
+  const [projectUpdateError, setProjectUpdateError] = useState(false);
   const navigate = useNavigate();
 
   const { handleFileUpload, UploadImageError, animationClass } =
@@ -65,18 +67,26 @@ const Project = () => {
     );
   };
 
-  const handelUpdateProject = (name, newValue) => {
-    setProject((prev) => ({
-      ...prev,
-      [name]: newValue,
-    }));
-
+  const handelUpdateProject = async (name, newValue, callback) => {
     const newProject = {
       ...project,
       [name]: newValue,
     };
 
-    ProjectService.updateProject(id, newProject);
+    try {
+      await projectSchema.validate(newProject, { abortEarly: false });
+
+      setProject((prev) => ({
+        ...prev,
+        [name]: newValue,
+      }));
+
+      await ProjectService.updateProject(id, newProject);
+      if (callback) callback();
+    } catch (error) {
+      const firstError = error.inner?.[0]?.message || "Validation failed";
+      setProjectUpdateError(firstError);
+    }
   };
 
   return (
@@ -154,6 +164,8 @@ const Project = () => {
                   name={"Title"}
                   func={handelUpdateProject}
                   defaultValue={project.Title}
+                  error={projectUpdateError}
+                  setError={setProjectUpdateError}
                 >
                   <Dialog.Trigger>
                     <MdDriveFileRenameOutline
@@ -172,6 +184,8 @@ const Project = () => {
                     name={"Importance"}
                     func={handelUpdateProject}
                     defaultValue={project.Importance}
+                    error={projectUpdateError}
+                    setError={setProjectUpdateError}
                   >
                     <Dialog.Trigger>
                       <MdDriveFileRenameOutline
@@ -189,6 +203,8 @@ const Project = () => {
                     name={"Deadline"}
                     func={handelUpdateProject}
                     defaultValue={project.Deadline}
+                    error={projectUpdateError}
+                    setError={setProjectUpdateError}
                   >
                     <Dialog.Trigger>
                       <MdDriveFileRenameOutline
@@ -208,6 +224,8 @@ const Project = () => {
                   name={"Description"}
                   func={handelUpdateProject}
                   defaultValue={project.Description}
+                  error={projectUpdateError}
+                  setError={setProjectUpdateError}
                 >
                   <Dialog.Trigger>
                     <MdDriveFileRenameOutline

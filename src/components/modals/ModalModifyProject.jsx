@@ -2,13 +2,39 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
 
-const ModalModifyProject = ({ title, children, name, func, defaultValue }) => {
+const ModalModifyProject = ({
+  title,
+  children,
+  name,
+  func,
+  defaultValue,
+  error = false,
+  setError,
+}) => {
   const [open, setOpen] = useState(false);
-
   const [newInputValue, setNewInputValue] = useState("");
 
+  const updateProject = async () => {
+    await func(name, newInputValue, () => {
+      if (!error) {
+        setOpen(false);
+      } else {
+        setError(false);
+        setOpen(false);
+      }
+    });
+  };
+
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root
+      open={open}
+      onOpenChange={(isOpen) => {
+        setOpen(isOpen);
+        if (!isOpen) {
+          setError(false);
+        }
+      }}
+    >
       {children}
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay">
@@ -51,14 +77,9 @@ const ModalModifyProject = ({ title, children, name, func, defaultValue }) => {
                 </select>
               )}
             </p>
+            <p className="text-md font-normal text-red-400">{error}</p>
             <div className="flex justify-end items-center">
-              <button
-                className="btn-red"
-                onClick={() => {
-                  func(name, newInputValue);
-                  setOpen(false);
-                }}
-              >
+              <button className="btn-red" onClick={() => updateProject()}>
                 Confirm
               </button>
             </div>
