@@ -2,19 +2,23 @@
   "projects": [
     {
       "id": "1fd04baf-7e8e-42f7-a831-e46f7c0d232c",
-      "Title": "abc i dgb",
-      "Description": "maciej jest szefem bo dziala i sie nauczyl z wczoraj i teraz juz wie co ma robic",
-      "Deadline": "",
-      "Importance": "abcd",
-      "ImageUrl": "http://localhost:3000/uploads/c3c989892fb8a9c32618a4f49efe39fe",
+      "Title": "Wymiana lodówki",
+      "Description": "trzeba wymienic lodowke poniewaz sie zepsola",
+      "Deadline": "2025-01-06",
+      "Importance": "Low",
+      "ImageUrl": "http://localhost:3000/uploads/afd360566209ad283e28665f5f0ccd8a",
       "Tasks": [
         {
-          "id": "688aa01d-4259-4ad9-b2a1-a31dc91b313c",
-          "content": "asdfffff"
+          "id": "a8083fc5-658d-4bb0-9155-6513e2330744",
+          "content": "zamowic lodowke "
         },
         {
-          "id": "2b33a7d6-0703-4d25-8496-6180378674dd",
-          "content": "aaaa"
+          "id": "a07e364e-caab-457d-948b-924b8a3d8f55",
+          "content": "zamontowac"
+        },
+        {
+          "id": "4781dc49-5228-4c16-bf10-90160bdbf297",
+          "content": "wyprobowac"
         }
       ]
     },
@@ -22,9 +26,18 @@
       "id": "cbdf3ac0-4afc-4dc1-bdc8-52d5ed7dc416",
       "Title": "skkk",
       "Description": "we need to focus on this project",
-      "Deadline": "2025-01-30",
+      "Deadline": "2025-01-29",
       "Importance": "Medium",
       "ImageUrl": "http://localhost:3000/uploads/92687190befd53211803914ca7899796",
+      "Tasks": []
+    },
+    {
+      "id": "7250dbb3-e359-4113-a05b-90eb4ab77d0a",
+      "Title": "dsss",
+      "Description": "s",
+      "Deadline": "2025-01-28",
+      "Importance": "Medium",
+      "ImageUrl": "",
       "Tasks": []
     }
   ]

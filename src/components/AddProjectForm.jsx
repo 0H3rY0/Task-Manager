@@ -10,6 +10,7 @@ import * as Yup from "yup";
 import FileInput from "./ui/FileInput";
 import FileSelect from "./ui/FileSelect";
 import { useFileUpload } from "../hooks/useFileUpload";
+import { projectSchema } from "../utils/projectSchema";
 
 const AddProjectForm = () => {
   const [project, setProject] = useState({
@@ -26,19 +27,6 @@ const AddProjectForm = () => {
   let priority = ["High", "Medium", "Low"];
   const { handleFileUpload, UploadImageError, uploadedFileUrl } =
     useFileUpload();
-
-  let projectSchema = Yup.object({
-    Title: Yup.string().required("Title is required"),
-    Description: Yup.string().required("Description is required"),
-    Deadline: Yup.date()
-      .nullable()
-      .transform((value, originalValue) =>
-        originalValue === "" ? null : value
-      )
-      .required("Date is required")
-      .min(new Date(), "Date must be later than today"),
-    Importance: Yup.string(),
-  });
 
   const onInputChnage = (e) => {
     setProject((prev) => ({
