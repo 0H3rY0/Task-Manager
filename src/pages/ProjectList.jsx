@@ -25,6 +25,10 @@ const ProjectList = () => {
     getAllProjects();
   }, []);
 
+  const textReducer = (text) => {
+    return text.length > 10 ? text.slice(0, 10) + "..." : text;
+  };
+
   return (
     <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
       <div className="flex md:items-center md:justify-between md:flex-row flex-col items-start md:gap-0 gap-2">
@@ -62,7 +66,7 @@ const ProjectList = () => {
                       {item.Title}
                     </h3>
                     <p className="font-semibold text-lg text-slate-500 ">
-                      {item.Description}
+                      {textReducer(item.Description)}
                     </p>
                   </div>
                   <div>

@@ -3,8 +3,8 @@
     {
       "id": "1fd04baf-7e8e-42f7-a831-e46f7c0d232c",
       "Title": "Wymiana lodówki",
-      "Description": "trzeba wymienic lodowke poniewaz sie zepsola",
-      "Deadline": "2025-01-06",
+      "Description": "trzeba wymienic zepsola",
+      "Deadline": "2025-01-30",
       "Importance": "Low",
       "ImageUrl": "http://localhost:3000/uploads/afd360566209ad283e28665f5f0ccd8a",
       "Tasks": [
