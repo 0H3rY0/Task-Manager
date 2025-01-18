@@ -19,7 +19,7 @@ const Project = () => {
   const { id } = useParams();
   const [project, setProject] = useState({});
   const [error, setError] = useState(false);
-  const [projectUpdateError, setProjectUpdateError] = useState({ Title: "" });
+  const [projectUpdateError, setProjectUpdateError] = useState(false);
   const navigate = useNavigate();
 
   const { handleFileUpload, UploadImageError, animationClass } =
@@ -83,13 +83,9 @@ const Project = () => {
 
       await ProjectService.updateProject(id, newProject);
       if (callback) callback();
-      setProjectUpdateError({ Title: "" });
     } catch (error) {
       const firstError = error.inner?.[0]?.message || "Validation failed";
-      setProjectUpdateError((prev) => ({
-        ...prev,
-        [name]: firstError,
-      }));
+      setProjectUpdateError(firstError);
     }
   };
 
@@ -188,6 +184,8 @@ const Project = () => {
                     name={"Importance"}
                     func={handelUpdateProject}
                     defaultValue={project.Importance}
+                    error={projectUpdateError}
+                    setError={setProjectUpdateError}
                   >
                     <Dialog.Trigger>
                       <MdDriveFileRenameOutline
@@ -205,6 +203,8 @@ const Project = () => {
                     name={"Deadline"}
                     func={handelUpdateProject}
                     defaultValue={project.Deadline}
+                    error={projectUpdateError}
+                    setError={setProjectUpdateError}
                   >
                     <Dialog.Trigger>
                       <MdDriveFileRenameOutline
@@ -224,6 +224,8 @@ const Project = () => {
                   name={"Description"}
                   func={handelUpdateProject}
                   defaultValue={project.Description}
+                  error={projectUpdateError}
+                  setError={setProjectUpdateError}
                 >
                   <Dialog.Trigger>
                     <MdDriveFileRenameOutline
