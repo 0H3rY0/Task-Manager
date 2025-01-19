@@ -32,7 +32,7 @@ const Project = () => {
         if (data !== undefined) {
           setProject(data);
         } else {
-          navigate("/error-Page");
+          navigate("/error-page");
         }
       } catch (error) {
         console.log("failed to load project: " + error);
