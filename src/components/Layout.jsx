@@ -6,6 +6,7 @@ import ProjectList from "../pages/ProjectList";
 import CreateProject from "../pages/CreateProject";
 import { ToastContainer } from "react-toastify";
 import Project from "../pages/Project";
+import ErrorPage from "../pages/ErrorPage";
 
 const Layout = ({ navbarActive }) => {
   return (
@@ -21,10 +22,11 @@ const Layout = ({ navbarActive }) => {
     >
       <Routes>
         <Route path="/" element={<Test />} />
-        <Route path="/project/:id" element={<Project />} />
         <Route path="/project/all" element={<ProjectList />} />
         <Route path="/project/create" element={<CreateProject />} />
-        {/* <Route path="/tasks" element={<Tasks />} /> i am changing all structure about task */}
+        <Route path="/project/:id" element={<Project />} />
+        {/* <Route path="/error" element={<ErrorPage />} /> */}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
       <ToastContainer />
     </div>

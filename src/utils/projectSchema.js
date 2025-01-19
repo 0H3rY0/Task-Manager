@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export let projectSchema = Yup.object({
   Title: Yup.string()
     .required("Title is required")
-    .max(50, "Title cannot exceed 50 characters"),
+    .max(30, "Title cannot exceed 50 characters"),
   Description: Yup.string()
     .required("Description is required")
     .max(100, "Description cannot exceed 100 characters"),
