@@ -7,7 +7,7 @@ const ModalModifyProject = ({
   children,
   name,
   func,
-  defaultValue,
+  defaultValue = "",
   error = false,
   setError,
 }) => {

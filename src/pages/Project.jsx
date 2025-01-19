@@ -17,7 +17,7 @@ import { projectSchema } from "../utils/projectSchema";
 
 const Project = () => {
   const { id } = useParams();
-  const [project, setProject] = useState({});
+  const [project, setProject] = useState({ Title: "" });
   const [error, setError] = useState(false);
   const [projectUpdateError, setProjectUpdateError] = useState(false);
   const navigate = useNavigate();
@@ -29,7 +29,11 @@ const Project = () => {
     const getProject = async () => {
       try {
         const data = await ProjectService.getProject(id);
-        setProject(data);
+        if (data !== undefined) {
+          setProject(data);
+        } else {
+          navigate("/error-page");
+        }
       } catch (error) {
         console.log("failed to load project: " + error);
         setError(true);
@@ -47,7 +51,6 @@ const Project = () => {
   };
 
   const handleUpdateProjectImage = async (e) => {
-    console.log("stary: " + project.Title);
     await handleFileUpload(
       e,
       (uploadedUrl) => {

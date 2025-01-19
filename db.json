@@ -5,7 +5,7 @@
       "Title": "Wymiana lodówki",
       "Description": "trzeba wymienic zepsola",
       "Deadline": "2025-01-30",
-      "Importance": "Low",
+      "Importance": "Medium",
       "ImageUrl": "http://localhost:3000/uploads/afd360566209ad283e28665f5f0ccd8a",
       "Tasks": [
         {
@@ -38,12 +38,21 @@
     },
     {
       "id": "ab442d92-96df-4af6-98fd-38ddcb5abb86",
-      "Title": "aaaaaddddfffssgffffggfgxxxxxxxxxxxxxxxxxxxxx",
-      "Description": "sssssssssssssssssssssssssssssssss",
-      "Deadline": "2025-01-31",
-      "Importance": "High",
+      "Title": "aaaaadd",
+      "Description": "sssssssssssssssssssssssssssssssssds",
+      "Deadline": "2025-02-01",
+      "Importance": "Medium",
       "ImageUrl": "http://localhost:3000/uploads/007d967041da938df4349536edb7b20e",
-      "Tasks": []
+      "Tasks": [
+        {
+          "id": "f558d02f-8cde-4821-879f-4c059de87897",
+          "content": "d"
+        },
+        {
+          "id": "ebc384ed-93a3-423f-a40e-66adf4cacb4a",
+          "content": "c sdf df sdf sdf sdf df df dfgs gsd fg sdfgsdf sdf sdfg dsf gdsg sdfg sdfg sdfg dsfg sdf gsdf gdsfg sdfg sdf dsf gsd"
+        }
+      ]
     }
   ]
 }
