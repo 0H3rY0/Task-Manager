@@ -45,10 +45,6 @@
       "ImageUrl": "http://localhost:3000/uploads/007d967041da938df4349536edb7b20e",
       "Tasks": [
         {
-          "id": "f558d02f-8cde-4821-879f-4c059de87897",
-          "content": "d"
-        },
-        {
           "id": "ebc384ed-93a3-423f-a40e-66adf4cacb4a",
           "content": "c sdf df sdf sdf sdf df df dfgs gsd fg sdfgsd asd asd asdfasdadf asdf asdfa  fasdaa asdadad adad  hjtyew sgsf f sdf sdfg dsf gdsg sdfg sdfg sdfg dsfg sdf gsdf gdsfg sdfg sdf dsf gsd"
         },
@@ -59,6 +55,10 @@
         {
           "id": "c60e5b69-8e77-480b-986a-9f93e63fc910",
           "content": "pieze teraz dlugi task na brobe i opis i tak dalej i moze zrobie w tym miejscu przycisk albo inne gowlno na podtaski"
+        },
+        {
+          "id": "5afe3527-490b-4eaa-a82b-f3571f7587c0",
+          "content": "aadfg"
         }
       ]
     }
