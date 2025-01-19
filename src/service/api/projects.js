@@ -127,6 +127,16 @@ class ProjectService {
       throw error; // Możesz wyrzucić błąd, żeby obsługiwać go wyżej
     }
   }
+
+  static async getAllTasks() {
+    const allProjects = await this.getAll();
+    const allTasks = [];
+    allProjects.map((item) => {
+      allTasks.push(...item.Tasks);
+    });
+
+    return allTasks;
+  }
 }
 
 export default ProjectService;

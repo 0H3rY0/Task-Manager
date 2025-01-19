@@ -41,7 +41,14 @@ const Navbar = ({ navbarActive }) => {
         </p>
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
           <FaRegCalendarAlt className="text-purple-500" size={32} />
-          <span>Upcoming</span>
+          <NavLink
+            to="/upcoming"
+            className={({ isActive }) =>
+              isActive ? "text-red-500" : "text-black"
+            }
+          >
+            <span>Upcoming</span>
+          </NavLink>
         </p>
       </div>
     </div>
