@@ -5,23 +5,30 @@ import ProjectService from "../service/api/projects";
 import ModalCheckAgreement from "./modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import * as Yup from "yup";
-// import axios from "axios";
 import FileInput from "./ui/FileInput";
 import FileSelect from "./ui/FileSelect";
 import { useFileUpload } from "../hooks/useFileUpload";
 import { projectSchema } from "../utils/projectSchema";
 
 const AddProjectForm = () => {
-  const [project, setProject] = useState({
+  const projectState = {
     id: null,
     Title: "",
     Description: "",
     Deadline: "",
     Importance: "Low",
     ImageUrl: "",
-    Tasks: [],
-  });
+    Tasks: [
+      {
+        id: "",
+        content: "",
+        deadline: "",
+        imprtance: "",
+      },
+    ],
+  };
+
+  const [project, setProject] = useState(projectState);
   const [errors, setErrors] = useState({});
   const navigator = useNavigate();
   let priority = ["High", "Medium", "Low"];
@@ -47,15 +54,7 @@ const AddProjectForm = () => {
 
       ProjectService.createProject(newProject);
 
-      setProject({
-        id: null,
-        Title: "",
-        Description: "",
-        Deadline: "",
-        Importance: "Low",
-        ImageUrl: "",
-        Tasks: [],
-      });
+      setProject(projectState);
 
       toast("Success!!");
       navigator("/project/all");

@@ -1,0 +1,20 @@
+{
+  "projects": [
+    {
+      "id": "c917ca97-5b6f-4d5f-82cd-1de9fa2d5735",
+      "Title": "nowy",
+      "Description": "nowye desc",
+      "Deadline": "2025-01-20",
+      "Importance": "Medium",
+      "ImageUrl": "http://localhost:3000/uploads/bc5123a7c38d4e485b57c31c48f29f00",
+      "Tasks": [
+        {
+          "id": "",
+          "content": "",
+          "deadline": "",
+          "imprtance": ""
+        }
+      ]
+    }
+  ]
+}

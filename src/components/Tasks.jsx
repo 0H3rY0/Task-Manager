@@ -7,7 +7,20 @@ import { v4 as uuidv4 } from "uuid";
 import TasksList from "./ui/TasksList";
 
 const Tasks = ({ id }) => {
-  const [inputText, setInputText] = useState("");
+  const initialTaskState = {
+    id: null,
+    content: "",
+    deadline: "",
+    importance: "",
+  };
+  const [task, setTask] = useState(initialTaskState);
+
+  const onInputChange = (e) => {
+    setTask((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const [tasks, setTasks] = useState([]);
 
@@ -22,12 +35,12 @@ const Tasks = ({ id }) => {
 
   const addTask = () => {
     const newTask = {
+      ...task,
       id: uuidv4(),
-      content: inputText,
     };
     ProjectService.addTaskToProject(newTask, id);
     setTasks((prev) => [...prev, newTask]);
-    setInputText("");
+    setTask(initialTaskState);
     toast("Success! Your task has been added");
   };
 
@@ -56,7 +69,7 @@ const Tasks = ({ id }) => {
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter") {
-      addTask(inputText);
+      addTask();
     }
   };
 
@@ -68,8 +81,9 @@ const Tasks = ({ id }) => {
       <div className="flex gap-3">
         <IoMdAdd size={32} className="text-red-500" onClick={addTask} />
         <input
-          onChange={(e) => setInputText(e.target.value)}
-          value={inputText}
+          name="content"
+          onChange={(e) => onInputChange(e)}
+          value={task.content}
           onKeyDown={handleEnterPress}
           type="text"
           placeholder="Add task"
