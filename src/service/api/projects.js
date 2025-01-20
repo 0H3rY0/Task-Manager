@@ -25,10 +25,7 @@ class ProjectService {
   }
 
   static async getAppropriateTasks(id) {
-    console.log("id:" + id);
     const project = await this.getProject(id);
-
-    console.log("project project: " + project);
 
     return project.Tasks;
   }

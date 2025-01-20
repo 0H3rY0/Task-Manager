@@ -5,7 +5,6 @@ import ModalModifyTask from "../modals/ModalModifyTask";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 
 const TasksList = ({ tasks = [], removeTask, modifyTask, id }) => {
-  console.log("to sa taski:" + tasks);
   return (
     <ul className="flex flex-col">
       {tasks.map((item, index) => {
@@ -57,10 +56,11 @@ const TasksList = ({ tasks = [], removeTask, modifyTask, id }) => {
                 <div className="flex flex-col items-end whitespace-nowrap text-[16px]">
                   <p>
                     Deadline:{" "}
-                    <span className="text-purple-500">12-12-1222</span>
+                    <span className="text-purple-500">{item.deadline}</span>
                   </p>
                   <p>
-                    Pioriety: <span className="text-purple-500">Medium</span>
+                    Pioriety:{" "}
+                    <span className="text-purple-500">{item.importance}</span>
                   </p>
                 </div>
               </div>
