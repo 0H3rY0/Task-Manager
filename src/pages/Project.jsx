@@ -20,6 +20,8 @@ const Project = () => {
   const [project, setProject] = useState({ Title: "" });
   const [error, setError] = useState(false);
   const [projectUpdateError, setProjectUpdateError] = useState(false);
+  const [updateFlag, setUpdateFlag] = useState(false);
+
   const navigate = useNavigate();
 
   const { handleFileUpload, UploadImageError, animationClass } =
@@ -86,6 +88,7 @@ const Project = () => {
 
       await ProjectService.updateProject(id, newProject);
       if (callback) callback();
+      setUpdateFlag((prev) => !prev);
     } catch (error) {
       const firstError = error.inner?.[0]?.message || "Validation failed";
       setProjectUpdateError(firstError);
@@ -246,7 +249,7 @@ const Project = () => {
               </p>
             </div>
           </div>
-          <Tasks id={id} />
+          <Tasks id={id} updateFlag={updateFlag} />
         </div>
       ) : (
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
