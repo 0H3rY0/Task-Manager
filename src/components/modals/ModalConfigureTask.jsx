@@ -2,7 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import FileInput from "../ui/FileInput";
 import FileSelect from "../ui/FileSelect";
 
-const ModalConfigureTask = ({ children }) => {
+const ModalConfigureTask = ({ children, task, addTask, onInputChange }) => {
   return (
     <Dialog.Root>
       {children}
@@ -17,11 +17,15 @@ const ModalConfigureTask = ({ children }) => {
                 description={"Choose your deadline: "}
                 type="date"
                 onClick={(e) => e.target.showPicker()}
+                onChange={onInputChange}
+                name={"deadline"}
               />
-              <FileSelect />
+              <FileSelect onChange={onInputChange} name={"importance"} />
             </div>
             <div className="w-full flex justify-end">
-              <button className="btn-red">Confirm</button>
+              <button className="btn-red" onClick={() => addTask(task)}>
+                Confirm
+              </button>
             </div>
           </Dialog.Content>
         </Dialog.Overlay>

@@ -81,7 +81,11 @@ const Tasks = ({ id }) => {
         Tasks <CgGoogleTasks className="text-blue-500" size={32} />
       </h2>
       <div className="flex gap-3">
-        <ModalConfigureTask>
+        <ModalConfigureTask
+          addTask={addTask}
+          task={task}
+          onInputChange={onInputChange}
+        >
           <Dialog.Trigger>
             <IoMdAdd size={32} className="text-red-500" />
             {/* onClick={addTask} */}

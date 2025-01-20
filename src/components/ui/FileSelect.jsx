@@ -2,6 +2,7 @@ const SelectImportance = ({
   value,
   onChange,
   options = ["Low", "Medium", "High"],
+  name = "Importance",
 }) => {
   return (
     <div className="mb-4">
@@ -13,7 +14,7 @@ const SelectImportance = ({
       </label>
       <select
         className="block text-slate-400"
-        name="Importance"
+        name={name}
         value={value}
         onChange={onChange}
       >

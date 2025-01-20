@@ -7,26 +7,7 @@
       "Deadline": "2025-01-20",
       "Importance": "Medium",
       "ImageUrl": "http://localhost:3000/uploads/bc5123a7c38d4e485b57c31c48f29f00",
-      "Tasks": [
-        {
-          "id": "e1042079-18bf-453f-8bd4-67811ce8eb03",
-          "content": "abc",
-          "deadline": "",
-          "importance": ""
-        },
-        {
-          "id": "8e7308c5-31fe-49da-805f-917a1da4915a",
-          "content": "a",
-          "deadline": "",
-          "importance": ""
-        },
-        {
-          "id": "3cc8be28-5462-47cf-b9f4-7a48fdc74a7b",
-          "content": "aaa",
-          "deadline": "",
-          "importance": ""
-        }
-      ]
+      "Tasks": []
     }
   ]
 }
