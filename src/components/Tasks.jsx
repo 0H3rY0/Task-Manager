@@ -9,7 +9,7 @@ import ModalConfigureTask from "./modals/ModalConfigureTask";
 import * as Dialog from "@radix-ui/react-dialog";
 import { taskSchema } from "../utils/taskSchema";
 
-const Tasks = ({ id }) => {
+const Tasks = ({ id, updateFlag }) => {
   const initialTaskState = {
     id: null,
     content: "",
@@ -42,13 +42,51 @@ const Tasks = ({ id }) => {
 
   useEffect(() => {
     const getProject = async () => {
-      const data = await ProjectService.getProject(id);
+      try {
+        const data = await ProjectService.getProject(id);
+        const newDeadline = data.Deadline;
 
-      setProjectDeadline(data.Deadline);
+        if (newDeadline !== projectDeadline) {
+          setProjectDeadline(newDeadline);
+          console.log("Zaktualizowany deadline:", newDeadline);
+        }
+      } catch (error) {
+        console.error("Błąd podczas pobierania projektu:", error);
+      }
     };
 
     getProject();
-  }, [id]);
+  }, [id, updateFlag]);
+
+  useEffect(() => {
+    const getProject = async () => {
+      try {
+        const data = await ProjectService.getProject(id);
+        const newDeadline = data.Deadline;
+
+        // Aktualizujemy stan 'projectDeadline' tylko jeśli uległ zmianie
+        if (newDeadline !== projectDeadline) {
+          setProjectDeadline(newDeadline);
+          console.log("Zaktualizowany deadline:", newDeadline);
+        }
+      } catch (error) {
+        console.error("Błąd podczas pobierania projektu:", error);
+      }
+    };
+
+    // Wywołujemy funkcję getProject za każdym razem, gdy zmienia się 'id'
+    getProject();
+  }, [id]); // Effect wywoła się, gdy zmieni się 'id'
+
+  // Jeśli chcesz wykonać jakąś logikę po zmianie 'projectDeadline', użyj drugiego useEffect
+  useEffect(() => {
+    if (projectDeadline) {
+      console.log(
+        "Deadline projektu został zaktualizowany na:",
+        projectDeadline
+      );
+    }
+  }, [projectDeadline]); // Ten efekt będzie wywoływany, gdy 'projectDeadline' się zmieni
 
   const addTask = async () => {
     const newTask = {

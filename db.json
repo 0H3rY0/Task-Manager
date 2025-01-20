@@ -4,29 +4,10 @@
       "id": "c917ca97-5b6f-4d5f-82cd-1de9fa2d5735",
       "Title": "nowy",
       "Description": "nowye desc",
-      "Deadline": "2025-02-07",
-      "Importance": "Medium",
+      "Deadline": "2025-01-30",
+      "Importance": "High",
       "ImageUrl": "http://localhost:3000/uploads/bc5123a7c38d4e485b57c31c48f29f00",
-      "Tasks": [
-        {
-          "id": "6959e1bd-200d-45f4-bc81-f9ee4ede14fd",
-          "content": "sdf",
-          "deadline": "2025-01-24",
-          "importance": "Low"
-        },
-        {
-          "id": "9c06bd2e-d945-433a-b511-9a3b4d0a842e",
-          "content": "sdf",
-          "deadline": "2025-01-29",
-          "importance": "Low"
-        },
-        {
-          "id": "63a08ef1-f28c-4bd6-95d3-a25f422b0a7d",
-          "content": "j",
-          "deadline": "2025-02-01",
-          "importance": "Low"
-        }
-      ]
+      "Tasks": []
     }
   ]
 }
