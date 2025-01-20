@@ -18,6 +18,7 @@ const Tasks = ({ id }) => {
   };
   const [task, setTask] = useState(initialTaskState);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [projectDeadline, setProjectDeadline] = useState("");
   const [errors, setErrors] = useState({});
   const inputRef = useRef(null);
 
@@ -39,6 +40,16 @@ const Tasks = ({ id }) => {
     getTasks(id);
   }, [id]);
 
+  useEffect(() => {
+    const getProject = async () => {
+      const data = await ProjectService.getProject(id);
+
+      setProjectDeadline(data.Deadline);
+    };
+
+    getProject();
+  }, [id]);
+
   const addTask = async () => {
     const newTask = {
       ...task,
@@ -46,7 +57,7 @@ const Tasks = ({ id }) => {
     };
     try {
       await taskSchema.validate(newTask, {
-        context: { projectDeadline: new Date("2025-02-02") }, // Przykładowa maksymalna data
+        context: { projectDeadline: new Date(projectDeadline) }, // Przykładowa maksymalna data
         abortEarly: false,
       });
 
