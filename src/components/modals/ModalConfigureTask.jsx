@@ -9,6 +9,10 @@ const ModalConfigureTask = ({
   onInputChange,
   isDialogOpen,
   setIsDialogOpen,
+  errors = {
+    deadline: "",
+    importance: "",
+  },
 }) => {
   return (
     <Dialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -26,12 +30,17 @@ const ModalConfigureTask = ({
                 onClick={(e) => e.target.showPicker()}
                 onChange={onInputChange}
                 name={"deadline"}
+                errors={errors.deadline}
               />
-              <FileSelect onChange={onInputChange} name={"importance"} />
+              <FileSelect
+                onChange={onInputChange}
+                name={"importance"}
+                errors={errors.importance}
+              />
             </div>
             <div className="w-full flex justify-end">
               <button className="btn-red" onClick={() => addTask(task)}>
-                Confirm
+                Add Task
               </button>
             </div>
           </Dialog.Content>

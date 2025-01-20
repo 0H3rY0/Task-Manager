@@ -9,16 +9,10 @@
       "ImageUrl": "http://localhost:3000/uploads/bc5123a7c38d4e485b57c31c48f29f00",
       "Tasks": [
         {
-          "id": "834eb8c4-5012-48b7-abbe-ce2a68a127d2",
-          "content": "asdf",
-          "deadline": "2025-01-30",
-          "importance": "Medium"
-        },
-        {
-          "id": "b14d1789-60c4-4501-8a51-25cf6ddf8fcc",
-          "content": "a",
-          "deadline": "2025-01-30",
-          "importance": "Medium"
+          "id": "4895fecc-2f7c-4085-93ae-b279b27255a8",
+          "content": "sssgggg",
+          "deadline": "2025-01-31",
+          "importance": "Low"
         }
       ]
     }

@@ -18,6 +18,7 @@ const Tasks = ({ id }) => {
   };
   const [task, setTask] = useState(initialTaskState);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [errors, setErrors] = useState({});
   const inputRef = useRef(null);
 
   const onInputChange = (e) => {
@@ -43,11 +44,25 @@ const Tasks = ({ id }) => {
       ...task,
       id: uuidv4(),
     };
-    await taskSchema.validate(newTask);
-    ProjectService.addTaskToProject(newTask, id);
-    setTasks((prev) => [...prev, newTask]);
-    setTask(initialTaskState);
-    toast("Success! Your task has been added");
+    try {
+      await taskSchema.validate(newTask, { abortEarly: false });
+
+      ProjectService.addTaskToProject(newTask, id);
+      setTasks((prev) => [...prev, newTask]);
+      setTask(initialTaskState);
+      toast("Success! Your task has been added");
+      setIsDialogOpen(false);
+      setErrors({});
+    } catch (error) {
+      const newError = {};
+
+      error.inner.forEach((err) => {
+        newError[err.path] = err.message;
+      });
+
+      setErrors(newError);
+      console.log(newError);
+    }
   };
 
   const removeTask = (taskId, projectId = id) => {
@@ -97,6 +112,7 @@ const Tasks = ({ id }) => {
           addTask={addTask}
           task={task}
           onInputChange={onInputChange}
+          errors={errors}
         >
           {task.content.trim() ? (
             <Dialog.Trigger>

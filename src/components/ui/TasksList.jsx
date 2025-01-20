@@ -5,7 +5,6 @@ import ModalModifyTask from "../modals/ModalModifyTask";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 
 const TasksList = ({ tasks = [], removeTask, modifyTask, id }) => {
-  console.log("to sa taski:" + tasks);
   return (
     <ul className="flex flex-col">
       {tasks.map((item, index) => {
