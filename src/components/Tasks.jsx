@@ -45,7 +45,10 @@ const Tasks = ({ id }) => {
       id: uuidv4(),
     };
     try {
-      await taskSchema.validate(newTask, { abortEarly: false });
+      await taskSchema.validate(newTask, {
+        context: { projectDeadline: new Date("2025-02-02") }, // Przykładowa maksymalna data
+        abortEarly: false,
+      });
 
       ProjectService.addTaskToProject(newTask, id);
       setTasks((prev) => [...prev, newTask]);

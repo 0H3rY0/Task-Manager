@@ -6,6 +6,14 @@ export let taskSchema = Yup.object({
     .nullable()
     .transform((value, originalValue) => (originalValue === "" ? null : value))
     .required("Date is required")
-    .min(new Date(), "Date must be later than today"),
+    .min(new Date(), "Date must be later than today")
+    .when("$projectDeadline", (projectDeadline, schema) =>
+      projectDeadline
+        ? schema.max(
+            projectDeadline,
+            "Task deadline cannot be later than project deadline"
+          )
+        : schema
+    ),
   importance: Yup.string().required("Priority is required"),
 });
