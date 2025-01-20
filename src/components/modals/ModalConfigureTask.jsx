@@ -2,9 +2,16 @@ import * as Dialog from "@radix-ui/react-dialog";
 import FileInput from "../ui/FileInput";
 import FileSelect from "../ui/FileSelect";
 
-const ModalConfigureTask = ({ children, task, addTask, onInputChange }) => {
+const ModalConfigureTask = ({
+  children,
+  task,
+  addTask,
+  onInputChange,
+  isDialogOpen,
+  setIsDialogOpen,
+}) => {
   return (
-    <Dialog.Root>
+    <Dialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       {children}
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay">
