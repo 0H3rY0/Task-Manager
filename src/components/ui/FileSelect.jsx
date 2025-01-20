@@ -1,4 +1,8 @@
-const SelectImportance = ({ value, onChange, options }) => {
+const SelectImportance = ({
+  value,
+  onChange,
+  options = ["Low", "Medium", "High"],
+}) => {
   return (
     <div className="mb-4">
       <label

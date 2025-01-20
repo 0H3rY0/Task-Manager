@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import ProjectService from "../service/api/projects";
 import { v4 as uuidv4 } from "uuid";
 import TasksList from "./ui/TasksList";
+import ModalConfigureTask from "./modals/ModalConfigureTask";
+import * as Dialog from "@radix-ui/react-dialog";
 
 const Tasks = ({ id }) => {
   const initialTaskState = {
@@ -79,7 +81,12 @@ const Tasks = ({ id }) => {
         Tasks <CgGoogleTasks className="text-blue-500" size={32} />
       </h2>
       <div className="flex gap-3">
-        <IoMdAdd size={32} className="text-red-500" onClick={addTask} />
+        <ModalConfigureTask>
+          <Dialog.Trigger>
+            <IoMdAdd size={32} className="text-red-500" />
+            {/* onClick={addTask} */}
+          </Dialog.Trigger>
+        </ModalConfigureTask>
         <input
           name="content"
           onChange={(e) => onInputChange(e)}
