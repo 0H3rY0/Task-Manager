@@ -5,10 +5,22 @@ import PropTypes from "prop-types";
 import FileInput from "../ui/FileInput";
 import FileSelect from "../ui/FileSelect";
 
-const ModalModifyTask = ({ children, value, taskId, modifyTask }) => {
+const ModalModifyTask = ({
+  children,
+  task = { id: "", content: "", deadline: "", importance: "" },
+  taskId,
+  modifyTask,
+}) => {
   // const [newItemText, setNewItem] = useState(value);
-  const [newTask, setNewTask] = useState({});
+  const [newTask, setNewTask] = useState(task);
   const [open, setOpen] = useState(false);
+
+  const onInputChange = (e) => {
+    setNewTask((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -37,30 +49,31 @@ const ModalModifyTask = ({ children, value, taskId, modifyTask }) => {
                 /> */}
                 <FileInput
                   description={"Change message: "}
-                  type="date"
-                  onClick={(e) => e.target.showPicker()}
-                  // onChange={onInputChange}
-                  name={"deadline"}
+                  onChange={onInputChange}
+                  defaultValue={task.content}
+                  name={"content"}
                   // errors={errors.deadline}
                 />
                 <FileInput
                   description={"Change deadline: "}
                   type="date"
                   onClick={(e) => e.target.showPicker()}
-                  // onChange={onInputChange}
+                  onChange={onInputChange}
                   name={"deadline"}
                   // errors={errors.deadline}
+                  defaultValue={task.deadline}
                 />
                 <FileSelect
-                  // onChange={onInputChange}
+                  onChange={onInputChange}
                   name={"importance"}
                   // errors={errors.importance}
+                  defaultValue={task.importance}
                 />
               </div>
               <div className="flex justify-end items-center">
                 <button
                   onClick={() => {
-                    modifyTask(taskId, newItemText);
+                    modifyTask(taskId, newTask);
                     setOpen(false);
                   }}
                   className="btn-red "

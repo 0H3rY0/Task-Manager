@@ -123,17 +123,23 @@ const Tasks = ({ id, updateFlag }) => {
     toast("Success! Your task has been deleted");
   };
 
-  const modifyTask = (taskId, newItemText, projectId = id) => {
-    const newItem = {
-      id: taskId,
-      content: newItemText,
-    };
+  const modifyTask = (taskId, newTask, projectId = id) => {
+    // const newItem = {
+    //   id: taskId,
+    //   content: newItemText,
+    // };
 
-    ProjectService.updateProjectTask(taskId, projectId, newItem);
+    ProjectService.updateProjectTask(taskId, projectId, newTask);
+    console.log("to jest nowy task: " + newTask.content);
     setTasks((prev) =>
       prev.map((task) => {
         if (task.id === taskId) {
-          return { ...task, content: newItem.content };
+          return {
+            ...task,
+            content: newTask.content,
+            deadline: newTask.deadline,
+            importance: newTask.importance,
+          };
         }
         return task;
       })

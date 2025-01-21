@@ -38,7 +38,8 @@ const TasksList = ({ tasks = [], removeTask, modifyTask, id }) => {
                     </ModalCheckAgreement>
 
                     <ModalModifyTask
-                      value={item.content}
+                      // value={item.content}
+                      task={item}
                       taskId={item.id}
                       modifyTask={modifyTask}
                     >
