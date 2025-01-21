@@ -2,9 +2,12 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import PropTypes from "prop-types";
+import FileInput from "../ui/FileInput";
+import FileSelect from "../ui/FileSelect";
 
 const ModalModifyTask = ({ children, value, taskId, modifyTask }) => {
-  const [newItemText, setNewItem] = useState(value);
+  // const [newItemText, setNewItem] = useState(value);
+  const [newTask, setNewTask] = useState({});
   const [open, setOpen] = useState(false);
 
   return (
@@ -23,14 +26,35 @@ const ModalModifyTask = ({ children, value, taskId, modifyTask }) => {
                 </Dialog.Close>
               </div>
               <div>
-                <h3 className="font-semibold text-[15px] text-slate-500 mb-1">
+                {/* <h3 className="font-semibold text-[15px] text-slate-500 mb-1">
                   Change your task message
-                </h3>
-                <input
+                </h3> */}
+                {/* <input
                   type="text"
                   defaultValue={value}
                   onChange={(e) => setNewItem(e.target.value)}
                   className="classicInput px-1"
+                /> */}
+                <FileInput
+                  description={"Change message: "}
+                  type="date"
+                  onClick={(e) => e.target.showPicker()}
+                  // onChange={onInputChange}
+                  name={"deadline"}
+                  // errors={errors.deadline}
+                />
+                <FileInput
+                  description={"Change deadline: "}
+                  type="date"
+                  onClick={(e) => e.target.showPicker()}
+                  // onChange={onInputChange}
+                  name={"deadline"}
+                  // errors={errors.deadline}
+                />
+                <FileSelect
+                  // onChange={onInputChange}
+                  name={"importance"}
+                  // errors={errors.importance}
                 />
               </div>
               <div className="flex justify-end items-center">
