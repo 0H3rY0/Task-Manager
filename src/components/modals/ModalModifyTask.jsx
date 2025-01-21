@@ -10,10 +10,17 @@ const ModalModifyTask = ({
   task = { id: "", content: "", deadline: "", importance: "" },
   taskId,
   modifyTask,
+  isModalModifyTaskOpen,
+  setIsModalModifyTaskOpen,
+  modifyTaskErrors = {
+    content: "",
+    deadline: "",
+    importance: "",
+  },
 }) => {
   // const [newItemText, setNewItem] = useState(value);
   const [newTask, setNewTask] = useState(task);
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   const onInputChange = (e) => {
     setNewTask((prev) => ({
@@ -23,7 +30,10 @@ const ModalModifyTask = ({
   };
 
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root
+      open={isModalModifyTaskOpen}
+      onOpenChange={setIsModalModifyTaskOpen}
+    >
       {children}
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay">
@@ -52,7 +62,7 @@ const ModalModifyTask = ({
                   onChange={onInputChange}
                   defaultValue={task.content}
                   name={"content"}
-                  // errors={errors.deadline}
+                  errors={modifyTaskErrors.content}
                 />
                 <FileInput
                   description={"Change deadline: "}
@@ -60,13 +70,13 @@ const ModalModifyTask = ({
                   onClick={(e) => e.target.showPicker()}
                   onChange={onInputChange}
                   name={"deadline"}
-                  // errors={errors.deadline}
+                  errors={modifyTaskErrors.deadline}
                   defaultValue={task.deadline}
                 />
                 <FileSelect
                   onChange={onInputChange}
                   name={"importance"}
-                  // errors={errors.importance}
+                  errors={modifyTaskErrors.importance}
                   defaultValue={task.importance}
                 />
               </div>
@@ -74,7 +84,7 @@ const ModalModifyTask = ({
                 <button
                   onClick={() => {
                     modifyTask(taskId, newTask);
-                    setOpen(false);
+                    // setOpen(false);
                   }}
                   className="btn-red "
                 >
