@@ -9,8 +9,6 @@ const TasksList = ({
   removeTask,
   modifyTask,
   id,
-  isModalModifyTaskOpen,
-  setIsModalModifyTaskOpen,
   modifyTaskErrors,
 }) => {
   return (
@@ -50,8 +48,6 @@ const TasksList = ({
                       task={item}
                       taskId={item.id}
                       modifyTask={modifyTask}
-                      isModalModifyTaskOpen={isModalModifyTaskOpen}
-                      setIsModalModifyTaskOpen={setIsModalModifyTaskOpen}
                       modifyTaskErrors={modifyTaskErrors}
                     >
                       <Dialog.Trigger>
@@ -77,35 +73,6 @@ const TasksList = ({
                 </div>
               </div>
             </li>
-            {/* <div className=" w-1/5 py-4 px-2 flex items-center gap-5 justify-end mr-5">
-              <ModalCheckAgreement
-                func={removeTask}
-                funcParam={item.id}
-                funcParam2={id}
-                titleText={"Are you sure you want to delete this task?"}
-                btnText={"Confirm"}
-              >
-                <Dialog.Trigger>
-                  <TiDelete
-                    className="text-red-500 hover:text-red-300 cursor-pointer"
-                    size={40}
-                  />
-                </Dialog.Trigger>
-              </ModalCheckAgreement>
-
-              <ModalModifyTask
-                value={item.content}
-                taskId={item.id}
-                modifyTask={modifyTask}
-              >
-                <Dialog.Trigger>
-                  <RxUpdate
-                    className="text-purple-500 hover:text-purple-300"
-                    size={30}
-                  />
-                </Dialog.Trigger>
-              </ModalModifyTask>
-            </div> */}
           </div>
         );
       })}
