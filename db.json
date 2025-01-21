@@ -1,30 +1,24 @@
 {
   "projects": [
     {
-      "id": "c917ca97-5b6f-4d5f-82cd-1de9fa2d5735",
-      "Title": "nowy",
-      "Description": "nowye desc",
-      "Deadline": "2025-01-30",
-      "Importance": "High",
-      "ImageUrl": "http://localhost:3000/uploads/bc5123a7c38d4e485b57c31c48f29f00",
+      "id": "164d0248-8c57-4794-b865-f7bad898c346",
+      "Title": "aaaa",
+      "Description": "aaaa",
+      "Deadline": "2025-02-09",
+      "Importance": "Medium",
+      "ImageUrl": "http://localhost:3000/uploads/7306638ea510d3567d8caddef01e8459",
       "Tasks": [
         {
-          "id": "67e8d4fa-2206-4b20-8dd5-820848780344",
+          "id": "f6faa150-2a1f-4c39-9198-f77337d4ef7f",
           "content": "abc",
-          "deadline": "2025-01-29",
+          "deadline": "2025-01-23",
           "importance": "High"
         },
         {
-          "id": "44470d1a-9e36-4614-833f-15af70d511d7",
-          "content": "aaaaaaaaaaaaaaaaaaaaaaaa",
-          "deadline": "2025-01-30",
-          "importance": "Medium"
-        },
-        {
-          "id": "c5cf0baa-cbcd-440b-87ac-afd8b220357b",
-          "content": "k",
-          "deadline": "2025-01-30",
-          "importance": "Low"
+          "id": "5272a791-15f0-4d99-905d-2b29834f0bae",
+          "content": "abc",
+          "deadline": "2025-01-23",
+          "importance": "High"
         }
       ]
     }

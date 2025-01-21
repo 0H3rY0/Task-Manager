@@ -18,7 +18,6 @@ const Tasks = ({ id, updateFlag }) => {
   };
   const [task, setTask] = useState(initialTaskState);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isModalModifyTaskOpen, setIsModalModifyTaskOpen] = useState(false);
   const [projectDeadline, setProjectDeadline] = useState("");
   const [errors, setErrors] = useState({});
   const [modifyTaskErrors, setModifyTaskErrors] = useState({});
@@ -125,7 +124,7 @@ const Tasks = ({ id, updateFlag }) => {
     toast("Success! Your task has been deleted");
   };
 
-  const modifyTask = async (taskId, newTask, projectId = id) => {
+  const modifyTask = async (taskId, newTask, callback) => {
     // const newItem = {
     //   id: taskId,
     //   content: newItemText,
@@ -137,7 +136,8 @@ const Tasks = ({ id, updateFlag }) => {
         abortEarly: false,
       });
 
-      ProjectService.updateProjectTask(taskId, projectId, newTask);
+      console.log("to jest projectId: " + id);
+      ProjectService.updateProjectTask(newTask.id, id, newTask);
       setTasks((prev) =>
         prev.map((task) => {
           if (task.id === taskId) {
@@ -151,7 +151,8 @@ const Tasks = ({ id, updateFlag }) => {
           return task;
         })
       );
-      setIsModalModifyTaskOpen(false);
+      if (callback) callback(false);
+      setModifyTaskErrors({});
     } catch (error) {
       const newError = {};
 
@@ -219,8 +220,6 @@ const Tasks = ({ id, updateFlag }) => {
             tasks={tasks}
             removeTask={removeTask}
             modifyTask={modifyTask}
-            isModalModifyTaskOpen={isModalModifyTaskOpen}
-            setIsModalModifyTaskOpen={setIsModalModifyTaskOpen}
             modifyTaskErrors={modifyTaskErrors}
             id={id}
           />

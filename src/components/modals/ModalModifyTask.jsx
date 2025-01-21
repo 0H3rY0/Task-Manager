@@ -1,5 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdClose } from "react-icons/md";
 import PropTypes from "prop-types";
 import FileInput from "../ui/FileInput";
@@ -10,17 +10,19 @@ const ModalModifyTask = ({
   task = { id: "", content: "", deadline: "", importance: "" },
   taskId,
   modifyTask,
-  isModalModifyTaskOpen,
-  setIsModalModifyTaskOpen,
   modifyTaskErrors = {
     content: "",
     deadline: "",
     importance: "",
   },
 }) => {
-  // const [newItemText, setNewItem] = useState(value);
   const [newTask, setNewTask] = useState(task);
-  // const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Aktualizacja newTask, jeśli task zostanie zaktualizowany w rodzicu
+  useEffect(() => {
+    setNewTask(task);
+  }, [task]);
 
   const onInputChange = (e) => {
     setNewTask((prev) => ({
@@ -30,10 +32,7 @@ const ModalModifyTask = ({
   };
 
   return (
-    <Dialog.Root
-      open={isModalModifyTaskOpen}
-      onOpenChange={setIsModalModifyTaskOpen}
-    >
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       {children}
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay">
@@ -48,19 +47,10 @@ const ModalModifyTask = ({
                 </Dialog.Close>
               </div>
               <div>
-                {/* <h3 className="font-semibold text-[15px] text-slate-500 mb-1">
-                  Change your task message
-                </h3> */}
-                {/* <input
-                  type="text"
-                  defaultValue={value}
-                  onChange={(e) => setNewItem(e.target.value)}
-                  className="classicInput px-1"
-                /> */}
                 <FileInput
                   description={"Change message: "}
                   onChange={onInputChange}
-                  defaultValue={task.content}
+                  defaultValue={newTask.content}
                   name={"content"}
                   errors={modifyTaskErrors.content}
                 />
@@ -71,20 +61,19 @@ const ModalModifyTask = ({
                   onChange={onInputChange}
                   name={"deadline"}
                   errors={modifyTaskErrors.deadline}
-                  defaultValue={task.deadline}
+                  defaultValue={newTask.deadline}
                 />
                 <FileSelect
                   onChange={onInputChange}
                   name={"importance"}
                   errors={modifyTaskErrors.importance}
-                  defaultValue={task.importance}
+                  defaultValue={newTask.importance}
                 />
               </div>
               <div className="flex justify-end items-center">
                 <button
                   onClick={() => {
-                    modifyTask(taskId, newTask);
-                    // setOpen(false);
+                    modifyTask(taskId, newTask, setIsOpen);
                   }}
                   className="btn-red "
                 >
@@ -100,10 +89,20 @@ const ModalModifyTask = ({
 };
 
 ModalModifyTask.propTypes = {
-  children: PropTypes.node.isRequired, // Any renderable React content
-  value: PropTypes.string.isRequired, // Initial value for the task being modified
-  taskId: PropTypes.string.isRequired, // Index of the task in the list
-  modifyTask: PropTypes.func.isRequired, // Function to modify the task
+  children: PropTypes.node.isRequired,
+  task: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    deadline: PropTypes.string.isRequired,
+    importance: PropTypes.string.isRequired,
+  }).isRequired,
+  taskId: PropTypes.string.isRequired,
+  modifyTask: PropTypes.func.isRequired,
+  modifyTaskErrors: PropTypes.shape({
+    content: PropTypes.string,
+    deadline: PropTypes.string,
+    importance: PropTypes.string,
+  }),
 };
 
 export default ModalModifyTask;
