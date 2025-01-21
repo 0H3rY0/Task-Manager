@@ -3,6 +3,7 @@ const SelectImportance = ({
   onChange,
   options = ["Low", "Medium", "High"],
   name = "Importance",
+  defaultValue = "Low",
 }) => {
   return (
     <div className="mb-4">
@@ -17,6 +18,7 @@ const SelectImportance = ({
         name={name}
         value={value}
         onChange={onChange}
+        defaultValue={defaultValue}
       >
         {options.map((option, index) => (
           <option key={index} value={option}>

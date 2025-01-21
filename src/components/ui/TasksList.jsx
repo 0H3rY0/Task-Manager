@@ -4,7 +4,15 @@ import * as Dialog from "@radix-ui/react-dialog";
 import ModalModifyTask from "../modals/ModalModifyTask";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 
-const TasksList = ({ tasks = [], removeTask, modifyTask, id }) => {
+const TasksList = ({
+  tasks = [],
+  removeTask,
+  modifyTask,
+  id,
+  isModalModifyTaskOpen,
+  setIsModalModifyTaskOpen,
+  modifyTaskErrors,
+}) => {
   return (
     <ul className="flex flex-col">
       {tasks.map((item, index) => {
@@ -38,9 +46,13 @@ const TasksList = ({ tasks = [], removeTask, modifyTask, id }) => {
                     </ModalCheckAgreement>
 
                     <ModalModifyTask
-                      value={item.content}
+                      // value={item.content}
+                      task={item}
                       taskId={item.id}
                       modifyTask={modifyTask}
+                      isModalModifyTaskOpen={isModalModifyTaskOpen}
+                      setIsModalModifyTaskOpen={setIsModalModifyTaskOpen}
+                      modifyTaskErrors={modifyTaskErrors}
                     >
                       <Dialog.Trigger>
                         <RxUpdate

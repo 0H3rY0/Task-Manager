@@ -5,6 +5,7 @@ const FileInput = ({
   type = "text",
   onClick,
   errors = "",
+  defaultValue = "",
 }) => {
   return (
     <>
@@ -18,6 +19,7 @@ const FileInput = ({
         type={type}
         className={`classicInput ${errors ? "mb-0" : "mb-3"}`}
         placeholder="Write a Description"
+        defaultValue={defaultValue}
       />
       {errors && (
         <p className="text-md font-normal text-red-400 ml-1 mb-3">{errors}</p>

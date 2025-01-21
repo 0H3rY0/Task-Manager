@@ -18,8 +18,10 @@ const Tasks = ({ id, updateFlag }) => {
   };
   const [task, setTask] = useState(initialTaskState);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isModalModifyTaskOpen, setIsModalModifyTaskOpen] = useState(false);
   const [projectDeadline, setProjectDeadline] = useState("");
   const [errors, setErrors] = useState({});
+  const [modifyTaskErrors, setModifyTaskErrors] = useState({});
   const inputRef = useRef(null);
 
   const onInputChange = (e) => {
@@ -123,21 +125,43 @@ const Tasks = ({ id, updateFlag }) => {
     toast("Success! Your task has been deleted");
   };
 
-  const modifyTask = (taskId, newItemText, projectId = id) => {
-    const newItem = {
-      id: taskId,
-      content: newItemText,
-    };
+  const modifyTask = async (taskId, newTask, projectId = id) => {
+    // const newItem = {
+    //   id: taskId,
+    //   content: newItemText,
+    // };
 
-    ProjectService.updateProjectTask(taskId, projectId, newItem);
-    setTasks((prev) =>
-      prev.map((task) => {
-        if (task.id === taskId) {
-          return { ...task, content: newItem.content };
-        }
-        return task;
-      })
-    );
+    try {
+      await taskSchema.validate(newTask, {
+        context: { projectDeadline: new Date(projectDeadline) },
+        abortEarly: false,
+      });
+
+      ProjectService.updateProjectTask(taskId, projectId, newTask);
+      setTasks((prev) =>
+        prev.map((task) => {
+          if (task.id === taskId) {
+            return {
+              ...task,
+              content: newTask.content,
+              deadline: newTask.deadline,
+              importance: newTask.importance,
+            };
+          }
+          return task;
+        })
+      );
+      setIsModalModifyTaskOpen(false);
+    } catch (error) {
+      const newError = {};
+
+      error.inner.forEach((err) => {
+        newError[err.path] = err.message;
+      });
+
+      setModifyTaskErrors(newError);
+      console.log(newError);
+    }
   };
 
   const handleEnterPress = (event) => {
@@ -195,6 +219,9 @@ const Tasks = ({ id, updateFlag }) => {
             tasks={tasks}
             removeTask={removeTask}
             modifyTask={modifyTask}
+            isModalModifyTaskOpen={isModalModifyTaskOpen}
+            setIsModalModifyTaskOpen={setIsModalModifyTaskOpen}
+            modifyTaskErrors={modifyTaskErrors}
             id={id}
           />
         ) : (
