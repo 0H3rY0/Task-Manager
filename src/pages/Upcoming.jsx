@@ -9,6 +9,10 @@ const Upcoming = () => {
   useEffect(() => {
     const getAllTasks = async () => {
       const data = await ProjectService.getAllTasks();
+      console.log(data.sort());
+      const sortedDataByDeadline = data.sort(
+        (a, b) => new Date(a.deadline) - new Date(b.deadline)
+      );
       setTasks(data);
     };
 

@@ -4,7 +4,6 @@ import * as Dialog from "@radix-ui/react-dialog";
 import ModalModifyTask from "../modals/ModalModifyTask";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
-import { useEffect } from "react";
 import ProjectService from "../../service/api/projects";
 
 const TasksList = ({
@@ -19,7 +18,6 @@ const TasksList = ({
   const getProjectByTaskId = async (taskId) => {
     try {
       const projects = await ProjectService.getAll();
-      console.log(projects);
 
       const foundProject = projects.find((project) =>
         project.Tasks.some((task) => task.id === taskId)
