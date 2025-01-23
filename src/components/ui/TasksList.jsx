@@ -3,6 +3,8 @@ import { RxUpdate } from "react-icons/rx";
 import * as Dialog from "@radix-ui/react-dialog";
 import ModalModifyTask from "../modals/ModalModifyTask";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
+import { useNavigate } from "react-router";
+import ProjectService from "../../service/api/projects";
 
 const TasksList = ({
   tasks = [],
@@ -11,6 +13,33 @@ const TasksList = ({
   id,
   modifyTaskErrors,
 }) => {
+  const navigate = useNavigate();
+
+  const getProjectByTaskId = async (taskId) => {
+    try {
+      const projects = await ProjectService.getAll();
+
+      const foundProject = projects.find((project) =>
+        project.Tasks.some((task) => task.id === taskId)
+      );
+
+      if (foundProject) {
+        console.log("znaleziono projekt: " + foundProject.id);
+        return foundProject.id;
+      } else {
+        console.log("nie znaleziono projektu ");
+      }
+    } catch (error) {
+      console.log("error with project id: " + error);
+    }
+  };
+
+  const goToProject = async (taskId) => {
+    const id = await getProjectByTaskId(taskId);
+    console.log(id);
+    navigate(`/project/${id}`);
+  };
+
   return (
     <ul className="flex flex-col">
       {tasks.map((item, index) => {
@@ -59,7 +88,12 @@ const TasksList = ({
                     </ModalModifyTask>
                   </div>
                 ) : (
-                  <button className="btn-gray">view more</button>
+                  <button
+                    className="btn-gray"
+                    onClick={() => goToProject(item.id)}
+                  >
+                    view more
+                  </button>
                 )}
                 <div className="flex flex-col items-end whitespace-nowrap text-[16px]">
                   <p>
