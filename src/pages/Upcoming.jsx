@@ -2,10 +2,12 @@ import { IoMdTimer } from "react-icons/io";
 import TasksList from "../components/ui/TasksList";
 import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
+import AllProjects from "./AllProjects";
 
 const Upcoming = () => {
   const [tasks, setTasks] = useState([]);
   const [updetedTasks, setUpdatedTasks] = useState([]);
+  const [contentState, setContentState] = useState("TASKS");
 
   useEffect(() => {
     const getAllTasks = async () => {
@@ -52,8 +54,18 @@ const Upcoming = () => {
           Upcoming <IoMdTimer className="text-purple-500" size={30} />
         </h2>
         <div className="flex gap-2">
-          <button className="btn-gray flex items-center gap-2">Projects</button>
-          <button className="btn-gray flex items-center gap-2">Tasks</button>
+          <button
+            className="btn-gray flex items-center gap-2"
+            onClick={() => setContentState("PROJECTS")}
+          >
+            Projects
+          </button>
+          <button
+            className="btn-gray flex items-center gap-2"
+            onClick={() => setContentState("TASKS")}
+          >
+            Tasks
+          </button>
           <select className="btn-gray" onChange={handlePiorietyChange}>
             <option value="ALL">All</option>
             <option value="Low">Low</option>
@@ -63,7 +75,11 @@ const Upcoming = () => {
         </div>
       </div>
 
-      <TasksList tasks={updetedTasks} />
+      {contentState === "PROJECTS" ? (
+        <TasksList tasks={updetedTasks} />
+      ) : (
+        <AllProjects />
+      )}
     </div>
   );
 };

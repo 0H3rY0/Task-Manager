@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const ProjectList = () => {
+const AllProjects = () => {
   const [projectsList, setProjectsList] = useState([]);
   const [spinnserLoader, setSpinnerLoader] = useState(true);
   const [error, setError] = useState(false);
@@ -110,4 +110,4 @@ const ProjectList = () => {
   );
 };
 
-export default ProjectList;
+export default AllProjects;
