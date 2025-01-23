@@ -46,7 +46,7 @@ const TasksList = ({
         return (
           <div
             key={index}
-            className="flex items-center border-2 border-slate-200 mt-5 rounded-md"
+            className="flex items-center border-2 border-slate-200 mt-5 rounded-md "
           >
             <li
               className="py-4 px-4 

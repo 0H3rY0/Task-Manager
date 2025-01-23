@@ -2,14 +2,14 @@ import { IoMdTimer } from "react-icons/io";
 import TasksList from "../components/ui/TasksList";
 import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
-import AllProjects from "./AllProjects";
 import ProjectList from "../components/ProjectList";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Upcoming = () => {
   const [tasks, setTasks] = useState([]);
-  const [updetedTasks, setUpdatedTasks] = useState([]);
+  const [updatedTasks, setUpdatedTasks] = useState([]);
   const [projects, setProjects] = useState([]);
-  const [updetedProjects, setUpdatedProjects] = useState([]);
+  const [updatedProjects, setUpdatedProjects] = useState([]);
   const [contentState, setContentState] = useState("tasks");
 
   useEffect(() => {
@@ -80,10 +80,32 @@ const Upcoming = () => {
         </div>
       </div>
 
-      {contentState === "tasks" ? (
-        <TasksList tasks={updetedTasks} />
+      {updatedTasks.length > 0 || updatedProjects.length > 0 ? (
+        contentState === "tasks" ? (
+          updatedTasks.length > 0 ? (
+            <TasksList tasks={updatedTasks} />
+          ) : (
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <p className="font-bold text-2xl text-slate-500 text-center">
+                No Tasks
+              </p>
+            </div>
+          )
+        ) : updatedProjects.length > 0 ? (
+          <ProjectList projectsList={updatedProjects} />
+        ) : (
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <p className="font-bold text-2xl text-slate-500 text-center">
+              No Projects
+            </p>
+          </div>
+        )
       ) : (
-        <ProjectList projectsList={updetedProjects} />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <p className="font-bold text-2xl text-slate-500 text-center">
+            <ClipLoader className="text-center" color="#A855F7" size={150} />
+          </p>
+        </div>
       )}
     </div>
   );
