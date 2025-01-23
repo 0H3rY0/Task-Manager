@@ -1,7 +1,7 @@
 import { SiTask } from "react-icons/si";
 import { NavLink } from "react-router";
 
-const ProjectList = ({ projectsList, textReducer }) => {
+const ProjectList = ({ projectsList, textReducer = () => {} }) => {
   return (
     <ul className="flex flex-col gap-6">
       {projectsList.map((item, index) => (
