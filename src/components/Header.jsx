@@ -24,7 +24,13 @@ function Header({ setNavbarActive, navbarActive }) {
       <div className="flex gap-1 sm:gap-4 items-center text-white">
         <RxHamburgerMenu
           onClick={() => setNavbarActive((curr) => !curr)}
-          className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
+          className={
+            `p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm ` +
+            `${
+              navbarActive &&
+              "bg-white bg-opacity-45 rounded-sm hover:bg-opacity-60"
+            }`
+          }
           size={34}
         />
         <NavLink
@@ -49,7 +55,7 @@ function Header({ setNavbarActive, navbarActive }) {
       </div>
       <div className="flex items-center text-white gap-2 sm:gap-5">
         <NavLink
-          to="/project/all"
+          to="/project/create"
           className={({ isActive }) =>
             isActive
               ? "bg-white bg-opacity-45 rounded-sm"
