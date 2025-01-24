@@ -92,7 +92,7 @@ const Upcoming = () => {
             </div>
           )
         ) : updatedProjects.length > 0 ? (
-          <ProjectList projectsList={updatedProjects} />
+          <ProjectList projectsList={updatedProjects} isPurple={true} />
         ) : (
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <p className="font-bold text-2xl text-slate-500 text-center">

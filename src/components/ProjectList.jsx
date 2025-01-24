@@ -1,7 +1,11 @@
 import { SiTask } from "react-icons/si";
 import { NavLink } from "react-router";
 
-const ProjectList = ({ projectsList, textReducer = () => {} }) => {
+const ProjectList = ({
+  projectsList,
+  textReducer = () => {},
+  isPurple = false,
+}) => {
   return (
     <ul className="flex flex-col gap-6">
       {projectsList.map((item, index) => (
@@ -34,11 +38,22 @@ const ProjectList = ({ projectsList, textReducer = () => {} }) => {
           <div className="flex flex-col md:justify-end md:items-end items-center justify-center w-1/5 md:gap-14 gap-2 mt-5 md:mt-0">
             <p className="flex gap-1 font-semibold text-slate-700">
               Importance:{" "}
-              <span className="text-orange-500">{item.Importance}</span>
+              <span
+                className={`${
+                  isPurple ? "text-purple-500" : "text-orange-500"
+                } `}
+              >
+                {item.Importance}
+              </span>
             </p>
             <p className="flex gap-1 font-semibold text-slate-700">
               DeadLine:{" "}
-              <span className="text-orange-500 whitespace-nowrap">
+              <span
+                className={
+                  `${isPurple ? "text-purple-500" : "text-orange-500"} ` +
+                  `whitespace-nowrap `
+                }
+              >
                 {item.Deadline}
               </span>
             </p>
