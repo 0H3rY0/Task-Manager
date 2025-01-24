@@ -50,8 +50,17 @@ const TasksList = ({
             className="flex items-center border-2 border-slate-200 mt-5 rounded-md "
           >
             <li
-              className="py-4 px-4 
-        text-lg font-semibold text-slate-700 w-full flex justify-between"
+              className={
+                `py-4 px-4 
+        text-lg font-semibold text-slate-700 w-full flex justify-between ` +
+                `${
+                  item.importance === "Medium"
+                    ? `bg-orange-100 `
+                    : item.importance === "High"
+                    ? `bg-red-100`
+                    : "bg-green-100"
+                }`
+              }
             >
               {item.content}
 

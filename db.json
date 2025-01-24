@@ -73,14 +73,7 @@
       "Deadline": "2025-01-30",
       "Importance": "High",
       "ImageUrl": "",
-      "Tasks": [
-        {
-          "id": "",
-          "content": "",
-          "deadline": "",
-          "imprtance": ""
-        }
-      ]
+      "Tasks": []
     },
     {
       "id": "842c6644-7089-4631-8f1e-ce2bcb579425",
@@ -89,14 +82,7 @@
       "Deadline": "2025-02-05",
       "Importance": "Low",
       "ImageUrl": "",
-      "Tasks": [
-        {
-          "id": "",
-          "content": "",
-          "deadline": "",
-          "imprtance": ""
-        }
-      ]
+      "Tasks": []
     }
   ]
 }
