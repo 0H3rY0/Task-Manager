@@ -102,7 +102,7 @@ const AddProjectForm = () => {
         btnText={"Confirm"}
       >
         <Dialog.Trigger>
-          <div className="btn-gray mt-10" type="submit">
+          <div className="btn-red border-8 border-red-500 mt-10" type="submit">
             Add Project
           </div>
         </Dialog.Trigger>
