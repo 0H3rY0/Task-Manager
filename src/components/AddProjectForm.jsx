@@ -18,14 +18,7 @@ const AddProjectForm = () => {
     Deadline: "",
     Importance: "Low",
     ImageUrl: "",
-    Tasks: [
-      {
-        id: "",
-        content: "",
-        deadline: "",
-        imprtance: "",
-      },
-    ],
+    Tasks: [],
   };
 
   const [project, setProject] = useState(projectState);

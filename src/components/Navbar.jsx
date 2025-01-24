@@ -1,8 +1,9 @@
 import { BiTask } from "react-icons/bi";
 import { SiTask } from "react-icons/si";
-import { GoProjectSymlink } from "react-icons/go";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { NavLink } from "react-router";
+import { MdOutlineCreateNewFolder } from "react-icons/md";
+import { FaHome } from "react-icons/fa";
 
 const Navbar = ({ navbarActive }) => {
   return (
@@ -18,18 +19,18 @@ const Navbar = ({ navbarActive }) => {
 
       <div className="flex flex-col gap-4">
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
-          <BiTask className="text-blue-500" size={32} />
+          <FaHome className="text-blue-500" size={32} />
           <NavLink
-            to="/tasks"
+            to="/"
             className={({ isActive }) =>
               isActive ? "text-red-500" : "text-black"
             }
           >
-            <span>Tasks</span>
+            <span>Home</span>
           </NavLink>
         </p>
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
-          <GoProjectSymlink className="text-orange-500" size={32} />
+          <BiTask className="text-orange-500" size={32} />
           <NavLink
             to="/project/all"
             className={({ isActive }) =>
@@ -37,6 +38,17 @@ const Navbar = ({ navbarActive }) => {
             }
           >
             <span>Projects</span>
+          </NavLink>
+        </p>
+        <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
+          <MdOutlineCreateNewFolder className="text-orange-500" size={32} />
+          <NavLink
+            to="/project/create"
+            className={({ isActive }) =>
+              isActive ? "text-red-500" : "text-black"
+            }
+          >
+            <span>Create Project</span>
           </NavLink>
         </p>
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
