@@ -12,6 +12,7 @@ const TasksList = ({
   modifyTask,
   id,
   modifyTaskErrors,
+  isPurple = false,
 }) => {
   const navigate = useNavigate();
 
@@ -98,11 +99,25 @@ const TasksList = ({
                 <div className="flex flex-col items-end whitespace-nowrap text-[16px]">
                   <p>
                     Deadline:{" "}
-                    <span className="text-purple-500">{item.deadline}</span>
+                    <span
+                      className={
+                        `${isPurple ? "text-purple-500" : "text-orange-500"} ` +
+                        `whitespace-nowrap `
+                      }
+                    >
+                      {item.deadline}
+                    </span>
                   </p>
                   <p>
                     Pioriety:{" "}
-                    <span className="text-purple-500">{item.importance}</span>
+                    <span
+                      className={
+                        `${isPurple ? "text-purple-500" : "text-orange-500"} ` +
+                        `whitespace-nowrap `
+                      }
+                    >
+                      {item.importance}
+                    </span>
                   </p>
                 </div>
               </div>
