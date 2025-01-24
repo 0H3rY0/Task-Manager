@@ -26,10 +26,6 @@ const AllProjects = () => {
     getAllProjects();
   }, []);
 
-  const textReducer = (text) => {
-    return text.length > 10 ? text.slice(0, 10) + "..." : text;
-  };
-
   return (
     <div className="w-4/5 flex justify-center py-16  flex-col gap-6">
       <div className="flex md:items-center md:justify-between md:flex-row flex-col items-start md:gap-0 gap-2">
@@ -45,9 +41,9 @@ const AllProjects = () => {
 
       <div>
         {projectsList.length > 0 ? (
-          <ProjectList projectsList={projectsList} textReducer={textReducer} />
+          <ProjectList projectsList={projectsList} />
         ) : (
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+          <div className="w-full flex justify-center text-center pt-40 items-center gap-6">
             {error ? (
               <p className="font-bold text-2xl text-slate-500 text-center">
                 Project Failed to Load{" "}

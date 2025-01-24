@@ -85,7 +85,7 @@ const Upcoming = () => {
           updatedTasks.length > 0 ? (
             <TasksList tasks={updatedTasks} isPurple={true} />
           ) : (
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="w-full flex justify-center py-52 flex-col gap-6">
               <p className="font-bold text-2xl text-slate-500 text-center">
                 No Tasks
               </p>
@@ -94,17 +94,15 @@ const Upcoming = () => {
         ) : updatedProjects.length > 0 ? (
           <ProjectList projectsList={updatedProjects} isPurple={true} />
         ) : (
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="w-full flex justify-center py-52 flex-col gap-6">
             <p className="font-bold text-2xl text-slate-500 text-center">
               No Projects
             </p>
           </div>
         )
       ) : (
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <p className="font-bold text-2xl text-slate-500 text-center">
-            <ClipLoader className="text-center" color="#A855F7" size={150} />
-          </p>
+        <div className="w-full flex justify-center text-center pt-40  gap-6">
+          <ClipLoader className="text-center" color="#A855F7" size={150} />
         </div>
       )}
     </div>

@@ -1,11 +1,11 @@
 import { SiTask } from "react-icons/si";
 import { NavLink } from "react-router";
 
-const ProjectList = ({
-  projectsList,
-  textReducer = () => {},
-  isPurple = false,
-}) => {
+const ProjectList = ({ projectsList, isPurple = false }) => {
+  const textReducer = (text) => {
+    return text.length > 10 ? text.slice(0, 10) + "..." : text;
+  };
+
   return (
     <ul className="flex flex-col gap-6">
       {projectsList.map((item, index) => (
@@ -41,23 +41,13 @@ const ProjectList = ({
             </div>
             <div>
               <NavLink to={`/project/${item.id}`}>
-                <button className="btn-gray px-24">Watch more</button>
+                <button className="btn-gray px-24">View more</button>
               </NavLink>
             </div>
           </div>
           <div className="flex flex-col md:justify-end md:items-end items-center justify-center w-1/5 md:gap-14 gap-2 mt-5 md:mt-0">
-            <p className="flex gap-1 font-semibold text-slate-700">
-              Importance:{" "}
-              <span
-                className={`${
-                  isPurple ? "text-purple-500" : "text-orange-500"
-                } `}
-              >
-                {item.Importance}
-              </span>
-            </p>
-            <p className="flex gap-1 font-semibold text-slate-700">
-              DeadLine:{" "}
+            <p className="flex gap-1 font-semibold text-slate-700 whitespace-nowrap">
+              Deadline:
               <span
                 className={
                   `${isPurple ? "text-purple-500" : "text-orange-500"} ` +
@@ -65,6 +55,16 @@ const ProjectList = ({
                 }
               >
                 {item.Deadline}
+              </span>
+            </p>
+            <p className="flex gap-1 font-semibold text-slate-700">
+              Priority:
+              <span
+                className={`${
+                  isPurple ? "text-purple-500" : "text-orange-500"
+                } `}
+              >
+                {item.Importance}
               </span>
             </p>
           </div>
