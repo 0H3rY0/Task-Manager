@@ -11,7 +11,17 @@ const ProjectList = ({
       {projectsList.map((item, index) => (
         <li
           key={index}
-          className="py-4 md:px-4 px-2 rounded-md flex items-center min-h-30 shadow-md flex-col md:flex-row justify-center"
+          className={
+            `py-4 md:px-4 px-2 rounded-md flex items-center min-h-30 shadow-md 
+          flex-col md:flex-row justify-center ` +
+            `${
+              item.Importance === "Medium"
+                ? `bg-orange-100 `
+                : item.Importance === "High"
+                ? `bg-red-100`
+                : "bg-green-100"
+            }`
+          }
         >
           <div className="flex justify-center items-center w-1/5">
             {item.ImageUrl !== "" ? (
