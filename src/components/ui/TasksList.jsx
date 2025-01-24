@@ -12,6 +12,7 @@ const TasksList = ({
   modifyTask,
   id,
   modifyTaskErrors,
+  isPurple = false,
 }) => {
   const navigate = useNavigate();
 
@@ -49,8 +50,17 @@ const TasksList = ({
             className="flex items-center border-2 border-slate-200 mt-5 rounded-md "
           >
             <li
-              className="py-4 px-4 
-        text-lg font-semibold text-slate-700 w-full flex justify-between"
+              className={
+                `py-4 px-4 
+        text-lg font-semibold text-slate-700 w-full flex justify-between ` +
+                `${
+                  item.importance === "Medium"
+                    ? `bg-orange-100 `
+                    : item.importance === "High"
+                    ? `bg-red-100`
+                    : "bg-green-100"
+                }`
+              }
             >
               {item.content}
 
@@ -98,11 +108,25 @@ const TasksList = ({
                 <div className="flex flex-col items-end whitespace-nowrap text-[16px]">
                   <p>
                     Deadline:{" "}
-                    <span className="text-purple-500">{item.deadline}</span>
+                    <span
+                      className={
+                        `${isPurple ? "text-purple-500" : "text-orange-500"} ` +
+                        `whitespace-nowrap `
+                      }
+                    >
+                      {item.deadline}
+                    </span>
                   </p>
                   <p>
                     Pioriety:{" "}
-                    <span className="text-purple-500">{item.importance}</span>
+                    <span
+                      className={
+                        `${isPurple ? "text-purple-500" : "text-orange-500"} ` +
+                        `whitespace-nowrap `
+                      }
+                    >
+                      {item.importance}
+                    </span>
                   </p>
                 </div>
               </div>

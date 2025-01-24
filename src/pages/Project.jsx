@@ -252,7 +252,7 @@ const Project = () => {
           <Tasks id={id} updateFlag={updateFlag} />
         </div>
       ) : (
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+        <div className="w-full flex justify-center text-center pt-72 items-center gap-6">
           {error ? (
             <p className="font-bold text-2xl text-slate-500 text-center">
               File failed to load

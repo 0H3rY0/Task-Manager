@@ -24,13 +24,25 @@ function Header({ setNavbarActive, navbarActive }) {
       <div className="flex gap-1 sm:gap-4 items-center text-white">
         <RxHamburgerMenu
           onClick={() => setNavbarActive((curr) => !curr)}
-          className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
+          className={
+            `p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm ` +
+            `${
+              navbarActive &&
+              "bg-white bg-opacity-45 rounded-sm hover:bg-opacity-60"
+            }`
+          }
           size={34}
         />
-        <IoHomeOutline
-          className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
-          size={34}
-        />
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? "bg-white bg-opacity-45 rounded-sm"
+              : "hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
+          }
+        >
+          <IoHomeOutline size={35} title="add task" className="p-1" />
+        </NavLink>
         <div className="text-white bg-white bg-opacity-45 flex items-center px-2 py-1 rounded-full">
           <IoSearchOutline size={26} />
           <input
@@ -43,7 +55,7 @@ function Header({ setNavbarActive, navbarActive }) {
       </div>
       <div className="flex items-center text-white gap-2 sm:gap-5">
         <NavLink
-          to="/tasks"
+          to="/project/create"
           className={({ isActive }) =>
             isActive
               ? "bg-white bg-opacity-45 rounded-sm"
