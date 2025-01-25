@@ -4,11 +4,13 @@ import { FaFacebookF } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { useAuthStore } from "../store/useAuthStore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+
+  const { setAuthenticated } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,8 +19,8 @@ const Login = () => {
         email,
         password,
       });
-      navigate("/AutehnticatedApp");
       console.log(data);
+      setAuthenticated();
     } catch (error) {
       console.log("something goes wrong with axios: " + error);
     }
@@ -61,7 +63,7 @@ const Login = () => {
             Sign in
           </button>
           <button
-            // onClick={authPath(false)}
+            // onClick={setuthPath(false}
             className="py-2 px-20 bg-orange-500 rounded-full font-semibold text-slate-800"
           >
             Go without

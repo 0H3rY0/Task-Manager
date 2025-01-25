@@ -6,13 +6,13 @@ import { Routes, Route } from "react-router";
 import Login from "./pages/Login";
 import UnauthenticatedApp from "./components/layout/UnauthenticatedApp ";
 import AuthenticatedApp from "./components/layout/AuthenticatedApp ";
+import { useAuthStore } from "./store/useAuthStore";
 
 function App() {
   const [navbarActive, setNavbarActive] = useState(false);
-  const [authPath, useAuthPath] = useState({
-    isAuthenticeted: false,
-    role: "limited",
-  });
+  const { isAuthenticated, access } = useAuthStore();
+
+  console.log(isAuthenticated, access);
 
   return (
     <>
@@ -27,13 +27,11 @@ function App() {
         <Layout navbarActive={navbarActive} />
       </> */}
       {/* )} */}
-      {authPath.isAuthenticeted && authPath.role ? (
-        "full"(
-          <AuthenticatedApp
-            navbarActive={navbarActive}
-            setNavbarActive={setNavbarActive}
-          />
-        )
+      {isAuthenticated && access === "full" ? (
+        <AuthenticatedApp
+          navbarActive={navbarActive}
+          setNavbarActive={setNavbarActive}
+        />
       ) : (
         <UnauthenticatedApp />
       )}

@@ -1,5 +1,14 @@
+import { useAuthStore } from "../store/useAuthStore";
+
 const Test = () => {
-  return <div>Test</div>;
+  const { logout } = useAuthStore();
+
+  return (
+    <div>
+      <p>Test</p>
+      <button onClick={logout}>Logout</button>
+    </div>
+  );
 };
 
 export default Test;
