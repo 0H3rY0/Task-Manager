@@ -1,8 +1,26 @@
 import { SiTask } from "react-icons/si";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
+import { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await axios.post("http://localhost:3000/login", {
+        email,
+        password,
+      });
+      console.log(data);
+    } catch (error) {
+      console.log("something goes wrong with axios: " + error);
+    }
+  };
+
   return (
     <div className="w-full h-[100vh]">
       <div className="flex h-[10vh] items-center justify-start ">
@@ -12,21 +30,30 @@ const Login = () => {
       </div>
       <div className="w-full h-[90vh] bg-red flex flex-col justify-center items-center gap-2">
         <h1 className="text-8xl text-slate-800 font-bold mb-10">Login</h1>
-        <input
-          type="text"
-          placeholder="email"
-          className="py-2 px-1 w-5/6 md:w-3/6 lg:w-2/6  rounded-sm text-lg border-2 border-grey-200 
+        <form action="" onSubmit={handleSubmit}>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="email"
+            className="py-2 px-1 w-5/6 md:w-3/6 lg:w-2/6  rounded-sm text-lg border-2 border-grey-200 
           mb-2 focus:border-white focus:ring-2 focus:ring-red-300 outline-none"
-        />
-        <input
-          type="text"
-          placeholder="password"
-          className="py-2 px-1 w-5/6 md:w-3/6 lg:w-2/6 rounded-sm text-lg border-2 border-grey-200
+          />
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="text"
+            placeholder="password"
+            className="py-2 px-1 w-5/6 md:w-3/6 lg:w-2/6 rounded-sm text-lg border-2 border-grey-200
            mb-2 focus:ring-2 focus:ring-red-300 outline-none "
-        />
-        <button className="py-2 px-20 bg-yellow-500 rounded-full font-semibold text-slate-800">
-          Sign in
-        </button>
+          />
+          <button
+            type="submit"
+            className="py-2 px-20 bg-yellow-500 rounded-full font-semibold text-slate-800"
+          >
+            Sign in
+          </button>
+        </form>
         <a href="">
           <p className="text-lg text-green-800 underline">Forgot Password?</p>
         </a>
