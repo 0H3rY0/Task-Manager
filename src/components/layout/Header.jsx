@@ -6,7 +6,8 @@ import { MdOutlineInfo } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
 import { NavLink } from "react-router";
 import PropTypes from "prop-types";
-import profile from "../assets/images/profile.jpg";
+import profile from "../../assets/images/profile.jpg";
+// import profile from "assets/images/profile.jpg";
 
 function Header({ setNavbarActive, navbarActive }) {
   return (
