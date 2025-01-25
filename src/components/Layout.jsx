@@ -8,6 +8,7 @@ import Project from "../pages/Project";
 import ErrorPage from "../pages/ErrorPage";
 import Upcoming from "../pages/Upcoming";
 import AllProjects from "../pages/AllProjects";
+import Login from "../pages/Login";
 
 const Layout = ({ navbarActive }) => {
   return (
