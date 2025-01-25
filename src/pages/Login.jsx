@@ -15,12 +15,14 @@ const Login = () => {
         <input
           type="text"
           placeholder="email"
-          className="py-2 px-1 w-2/6 rounded-sm text-lg border-2 border-grey-200 mb-2 focus:border-white focus:ring-2 focus:ring-red-300 outline-none"
+          className="py-2 px-1 w-5/6 md:w-3/6 lg:w-2/6  rounded-sm text-lg border-2 border-grey-200 
+          mb-2 focus:border-white focus:ring-2 focus:ring-red-300 outline-none"
         />
         <input
           type="text"
           placeholder="password"
-          className="py-2 px-1 w-2/6 rounded-sm text-lg border-2 border-grey-200 mb-2 focus:ring-2 focus:ring-red-300 outline-none"
+          className="py-2 px-1 w-5/6 md:w-3/6 lg:w-2/6 rounded-sm text-lg border-2 border-grey-200
+           mb-2 focus:ring-2 focus:ring-red-300 outline-none "
         />
         <button className="py-2 px-20 bg-yellow-500 rounded-full font-semibold text-slate-800">
           Sign in
@@ -29,10 +31,10 @@ const Login = () => {
           <p className="text-lg text-green-800 underline">Forgot Password?</p>
         </a>
         <span className="text-gray-500 text-lg mb-5">or</span>
-        <button className="bg-blue-400 py-3 w-2/6 rounded-full text-white mb-2 flex gap-2 items-center justify-center">
+        <button className="bg-blue-400 py-3 w-5/6 md:w-3/6 lg:w-2/6 rounded-full text-white mb-2 flex gap-2 items-center justify-center">
           <FaGoogle size={30} /> Continue with Google
         </button>
-        <button className="bg-blue-800 py-3 w-2/6 rounded-full text-white flex gap-2 justify-center items-center">
+        <button className="bg-blue-800 py-3 w-5/6 md:w-3/6 lg:w-2/6 rounded-full text-white flex gap-2 justify-center items-center">
           <FaFacebookF size={30} /> Continue with Facebook
         </button>
         <p className="mt-3 text-lg text-slate-800">
