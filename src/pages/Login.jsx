@@ -60,6 +60,12 @@ const Login = () => {
           >
             Sign in
           </button>
+          <button
+            // onClick={authPath(false)}
+            className="py-2 px-20 bg-orange-500 rounded-full font-semibold text-slate-800"
+          >
+            Go without
+          </button>
         </form>
         <a href="">
           <p className="text-lg text-green-800 underline">Forgot Password?</p>

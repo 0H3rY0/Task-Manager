@@ -4,10 +4,15 @@ import Layout from "./components/layout/Layout";
 import { useState } from "react";
 import { Routes, Route } from "react-router";
 import Login from "./pages/Login";
+import UnauthenticatedApp from "./components/layout/UnauthenticatedApp ";
+import AuthenticatedApp from "./components/layout/AuthenticatedApp ";
 
 function App() {
   const [navbarActive, setNavbarActive] = useState(false);
-  const [test, setTest] = useState(true);
+  const [authPath, useAuthPath] = useState({
+    isAuthenticeted: false,
+    role: "limited",
+  });
 
   return (
     <>
@@ -16,12 +21,22 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       ) : ( */}
-      <>
+      {/* <>
         <Header setNavbarActive={setNavbarActive} navbarActive={navbarActive} />
         {navbarActive && <Navbar navbarActive={navbarActive} />}
         <Layout navbarActive={navbarActive} />
-      </>
+      </> */}
       {/* )} */}
+      {authPath.isAuthenticeted && authPath.role ? (
+        "full"(
+          <AuthenticatedApp
+            navbarActive={navbarActive}
+            setNavbarActive={setNavbarActive}
+          />
+        )
+      ) : (
+        <UnauthenticatedApp />
+      )}
     </>
   );
 }
