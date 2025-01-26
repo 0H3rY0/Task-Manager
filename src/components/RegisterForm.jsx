@@ -5,17 +5,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const RegisterForm = ({ setIsLogin }) => {
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
-  //   const [username, setUsername] = useState("");
   const userInitialState = {
     username: "",
     email: "",
     password: "",
   };
   const [user, setUser] = useState(userInitialState);
+  const [error, setError] = useState("");
 
   const onInputChange = (e) => {
+    setError("");
     setUser((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -38,7 +37,8 @@ const RegisterForm = ({ setIsLogin }) => {
       toast("Register success!!");
       setIsLogin(true);
     } catch (error) {
-      console.log("something goes wrong with axios: " + error);
+      const newError = error.response.data.error;
+      setError(newError);
     }
   };
 
@@ -79,6 +79,7 @@ const RegisterForm = ({ setIsLogin }) => {
           className="py-2 px-1 w-5/6 md:w-3/6 lg:w-3/6 rounded-sm text-lg border-2 border-grey-200
            mb-2 focus:ring-2 focus:ring-red-300 outline-none "
         />
+        {error !== "" && <p className="errorText mb-2">{error}</p>}
         <button
           type="submit"
           className="py-2 px-20 bg-yellow-500 rounded-full font-semibold text-slate-800"

@@ -86,17 +86,6 @@
     /* Dodajemy transformację dla efektu powiększenia */ box-shadow 0.3s ease; /* Animacja dla cienia */
 }
 
-.btn-red {
-  font-weight: bold; /* font-bold */
-  background-color: #ef4444; /* bg-red-500 */
-  border-radius: 0.25rem; /* rounded (4px) */
-  padding: 0.5rem 1rem; /* py-2 px-4 */
-  color: white; /* text-white */
-  transition: background-color 0.2s ease, border-color 0.2s ease,
-    transform 0.2s ease,
-    /* Dodajemy transformację dla efektu powiększenia */ box-shadow 0.3s ease; /* Animacja dla cienia */
-}
-
 .btn-red:hover {
   background-color: #f87171; /* hover:bg-red-400 */
   border-color: #f87171; /* hover:border-red-400 */

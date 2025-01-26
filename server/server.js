@@ -97,7 +97,12 @@ app.post("/register", async (req, res) => {
       if (err) {
         console.log("Error inserting user: " + err);
         if (err.code === "ER_DUP_ENTRY") {
-          return res.status(400).json({ error: "Email is already in use" });
+          const match = err.message.match(
+            /Duplicate entry '(.*?)' for key '(.*?)'/
+          );
+          return res
+            .status(400)
+            .json({ error: `${match[2]} is already in use` });
         }
         return res.status(500).json({ error: "Database error" });
       }
