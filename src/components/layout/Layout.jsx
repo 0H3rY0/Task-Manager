@@ -1,14 +1,13 @@
 // import Tasks from "../pages/Tasks";
-import Test from "../pages/Test";
+import Test from "../../pages/Test";
 import { Routes, Route } from "react-router";
 import PropTypes from "prop-types";
-import CreateProject from "../pages/CreateProject";
+import CreateProject from "../../pages/CreateProject";
 import { ToastContainer } from "react-toastify";
-import Project from "../pages/Project";
-import ErrorPage from "../pages/ErrorPage";
-import Upcoming from "../pages/Upcoming";
-import AllProjects from "../pages/AllProjects";
-import Login from "../pages/Login";
+import Project from "../../pages/Project";
+import ErrorPage from "../../pages/ErrorPage";
+import Upcoming from "../../pages/Upcoming";
+import AllProjects from "../../pages/AllProjects";
 
 const Layout = ({ navbarActive }) => {
   return (
