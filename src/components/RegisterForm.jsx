@@ -58,7 +58,7 @@ const RegisterForm = ({ setIsLogin }) => {
           onChange={(e) => onInputChange(e)}
           type="text"
           placeholder="username"
-          className="py-2 px-1 w-5/6 md:w-3/6 lg:w-3/6 rounded-sm text-lg border-2 border-grey-200
+          className="py-2 px-1 w-5/6 md:w-3/6 lg:w-2/6 rounded-sm text-lg border-2 border-grey-200
            mb-2 focus:ring-2 focus:ring-red-300 outline-none "
         />
         <input
@@ -67,7 +67,7 @@ const RegisterForm = ({ setIsLogin }) => {
           onChange={(e) => onInputChange(e)}
           type="text"
           placeholder="email"
-          className="py-2 px-1 w-5/6 md:w-3/6 lg:w-3/6  rounded-sm text-lg border-2 border-grey-200 
+          className="py-2 px-1 w-5/6 md:w-3/6 lg:w-2/6  rounded-sm text-lg border-2 border-grey-200 
           mb-2 focus:border-white focus:ring-2 focus:ring-red-300 outline-none"
         />
         <input
@@ -76,18 +76,18 @@ const RegisterForm = ({ setIsLogin }) => {
           onChange={(e) => onInputChange(e)}
           type="text"
           placeholder="password"
-          className="py-2 px-1 w-5/6 md:w-3/6 lg:w-3/6 rounded-sm text-lg border-2 border-grey-200
+          className="py-2 px-1 w-5/6 md:w-3/6 lg:w-2/6 rounded-sm text-lg border-2 border-grey-200
            mb-2 focus:ring-2 focus:ring-red-300 outline-none "
         />
         {error !== "" && <p className="errorText mb-2">{error}</p>}
         <button
           type="submit"
-          className="py-2 px-20 bg-yellow-500 rounded-full font-semibold text-slate-800"
+          className="py-2 px-20 bg-yellow-500 rounded-full font-semibold text-slate-800 btn-orange btn hover:bg-yellow-400 active:bg-yellow-500"
         >
           Sign up
         </button>
         <button
-          className="py-2 px-20 bg-orange-500 rounded-full font-semibold text-slate-800"
+          className="py-2 px-20 bg-orange-500 rounded-full font-semibold text-slate-800 btn hover:bg-orange-400 active: bg-orange-500"
           onClick={setAccessLimited}
         >
           Go without
