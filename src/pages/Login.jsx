@@ -36,7 +36,7 @@ const Login = () => {
         </h1>
       </div>
       <div className="w-full h-[90vh] bg-red flex flex-col justify-center items-center gap-2">
-        {isLogin ? <LoginForm /> : <RegisterForm />}
+        {isLogin ? <LoginForm /> : <RegisterForm setIsLogin={setIsLogin} />}
         {isLogin ? (
           <a href="">
             <p className="text-lg text-green-800 underline">Forgot Password?</p>

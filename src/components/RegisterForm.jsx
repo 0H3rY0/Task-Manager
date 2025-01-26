@@ -2,16 +2,31 @@ import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 // import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import { toast } from "react-toastify";
 
-const RegisterForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+const RegisterForm = ({ setIsLogin }) => {
+  //   const [email, setEmail] = useState("");
+  //   const [password, setPassword] = useState("");
+  //   const [username, setUsername] = useState("");
+  const userInitialState = {
+    username: "",
+    email: "",
+    password: "",
+  };
+  const [user, setUser] = useState(userInitialState);
 
-  const { setAuthenticated, setAccessLimited } = useAuthStore();
+  const onInputChange = (e) => {
+    setUser((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const { setAccessLimited } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { username, email, password } = user;
     try {
       const data = await axios.post("http://localhost:3000/register", {
         username,
@@ -19,7 +34,9 @@ const RegisterForm = () => {
         password,
       });
       console.log(data);
-      //   setAuthenticated();
+      setUser(userInitialState);
+      toast("Register success!!");
+      setIsLogin(true);
     } catch (error) {
       console.log("something goes wrong with axios: " + error);
     }
@@ -36,24 +53,27 @@ const RegisterForm = () => {
         className="flex flex-col w-full items-center justify-center gap-2"
       >
         <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          name="username"
+          value={user.username}
+          onChange={(e) => onInputChange(e)}
           type="text"
           placeholder="username"
           className="py-2 px-1 w-5/6 md:w-3/6 lg:w-3/6 rounded-sm text-lg border-2 border-grey-200
            mb-2 focus:ring-2 focus:ring-red-300 outline-none "
         />
         <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
+          value={user.email}
+          onChange={(e) => onInputChange(e)}
           type="text"
           placeholder="email"
           className="py-2 px-1 w-5/6 md:w-3/6 lg:w-3/6  rounded-sm text-lg border-2 border-grey-200 
           mb-2 focus:border-white focus:ring-2 focus:ring-red-300 outline-none"
         />
         <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          value={user.password}
+          onChange={(e) => onInputChange(e)}
           type="text"
           placeholder="password"
           className="py-2 px-1 w-5/6 md:w-3/6 lg:w-3/6 rounded-sm text-lg border-2 border-grey-200

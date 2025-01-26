@@ -2,6 +2,7 @@ import { useState } from "react";
 import UnauthenticatedApp from "./components/layout/UnauthenticatedApp ";
 import AuthenticatedApp from "./components/layout/AuthenticatedApp ";
 import { useAuthStore } from "./store/useAuthStore";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [navbarActive, setNavbarActive] = useState(false);
@@ -22,6 +23,7 @@ function App() {
           setNavbarActive={setNavbarActive}
         />
       )}
+      <ToastContainer />
     </>
   );
 }

@@ -3,7 +3,6 @@ import Test from "../../pages/Test";
 import { Routes, Route } from "react-router";
 import PropTypes from "prop-types";
 import CreateProject from "../../pages/CreateProject";
-import { ToastContainer } from "react-toastify";
 import Project from "../../pages/Project";
 import ErrorPage from "../../pages/ErrorPage";
 import Upcoming from "../../pages/Upcoming";
@@ -29,7 +28,6 @@ const Layout = ({ navbarActive }) => {
         <Route path="/project/:id" element={<Project />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-      <ToastContainer />
     </div>
   );
 };
