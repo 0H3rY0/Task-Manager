@@ -11,12 +11,13 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("http://localhost:3000/login", {
         email,
         password,
       });
-      console.log(data);
-      setAuthenticated();
+      console.log(response);
+      // localStorage.setItem("authToken", response.data.token);
+      setAuthenticated(response.data.token);
     } catch (error) {
       console.log("something goes wrong with axios: " + error);
     }

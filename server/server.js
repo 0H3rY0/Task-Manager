@@ -6,6 +6,7 @@ const path = require("path");
 const { emit } = require("process");
 const { error } = require("console");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const upload = multer({ dest: "uploads/" });
@@ -21,6 +22,8 @@ const db = mysql.createConnection({
   database: "task-manager",
 });
 
+const SECRET_KEY = "your_secret_key";
+
 app.use(express.json());
 app.use(cors(corsOptions));
 
@@ -35,12 +38,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).json({ error: "Email and password are required!" });
-  }
-
   const sql = "SELECT * FROM user WHERE email = ?";
-
   db.query(sql, [email], async (err, data) => {
     if (err) {
       console.error("Database error:", err);
@@ -60,9 +58,17 @@ app.post("/login", (req, res) => {
         return res.status(401).json({ error: "Invalid email or password" });
       }
 
-      console.log("User logged in:", user);
+      // Tworzenie tokena JWT
+      const token = jwt.sign(
+        { id: user.id, email: user.email }, // Payload tokena
+        SECRET_KEY, // Sekretny klucz
+        { expiresIn: "1h" } // Ważność tokena
+      );
+
+      // Zwrot tokena i danych użytkownika
       return res.status(200).json({
         message: "Login successful",
+        token,
         user: {
           id: user.id,
           username: user.username,
