@@ -176,3 +176,9 @@
 .fade-out {
   animation: fadeOut 0.5s ease-out forwards;
 }
+
+.errorText {
+  font-size: /* Zdefiniowany rozmiar czcionki, np. 16px, jeśli nie jest określony w Tailwind */ ;
+  font-weight: 400; /* Normalna waga czcionki */
+  color: #f87171; /* Czerwony kolor (odcień red-400 z Tailwind) */
+}

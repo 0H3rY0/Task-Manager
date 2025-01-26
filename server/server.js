@@ -46,7 +46,7 @@ app.post("/login", (req, res) => {
     }
 
     if (data.length === 0) {
-      return res.status(401).json({ error: "Invalid email or password" });
+      return res.status(401).json({ error: "Invalid email" });
     }
 
     const user = data[0];
@@ -55,7 +55,7 @@ app.post("/login", (req, res) => {
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValid) {
-        return res.status(401).json({ error: "Invalid email or password" });
+        return res.status(401).json({ error: "Invalid password" });
       }
 
       // Tworzenie tokena JWT
