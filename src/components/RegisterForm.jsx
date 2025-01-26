@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
+// import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
 const RegisterForm = () => {
@@ -12,12 +13,13 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post("http://localhost:3000/login", {
+      const data = await axios.post("http://localhost:3000/register", {
+        username,
         email,
         password,
       });
       console.log(data);
-      setAuthenticated();
+      //   setAuthenticated();
     } catch (error) {
       console.log("something goes wrong with axios: " + error);
     }
@@ -30,7 +32,7 @@ const RegisterForm = () => {
       </h1>
       <form
         action=""
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
         className="flex flex-col w-full items-center justify-center gap-2"
       >
         <input

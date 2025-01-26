@@ -46,4 +46,35 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.post("/register", async (req, res) => {
+  const { username, email, password } = req.body;
+
+  if (!username || !email || !password) {
+    return res.status(400).json({ error: "All fields are required!" });
+  }
+
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const sql = "INSERT INTO user (username, email, password) VALUES (?,?,?)";
+    db.query(sql, [username, email, hashedPassword], (err, result) => {
+      if (err) {
+        console.log("Error inserting user: " + err);
+        if (err.code === "ER_DUP_ENTRY") {
+          return res.status(400).json({ error: "Email is already in use" });
+        }
+        return res.status(500).json({ error: "Database error" });
+      }
+
+      return res.status(201).json({
+        message: "User registered successfullly!",
+        userId: result.insertId,
+      });
+    });
+  } catch (error) {
+    console.error("Error during registration:", error);
+    res.status(500).json({ error: "Server error." });
+  }
+});
+
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));
