@@ -3,6 +3,9 @@ const cors = require("cors");
 const multer = require("multer");
 const mysql = require("mysql");
 const path = require("path");
+const { emit } = require("process");
+const { error } = require("console");
+const bcrypt = require("bcrypt");
 
 const app = express();
 const upload = multer({ dest: "uploads/" });
