@@ -3,14 +3,13 @@ import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
 import { useAuthStore } from "../store/useAuthStore";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { setAuthenticated } = useAuthStore();
+  const { setAuthenticated, setAccessLimited } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,6 +64,7 @@ const Login = () => {
           <button
             // onClick={setuthPath(false}
             className="py-2 px-20 bg-orange-500 rounded-full font-semibold text-slate-800"
+            onClick={setAccessLimited}
           >
             Go without
           </button>

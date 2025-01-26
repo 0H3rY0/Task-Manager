@@ -1,11 +1,28 @@
-import { useState } from "react";
 import Layout from "./Layout";
 import Login from "../../pages/Login";
+import { useAuthStore } from "../../store/useAuthStore";
+import Header from "./Header";
+import Navbar from "./Navbar";
 
-const UnauthenticatedApp = () => {
-  const [moveToApp, setMoveToApp] = useState(false);
+const UnauthenticatedApp = ({ navbarActive, setNavbarActive }) => {
+  const { access } = useAuthStore();
 
-  return <>{moveToApp ? <Layout /> : <Login />}</>;
+  return (
+    <>
+      {access !== "full" ? (
+        <>
+          <Header
+            setNavbarActive={setNavbarActive}
+            navbarActive={navbarActive}
+          />
+          {navbarActive && <Navbar navbarActive={navbarActive} />}
+          <Layout navbarActive={navbarActive} />
+        </>
+      ) : (
+        <Login />
+      )}
+    </>
+  );
 };
 
 export default UnauthenticatedApp;

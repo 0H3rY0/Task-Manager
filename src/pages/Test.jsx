@@ -1,12 +1,16 @@
 import { useAuthStore } from "../store/useAuthStore";
 
 const Test = () => {
-  const { logout } = useAuthStore();
+  const { logout, setAccessFull, isAuthenticated } = useAuthStore();
 
   return (
     <div>
       <p>Test</p>
-      <button onClick={logout}>Logout</button>
+      {isAuthenticated ? (
+        <button onClick={logout}>Logout</button>
+      ) : (
+        <button onClick={setAccessFull}>Login</button>
+      )}
     </div>
   );
 };
