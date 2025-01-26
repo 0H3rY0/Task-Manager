@@ -14,6 +14,13 @@ const corsOptions = {
   origin: ["http://localhost:5173"],
 };
 
+const db = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "task-manager",
+});
+
 app.use(express.json());
 app.use(cors(corsOptions));
 
@@ -23,25 +30,48 @@ app.post("/upload", upload.single("file"), (req, res) => {
 
   res.json({ url: fileUrl });
 });
-
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "task-manager",
-});
-
 app.post("/login", (req, res) => {
-  const sql = "SELECT * FROM user WHERE email = ? AND password = ? ";
-  db.query(sql, [req.body.email, req.body.password], (err, data) => {
-    if (err) return res.json("Login Failed");
-    if (data.length <= 0) {
-      console.log("No record");
-    } else {
-      console.log("this is user: " + data);
-      return res.json(data);
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ error: "Email and password are required!" });
+  }
+
+  const sql = "SELECT * FROM user WHERE email = ?";
+
+  db.query(sql, [email], async (err, data) => {
+    if (err) {
+      console.error("Database error:", err);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+
+    if (data.length === 0) {
+      return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    const user = data[0];
+
+    try {
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+
+      if (!isPasswordValid) {
+        return res.status(401).json({ error: "Invalid email or password" });
+      }
+
+      console.log("User logged in:", user);
+      return res.status(200).json({
+        message: "Login successful",
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+        },
+      });
+    } catch (err) {
+      console.error("Error comparing passwords:", err);
+      return res.status(500).json({ error: "Internal server error" });
     }
   });
 });
