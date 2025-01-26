@@ -7,9 +7,17 @@ import { FaRegBell } from "react-icons/fa";
 import { NavLink } from "react-router";
 import PropTypes from "prop-types";
 import profile from "../../assets/images/profile.jpg";
+import { MdOutlineLogout } from "react-icons/md";
+import ModalCheckAgreement from "../modals/ModalCheckAgreement";
+import * as Dialog from "@radix-ui/react-dialog";
+import { useAuthStore } from "../../store/useAuthStore";
+import { IoEyeOutline } from "react-icons/io5";
+
 // import profile from "assets/images/profile.jpg";
 
 function Header({ setNavbarActive, navbarActive }) {
+  const { isAuthenticated, logout, setAccessFull } = useAuthStore();
+
   return (
     <header
       className={
@@ -66,11 +74,29 @@ function Header({ setNavbarActive, navbarActive }) {
           <IoMdAdd size={35} title="add task" className="p-1" />
         </NavLink>
 
-        <MdOutlineInfo
-          size={35}
-          title="show information"
-          className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
-        />
+        {isAuthenticated ? (
+          <ModalCheckAgreement
+            titleText={"Are you sure you want to logout"}
+            btnText={"Logout"}
+            func={logout}
+          >
+            <Dialog.Trigger>
+              <MdOutlineLogout
+                size={35}
+                title="logout"
+                className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
+              />
+            </Dialog.Trigger>
+          </ModalCheckAgreement>
+        ) : (
+          <IoEyeOutline
+            size={35}
+            title="login"
+            className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
+            onClick={setAccessFull}
+          />
+        )}
+
         <FaRegBell
           size={31}
           title="notifications"

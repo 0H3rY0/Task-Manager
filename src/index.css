@@ -173,7 +173,6 @@
 }
 
 .btn {
-  font-weight: bold;
   transition: background-color 0.2s ease, border-color 0.2s ease,
     transform 0.2s ease,
     /* Dodajemy transformację dla efektu powiększenia */ box-shadow 0.3s ease; /* Animacja dla cienia */

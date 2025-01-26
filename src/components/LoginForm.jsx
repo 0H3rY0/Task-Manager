@@ -62,12 +62,12 @@ const LoginForm = () => {
 
         <button
           type="submit"
-          className="py-2 px-20 bg-yellow-500 rounded-full font-semibold text-slate-800 btn hover:bg-yellow-400 active:bg-yellow-500"
+          className="py-2 px-20 bg-yellow-500 rounded-full text-slate-800 btn hover:bg-yellow-400 active:bg-yellow-500 font-semibold"
         >
           Sign in
         </button>
         <button
-          className="py-2 px-20 bg-orange-500 rounded-full font-semibold text-slate-800 btn hover:bg-orange-400 active: bg-orange-500"
+          className="py-2 px-20 bg-orange-500 rounded-full text-slate-800 btn hover:bg-orange-400 active: bg-orange-500 font-semibold"
           onClick={setAccessLimited}
         >
           Go without

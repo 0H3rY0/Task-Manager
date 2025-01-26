@@ -9,7 +9,7 @@ const ModalCheckAgreement = ({
   funcParam,
   funcParam2,
   titleText,
-  btnText,
+  btnText = "Confirm",
 }) => {
   const [open, setOpen] = useState(false);
 

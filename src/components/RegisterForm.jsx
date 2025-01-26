@@ -82,12 +82,12 @@ const RegisterForm = ({ setIsLogin }) => {
         {error !== "" && <p className="errorText mb-2">{error}</p>}
         <button
           type="submit"
-          className="py-2 px-20 bg-yellow-500 rounded-full font-semibold text-slate-800 btn-orange btn hover:bg-yellow-400 active:bg-yellow-500"
+          className="py-2 px-20 bg-yellow-500 rounded-full font-semibold text-slate-800 btn-orange btn hover:bg-yellow-400 active:bg-yellow-500 font-semibold"
         >
           Sign up
         </button>
         <button
-          className="py-2 px-20 bg-orange-500 rounded-full font-semibold text-slate-800 btn hover:bg-orange-400 active: bg-orange-500"
+          className="py-2 px-20 bg-orange-500 rounded-full font-semibold text-slate-800 btn hover:bg-orange-400 active: bg-orange-500 font-semibold"
           onClick={setAccessLimited}
         >
           Go without

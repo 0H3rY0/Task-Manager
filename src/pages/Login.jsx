@@ -48,13 +48,13 @@ const Login = () => {
         <span className="text-gray-500 text-lg mb-5">or</span>
         <button
           className="bg-blue-400 py-3 w-5/6 md:w-3/6 lg:w-2/6 rounded-full text-white mb-2 flex gap-2 items-center justify-center
-        btn hover:bg-blue-300 active: bg-blue-400"
+        btn hover:bg-blue-300 active: bg-blue-400 font-semibold"
         >
           <FaGoogle size={30} /> Continue with Google
         </button>
         <button
           className="bg-blue-800 py-3 w-5/6 md:w-3/6 lg:w-2/6 rounded-full text-white flex gap-2 justify-center items-center
-        btn hover:bg-blue-700 active: bg-blue-800"
+        btn hover:bg-blue-700 active: bg-blue-800 font-semibold"
         >
           <FaFacebookF size={30} /> Continue with Facebook
         </button>
