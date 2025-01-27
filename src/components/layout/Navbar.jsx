@@ -8,7 +8,7 @@ import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { MdOutlineLogout } from "react-icons/md";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useAuthStore } from "../../store/useAuthStore";
-import { useState } from "react";
+import { FaRegUser } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 
 const Navbar = ({ navbarActive }) => {
@@ -63,6 +63,27 @@ const Navbar = ({ navbarActive }) => {
           </NavLink>
         </p>
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
+          <FaRegUser className="text-green-500" size={32} />
+          {isAuthenticated ? (
+            <NavLink
+              to="/user-settings"
+              className={({ isActive }) => (isActive ? "text-red-500" : "")}
+            >
+              <span>User setting</span>
+            </NavLink>
+          ) : (
+            <ModalCheckAgreement
+              titleText={"Sorry, You are not logged in"}
+              btnText="Login"
+              func={setAccessFull}
+            >
+              <Dialog.Trigger>
+                <span>User setting</span>
+              </Dialog.Trigger>
+            </ModalCheckAgreement>
+          )}
+        </p>
+        <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold mt-5">
           {isAuthenticated ? (
             <>
               <MdOutlineLogout className="text-red-500" size={32} />

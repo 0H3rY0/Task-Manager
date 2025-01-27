@@ -7,6 +7,7 @@ import Project from "../../pages/Project";
 import ErrorPage from "../../pages/ErrorPage";
 import Upcoming from "../../pages/Upcoming";
 import AllProjects from "../../pages/AllProjects";
+import UserSetting from "../../pages/UserSetting";
 
 const Layout = ({ navbarActive }) => {
   return (
@@ -22,6 +23,7 @@ const Layout = ({ navbarActive }) => {
     >
       <Routes>
         <Route path="/" element={<Test />} />
+        <Route path="/user-settings" element={<UserSetting />} />
         <Route path="/upcoming" element={<Upcoming />} />
         <Route path="/project/all" element={<AllProjects />} />
         <Route path="/project/create" element={<CreateProject />} />
