@@ -1,15 +1,18 @@
 import { SiTask } from "react-icons/si";
 
-const Image = ({ image, updateFunction }) => {
+const Image = ({ image, updateFunction, color }) => {
   return (
     <div
-      className="relative min-h-[250px] w-full p-4 border-2 rounded-lg 
-  border-orange-200 flex items-center justify-center group bg-white z-0"
+      className={
+        `relative min-h-[250px] w-full p-4 border-2 rounded-lg  
+        flex items-center justify-center group bg-white z-0 border-orange-200` +
+        `${color ? "border-green-200" : ""}`
+      }
     >
       {image ? (
         <img
           src={image}
-          alt=""
+          alt="image"
           className="object-cover w-full h-full rounded-lg"
         />
       ) : (
