@@ -14,6 +14,7 @@ import { useFileUpload } from "../hooks/useFileUpload";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import ModalModifyProject from "../components/modals/ModalModifyProject";
 import { projectSchema } from "../utils/projectSchema";
+import Image from "../components/ui/Image";
 
 const Project = () => {
   const { id } = useParams();
@@ -130,34 +131,10 @@ const Project = () => {
           <div className="flex w-full gap-10 md:flex-row flex-col">
             {/* image, title and Pioreiety container */}
             <div className="w-5/5 md:w-2/5 flex flex-col items-start gap-3">
-              <div
-                className="relative min-h-[250px] w-full p-4 border-2 rounded-lg 
-  border-orange-200 flex items-center justify-center group bg-white z-0"
-              >
-                {project.ImageUrl ? (
-                  <img
-                    src={project.ImageUrl}
-                    alt=""
-                    className="object-cover w-full h-full rounded-lg"
-                  />
-                ) : (
-                  <SiTask size={150} className="text-orange-500" />
-                )}
-                <div
-                  className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center 
-    opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
-                >
-                  <span className="text-white text-lg font-semibold cursor-pointer">
-                    <input
-                      type="file"
-                      id="fileInput"
-                      className="hidden"
-                      onChange={(e) => handleUpdateProjectImage(e)}
-                    />
-                    <label htmlFor="fileInput">Change image</label>
-                  </span>
-                </div>
-              </div>
+              <Image
+                image={project.ImageUrl}
+                updateFunction={handleUpdateProjectImage}
+              />
               {UploadImageError && (
                 <p
                   className={`text-md font-normal text-red-400 ml-1 mb-3 ${animationClass}`}
