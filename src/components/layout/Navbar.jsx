@@ -4,8 +4,16 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { NavLink } from "react-router";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
+import ModalCheckAgreement from "../modals/ModalCheckAgreement";
+import { MdOutlineLogout } from "react-icons/md";
+import * as Dialog from "@radix-ui/react-dialog";
+import { useAuthStore } from "../../store/useAuthStore";
+import { FaRegUser } from "react-icons/fa";
+import { IoEyeOutline } from "react-icons/io5";
 
 const Navbar = ({ navbarActive }) => {
+  const { logout, isAuthenticated, setAccessFull } = useAuthStore();
+
   return (
     <div
       className={`w-full bg-white top-18 md:w-[300px] left-0 md:h-full shadow-xl slide-right px-10 py-6 pb-10 transition-all duration-300 ease-in-out ${
@@ -22,9 +30,7 @@ const Navbar = ({ navbarActive }) => {
           <FaHome className="text-blue-500" size={32} />
           <NavLink
             to="/"
-            className={({ isActive }) =>
-              isActive ? "text-red-500" : "text-black"
-            }
+            className={({ isActive }) => (isActive ? "text-red-500" : "")}
           >
             <span>Home</span>
           </NavLink>
@@ -33,9 +39,7 @@ const Navbar = ({ navbarActive }) => {
           <BiTask className="text-orange-500" size={32} />
           <NavLink
             to="/project/all"
-            className={({ isActive }) =>
-              isActive ? "text-red-500" : "text-black"
-            }
+            className={({ isActive }) => (isActive ? "text-red-500" : "")}
           >
             <span>Projects</span>
           </NavLink>
@@ -44,9 +48,7 @@ const Navbar = ({ navbarActive }) => {
           <MdOutlineCreateNewFolder className="text-orange-500" size={32} />
           <NavLink
             to="/project/create"
-            className={({ isActive }) =>
-              isActive ? "text-red-500" : "text-black"
-            }
+            className={({ isActive }) => (isActive ? "text-red-500" : "")}
           >
             <span>Create Project</span>
           </NavLink>
@@ -55,12 +57,62 @@ const Navbar = ({ navbarActive }) => {
           <FaRegCalendarAlt className="text-purple-500" size={32} />
           <NavLink
             to="/upcoming"
-            className={({ isActive }) =>
-              isActive ? "text-red-500" : "text-black"
-            }
+            className={({ isActive }) => (isActive ? "text-red-500" : "")}
           >
             <span>Upcoming</span>
           </NavLink>
+        </p>
+        <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
+          <FaRegUser className="text-green-500" size={32} />
+          {isAuthenticated ? (
+            <NavLink
+              to="/user-settings"
+              className={({ isActive }) => (isActive ? "text-red-500" : "")}
+            >
+              <span>User setting</span>
+            </NavLink>
+          ) : (
+            <ModalCheckAgreement
+              titleText={"Sorry, You are not logged in"}
+              btnText="Login"
+              func={setAccessFull}
+            >
+              <Dialog.Trigger>
+                <span>User setting</span>
+              </Dialog.Trigger>
+            </ModalCheckAgreement>
+          )}
+        </p>
+        <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold mt-5">
+          {isAuthenticated ? (
+            <>
+              <MdOutlineLogout className="text-red-500" size={32} />
+              <label>
+                <ModalCheckAgreement
+                  titleText={"Are you sure you want to logout"}
+                  btnText={"Logout"}
+                  func={logout}
+                >
+                  {(open) => (
+                    <Dialog.Trigger>
+                      <span className={`${open ? "text-red-500" : ""}`}>
+                        Logout
+                      </span>
+                    </Dialog.Trigger>
+                  )}
+                </ModalCheckAgreement>
+              </label>
+            </>
+          ) : (
+            <>
+              <IoEyeOutline className="text-red-500" size={32} />
+              <label>
+                <span onClick={setAccessFull} className="cursor-pointer">
+                  Login
+                </span>
+              </label>
+            </>
+          )}
         </p>
       </div>
     </div>

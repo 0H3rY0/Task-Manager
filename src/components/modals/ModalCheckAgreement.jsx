@@ -9,13 +9,13 @@ const ModalCheckAgreement = ({
   funcParam,
   funcParam2,
   titleText,
-  btnText,
+  btnText = "Confirm",
 }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      {children}
+      {typeof children === "function" ? children(open) : children}
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay">
           <Dialog.Content className="modal-content">

@@ -86,17 +86,6 @@
     /* Dodajemy transformację dla efektu powiększenia */ box-shadow 0.3s ease; /* Animacja dla cienia */
 }
 
-.btn-red {
-  font-weight: bold; /* font-bold */
-  background-color: #ef4444; /* bg-red-500 */
-  border-radius: 0.25rem; /* rounded (4px) */
-  padding: 0.5rem 1rem; /* py-2 px-4 */
-  color: white; /* text-white */
-  transition: background-color 0.2s ease, border-color 0.2s ease,
-    transform 0.2s ease,
-    /* Dodajemy transformację dla efektu powiększenia */ box-shadow 0.3s ease; /* Animacja dla cienia */
-}
-
 .btn-red:hover {
   background-color: #f87171; /* hover:bg-red-400 */
   border-color: #f87171; /* hover:border-red-400 */
@@ -175,4 +164,33 @@
 
 .fade-out {
   animation: fadeOut 0.5s ease-out forwards;
+}
+
+.errorText {
+  font-size: /* Zdefiniowany rozmiar czcionki, np. 16px, jeśli nie jest określony w Tailwind */ ;
+  font-weight: 400; /* Normalna waga czcionki */
+  color: #f87171; /* Czerwony kolor (odcień red-400 z Tailwind) */
+}
+
+.btn {
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease,
+    /* Dodajemy transformację dla efektu powiększenia */ box-shadow 0.3s ease; /* Animacja dla cienia */
+}
+
+.btn:hover {
+  /* bg color do ustalenia */
+  transform: scale(1.05); /* Powiększenie przy najechaniu */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Cień podczas hover */
+}
+
+.btn:active {
+  /* bg color do ustalenia */
+  transform: scale(0.95); /* Zmniejszenie przy kliknięciu (bardziej wyraźne) */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:focus {
+  outline: none; /* Usuwamy domyślną ramkę focus */
+  /* box-shadow: 0 0 0 4px rgba(255, 169, 93, 0.4); Fokus z czerwoną poświatą */
 }
