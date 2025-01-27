@@ -3,6 +3,7 @@ import { useRef } from "react";
 const FileInput = ({
   name,
   description,
+  onClick = "",
   onChange,
   type = "text",
   errors = "",
@@ -25,6 +26,7 @@ const FileInput = ({
       <input
         name={name}
         id={name}
+        onClick={onClick}
         onChange={onChange}
         ref={type === "file" ? fileInputRef : null}
         type={type}

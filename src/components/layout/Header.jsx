@@ -2,7 +2,6 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoHomeOutline } from "react-icons/io5";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
-import { MdOutlineInfo } from "react-icons/md";
 import { FaRegBell } from "react-icons/fa";
 import { NavLink } from "react-router";
 import PropTypes from "prop-types";
