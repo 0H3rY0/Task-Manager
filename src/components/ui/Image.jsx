@@ -6,7 +6,7 @@ const Image = ({ image, updateFunction, color }) => {
       className={
         `relative min-h-[250px] w-full p-4 border-2 rounded-lg  
         flex items-center justify-center group bg-white z-0 border-orange-200` +
-        `${color ? "border-green-200" : ""}`
+        `${color ? ` ${color}` : ""}`
       }
     >
       {image ? (

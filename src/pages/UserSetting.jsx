@@ -62,15 +62,90 @@ const UserSetting = () => {
         Upcoming
         <FaRegUser className="text-green-500" size={30} />
       </h2>
-      <div className="flex">
+      <div className="flex gap-20">
         <div className="w-1/3">
           <Image
             image={imageUrl}
             updateFunction={handleUpdateImageUrl}
-            color="red-200"
+            color="border-green-200"
           />
+          <div className="flex gap-5 justify-around mt-5">
+            <button className="btn bg-green-500 py-2 w-3/6 rounded-full font-semibold text-lg">
+              upload
+            </button>
+            <button className="btn bg-red-500 py-2 w-3/6 rounded-full font-semibold text-lg">
+              remove
+            </button>
+          </div>
         </div>
-        <div className="w-2/3">a</div>
+        <div className="w-2/3">
+          <label
+            htmlFor="username"
+            className="font-semibold text-slate-800 text-lg"
+          >
+            Name
+          </label>
+          <p className="w-full flex justify-between items-center mt-5 mb-14">
+            <span>John Doe</span>{" "}
+            <span className="text-green-500 cursor-pointer underline">
+              Edit Name
+            </span>
+          </p>
+
+          <label
+            htmlFor="username"
+            className="font-semibold text-slate-800 text-lg"
+          >
+            E-mail
+          </label>
+          <p className="w-full flex justify-between items-center mt-5 mb-14">
+            <span>John@gmail.com</span>{" "}
+            <span className="text-green-500 cursor-pointer underline">
+              Change
+            </span>
+          </p>
+
+          <label
+            htmlFor="username"
+            className="font-semibold text-slate-800 text-lg"
+          >
+            Password
+          </label>
+          <p className="w-full flex justify-between items-center mt-5 mb-14">
+            <span>password</span>
+            <span className="text-green-500 cursor-pointer underline">
+              Change
+            </span>
+          </p>
+
+          <label
+            htmlFor="username"
+            className="font-semibold text-slate-800 text-lg"
+          >
+            E-mail settings
+          </label>
+          <p className="w-full flex justify-between items-center mt-5 mb-8 ">
+            <span>Monthly product updates</span>
+            <label className="inline-flex items-center me-5 cursor-pointer">
+              <input type="checkbox" value="" className="sr-only peer" />
+              <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500 dark:peer-checked:bg-green-500"></div>
+            </label>
+          </p>
+          <p className="w-full flex justify-between items-center mt-5 mb-8">
+            <span>Monthly product updates</span>
+            <label className="inline-flex items-center me-5 cursor-pointer">
+              <input type="checkbox" value="" className="sr-only peer" />
+              <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500 dark:peer-checked:bg-green-500"></div>
+            </label>
+          </p>
+          <p className="w-full flex justify-between items-center mt-5 mb-8">
+            <span>Monthly product updates</span>
+            <label className="inline-flex items-center me-5 cursor-pointer">
+              <input type="checkbox" value="" className="sr-only peer" />
+              <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500 dark:peer-checked:bg-green-500"></div>
+            </label>
+          </p>
+        </div>
       </div>
     </div>
   );
