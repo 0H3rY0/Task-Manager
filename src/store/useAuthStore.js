@@ -54,4 +54,6 @@ export const useAuthStore = create((set) => ({
 
   setAccessLimited: () => set({ access: "limited" }),
   setAccessFull: () => set({ access: "full" }),
+  setUserImage: (imageUrl) =>
+    set((prev) => ({ user: { ...prev, imageUrl: imageUrl } })),
 }));

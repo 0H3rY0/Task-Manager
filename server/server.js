@@ -118,4 +118,78 @@ app.post("/register", async (req, res) => {
   }
 });
 
+app.put("/user/update", (req, res) => {
+  const { id, username, email, password, imageUrl } = req.body;
+
+  // Walidacja wymaganych danych
+  if (!id) {
+    return res.status(400).json({ error: "User ID jest wymagane" });
+  }
+
+  // Tworzymy obiekt pól do aktualizacji
+  const updates = {};
+  if (username) updates.username = username;
+  if (email) updates.email = email;
+  if (password) updates.password = password;
+  if (imageUrl) updates.imageUrl = imageUrl;
+
+  // Jeśli nie ma żadnych pól do aktualizacji, zwracamy błąd
+  if (Object.keys(updates).length === 0) {
+    return res.status(400).json({ error: "Brak danych do aktualizacji" });
+  }
+
+  // Generujemy dynamiczne zapytanie SQL
+  const fields = Object.keys(updates)
+    .map((key) => `${key} = ?`)
+    .join(", ");
+  const values = Object.values(updates);
+
+  const query = `UPDATE user SET ${fields} WHERE id = ?`;
+  values.push(id); // Dodajemy `id` jako ostatni parametr do zapytania
+
+  // Wykonanie zapytania SQL
+  db.query(query, values, (err, result) => {
+    if (err) {
+      console.error("Błąd podczas aktualizacji użytkownika:", err.message);
+      return res
+        .status(500)
+        .json({ error: "Nie udało się zaktualizować użytkownika" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res
+        .status(404)
+        .json({ error: "Nie znaleziono użytkownika o podanym ID" });
+    }
+
+    res.status(200).json({ message: "Użytkownik zaktualizowany pomyślnie" });
+  });
+});
+
+app.get("/user", (req, res) => {
+  const { id } = req.query; // Używamy req.query
+
+  if (!id) {
+    return res.status(400).json({ error: "User ID jest wymagane" });
+  }
+
+  const sql = "SELECT * FROM user WHERE id = ?";
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error("Błąd podczas pobierania użytkownika:", err.message);
+      return res
+        .status(500)
+        .json({ error: "Nie udało się pobrać użytkownika" });
+    }
+
+    if (result.length === 0) {
+      return res
+        .status(404)
+        .json({ error: "Nie znaleziono użytkownika o podanym ID" });
+    }
+
+    res.status(200).json({ user: result[0] }); // Zwróć dane użytkownika
+  });
+});
+
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));
