@@ -10,9 +10,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useAuthStore } from "../../store/useAuthStore";
 import { FaRegUser } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
+import { useNavbarActive } from "../../store/useNavbarActive";
 
 const Navbar = ({ navbarActive }) => {
   const { logout, isAuthenticated, setAccessFull } = useAuthStore();
+  const { setIsNavbarActive } = useNavbarActive();
 
   return (
     <div

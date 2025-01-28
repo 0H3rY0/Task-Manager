@@ -4,19 +4,16 @@ import { useAuthStore } from "../../store/useAuthStore";
 import Header from "./Header";
 import Navbar from "./Navbar";
 
-const UnauthenticatedApp = ({ navbarActive, setNavbarActive }) => {
+const UnauthenticatedApp = ({ navbarActive }) => {
   const { access } = useAuthStore();
 
   return (
     <>
       {access !== "full" ? (
         <>
-          <Header
-            setNavbarActive={setNavbarActive}
-            navbarActive={navbarActive}
-          />
+          <Header />
           {navbarActive && <Navbar navbarActive={navbarActive} />}
-          <Layout navbarActive={navbarActive} />
+          <Layout />
         </>
       ) : (
         <Login />

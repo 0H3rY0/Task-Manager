@@ -11,11 +11,13 @@ import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useAuthStore } from "../../store/useAuthStore";
 import { IoEyeOutline } from "react-icons/io5";
+import { useNavbarActive } from "../../store/useNavbarActive";
 
 // import profile from "assets/images/profile.jpg";
 
-function Header({ setNavbarActive, navbarActive }) {
+function Header() {
   const { isAuthenticated, logout, setAccessFull } = useAuthStore();
+  const { isNavbarActive, setIsNavbarActive } = useNavbarActive();
 
   return (
     <header
@@ -23,7 +25,7 @@ function Header({ setNavbarActive, navbarActive }) {
         `py-2 sm:py-4  px-3 sm:px-6 bg-red-500 
     flex justify-between sticky top-0 z-50 ` +
         `${
-          navbarActive
+          isNavbarActive
             ? "md:ml-[300px] headerAnimation"
             : "w-full headerAnimation"
         }`
@@ -31,11 +33,11 @@ function Header({ setNavbarActive, navbarActive }) {
     >
       <div className="flex gap-1 sm:gap-4 items-center text-white">
         <RxHamburgerMenu
-          onClick={() => setNavbarActive((curr) => !curr)}
+          onClick={() => setIsNavbarActive((curr) => !curr)}
           className={
             `p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm ` +
             `${
-              navbarActive &&
+              isNavbarActive &&
               "bg-white bg-opacity-45 rounded-sm hover:bg-opacity-60"
             }`
           }

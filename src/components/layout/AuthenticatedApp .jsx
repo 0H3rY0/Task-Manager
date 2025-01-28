@@ -2,12 +2,12 @@ import Layout from "./Layout";
 import Header from "./Header";
 import Navbar from "./Navbar";
 
-const AuthenticatedApp = ({ navbarActive, setNavbarActive }) => {
+const AuthenticatedApp = ({ navbarActive }) => {
   return (
     <>
-      <Header setNavbarActive={setNavbarActive} navbarActive={navbarActive} />
+      <Header />
       {navbarActive && <Navbar navbarActive={navbarActive} />}
-      <Layout navbarActive={navbarActive} />
+      <Layout />
     </>
   );
 };

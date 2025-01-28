@@ -9,16 +9,18 @@ import Upcoming from "../../pages/Upcoming";
 import AllProjects from "../../pages/AllProjects";
 import UserSetting from "../../pages/UserSetting";
 import { useAuthStore } from "../../store/useAuthStore";
+import { useNavbarActive } from "../../store/useNavbarActive";
 
-const Layout = ({ navbarActive }) => {
+const Layout = () => {
   const { isAuthenticated } = useAuthStore();
+  const { isNavbarActive } = useNavbarActive();
 
   return (
     <div
       className={
         ` flex items-center justify-center  ` +
         `${
-          navbarActive
+          isNavbarActive
             ? "md:ml-[300px] mt-[300px]  md:mt-0 headerAnimation"
             : "w-full headerAnimation"
         }`
