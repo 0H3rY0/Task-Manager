@@ -6,6 +6,7 @@ import axios from "axios";
 import { useAuthStore } from "../store/useAuthStore";
 import { jwtDecode } from "jwt-decode";
 import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
+import * as Dialog from "@radix-ui/react-dialog";
 
 const UserSetting = () => {
   const userInitialState = {
@@ -61,6 +62,26 @@ const UserSetting = () => {
     });
   };
 
+  const handleDeleteImage = async () => {
+    try {
+      const response = await axios.delete(
+        "http://localhost:3000/user/delete/image",
+        {
+          data: {
+            id: user.id,
+          },
+        }
+      );
+      setImageUrl(null);
+      console.log(response.data);
+    } catch (error) {
+      console.error(
+        "Error deleting image:",
+        error.response?.data || error.message
+      );
+    }
+  };
+
   const onInputChange = (e) => {
     setUser((prev) => ({
       ...prev,
@@ -114,9 +135,16 @@ const UserSetting = () => {
               Upload
             </label>
 
-            <button className="btn bg-red-500 py-2 w-3/6 rounded-full font-semibold text-lg">
-              remove
-            </button>
+            <ModalCheckAgreement
+              titleText={"Are you sure you wnat to remove your image"}
+              btnText="remove"
+              ownSize={true}
+              func={handleDeleteImage}
+            >
+              <button className="btn bg-red-500 w-full py-2 w-full rounded-full font-semibold text-lg">
+                remove
+              </button>
+            </ModalCheckAgreement>
           </div>
         </div>
         <div className="w-2/3">

@@ -10,13 +10,17 @@ const ModalCheckAgreement = ({
   funcParam2,
   titleText,
   btnText = "Confirm",
+  ownSize = false,
 }) => {
   const { open, openModal, closeModal } = useModal();
 
   return (
     <Dialog.Root open={open} onOpenChange={closeModal}>
       <Dialog.Trigger asChild>
-        <span onClick={openModal} className="cursor-pointer">
+        <span
+          onClick={openModal}
+          className={`cursor-pointer ` + `${ownSize && "w-3/6"}`}
+        >
           {children}
         </span>
       </Dialog.Trigger>

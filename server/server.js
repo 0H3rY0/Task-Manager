@@ -192,4 +192,33 @@ app.get("/user", (req, res) => {
   });
 });
 
+app.delete("/user/delete/image", (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ error: "User ID is required." });
+  }
+
+  const sql = "UPDATE user SET imageUrl = NULL WHERE id = ?";
+
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: "An error occurred while deleting the image." });
+    }
+
+    if (result.affectedRows > 0) {
+      return res
+        .status(200)
+        .json({ message: "Image successfully removed from user." });
+    } else {
+      return res
+        .status(404)
+        .json({ error: "User not found or no image to delete." });
+    }
+  });
+});
+
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));
