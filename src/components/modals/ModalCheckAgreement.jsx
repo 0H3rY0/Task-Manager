@@ -3,6 +3,7 @@ import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import PropTypes from "prop-types";
 import { useNavbarActive } from "../../store/useNavbarActive";
+import useModal from "../../hooks/useModal";
 
 const ModalCheckAgreement = ({
   children,
@@ -12,21 +13,12 @@ const ModalCheckAgreement = ({
   titleText,
   btnText = "Confirm",
 }) => {
-  const [open, setOpen] = useState(false);
-  const { closeNavbar } = useNavbarActive();
-
-  const handleOpenModal = () => {
-    closeNavbar(false);
-
-    setTimeout(() => {
-      setOpen(true);
-    }, 100);
-  };
+  const { open, openModal, closeModal } = useModal();
 
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root open={open} onOpenChange={closeModal}>
       <Dialog.Trigger asChild>
-        <span onClick={handleOpenModal} className="cursor-pointer">
+        <span onClick={openModal} className="cursor-pointer">
           {children}
         </span>
       </Dialog.Trigger>

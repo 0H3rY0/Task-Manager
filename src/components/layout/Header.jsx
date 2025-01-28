@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 import profile from "../../assets/images/profile.jpg";
 import { MdOutlineLogout } from "react-icons/md";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
-import * as Dialog from "@radix-ui/react-dialog";
 import { useAuthStore } from "../../store/useAuthStore";
 import { IoEyeOutline } from "react-icons/io5";
 import { useNavbarActive } from "../../store/useNavbarActive";

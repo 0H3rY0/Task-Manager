@@ -4,18 +4,14 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 import { NavLink } from "react-router";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
-import ModalCheckAgreement from "../modals/ModalCheckAgreement";
-import { useAuthStore } from "../../store/useAuthStore";
 import { FaRegUser } from "react-icons/fa";
 
 const Navbar = ({ navbarActive }) => {
-  const { isAuthenticated, setAccessFull } = useAuthStore();
-
   return (
     <div
       className={`w-full bg-white top-18 md:w-[300px] left-0 md:h-full shadow-xl slide-right px-10 py-6 pb-10 transition-all duration-300 ease-in-out ${
         navbarActive ? "fixed md:top-0 top-18" : "hidden"
-      } z-50`} // Zwiększony z-index, aby navbar był na pierwszym planie
+      } z-50`}
     >
       <div className="text-slate-800 flex items-center gap-1 mb-10">
         <SiTask size={70} />

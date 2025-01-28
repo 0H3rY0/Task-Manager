@@ -118,11 +118,9 @@ const Project = () => {
                 func={deleteProject}
                 funcParam={id}
               >
-                <Dialog.Trigger>
-                  <div className="btn-red flex items-center gap-2">
-                    <RiDeleteBack2Fill size={20} /> Delete Project
-                  </div>
-                </Dialog.Trigger>
+                <div className="btn-red flex items-center gap-2">
+                  <RiDeleteBack2Fill size={20} /> Delete Project
+                </div>
               </ModalCheckAgreement>
             </div>
           </div>
@@ -153,12 +151,10 @@ const Project = () => {
                   error={projectUpdateError}
                   setError={setProjectUpdateError}
                 >
-                  <Dialog.Trigger>
-                    <MdDriveFileRenameOutline
-                      size={30}
-                      className="text-slate-800 inline ml-2"
-                    />
-                  </Dialog.Trigger>
+                  <MdDriveFileRenameOutline
+                    size={30}
+                    className="text-slate-800 inline ml-2"
+                  />
                 </ModalModifyProject>
               </h3>
               <h4 className="text-lg font-bold text-slate-600 tracking-wide leading-relaxed">
@@ -173,12 +169,10 @@ const Project = () => {
                     error={projectUpdateError}
                     setError={setProjectUpdateError}
                   >
-                    <Dialog.Trigger>
-                      <MdDriveFileRenameOutline
-                        size={24}
-                        className="text-slate-800 inline ml-2"
-                      />
-                    </Dialog.Trigger>
+                    <MdDriveFileRenameOutline
+                      size={24}
+                      className="text-slate-800 inline ml-2"
+                    />
                   </ModalModifyProject>
                 </p>
                 <p className="flex items-center justify-start gap-2 whitespace-nowrap">
@@ -192,12 +186,10 @@ const Project = () => {
                     error={projectUpdateError}
                     setError={setProjectUpdateError}
                   >
-                    <Dialog.Trigger>
-                      <MdDriveFileRenameOutline
-                        size={24}
-                        className="text-slate-800 inline ml-2"
-                      />
-                    </Dialog.Trigger>
+                    <MdDriveFileRenameOutline
+                      size={24}
+                      className="text-slate-800 inline ml-2"
+                    />
                   </ModalModifyProject>
                 </p>
               </h4>
@@ -213,12 +205,10 @@ const Project = () => {
                   error={projectUpdateError}
                   setError={setProjectUpdateError}
                 >
-                  <Dialog.Trigger>
-                    <MdDriveFileRenameOutline
-                      size={24}
-                      className="text-slate-800 inline ml-2"
-                    />
-                  </Dialog.Trigger>
+                  <MdDriveFileRenameOutline
+                    size={24}
+                    className="text-slate-800 inline ml-2"
+                  />
                 </ModalModifyProject>
               </h3>
               <p className="font-semibold text-md text-gray-600 tracking-wide leading-relaxed">

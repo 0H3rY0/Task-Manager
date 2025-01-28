@@ -8,11 +8,9 @@ import ErrorPage from "../../pages/ErrorPage";
 import Upcoming from "../../pages/Upcoming";
 import AllProjects from "../../pages/AllProjects";
 import UserSetting from "../../pages/UserSetting";
-import { useAuthStore } from "../../store/useAuthStore";
 import { useNavbarActive } from "../../store/useNavbarActive";
 
 const Layout = () => {
-  const { isAuthenticated } = useAuthStore();
   const { isNavbarActive } = useNavbarActive();
 
   return (
@@ -27,9 +25,7 @@ const Layout = () => {
       }
     >
       <Routes>
-        {isAuthenticated ? (
-          <Route path="/user-settings" element={<UserSetting />} />
-        ) : null}
+        <Route path="/user-settings" element={<UserSetting />} />
         <Route path="/" element={<Test />} />
         <Route path="/upcoming" element={<Upcoming />} />
         <Route path="/project/all" element={<AllProjects />} />
