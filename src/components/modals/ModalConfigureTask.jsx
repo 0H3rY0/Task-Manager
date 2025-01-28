@@ -9,6 +9,7 @@ const ModalConfigureTask = ({
   onInputChange,
   isDialogOpen,
   setIsDialogOpen,
+  openModal,
   errors = {
     deadline: "",
     importance: "",
@@ -16,7 +17,11 @@ const ModalConfigureTask = ({
 }) => {
   return (
     <Dialog.Root open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-      {children}
+      <Dialog.Trigger asChild>
+        <span onClick={openModal} className="cursor-pointer">
+          {children}
+        </span>
+      </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay">
           <Dialog.Content className="modal-content">

@@ -1,8 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import PropTypes from "prop-types";
-import { useNavbarActive } from "../../store/useNavbarActive";
 import useModal from "../../hooks/useModal";
 
 const ModalCheckAgreement = ({
@@ -40,7 +38,7 @@ const ModalCheckAgreement = ({
               <button
                 onClick={() => {
                   func(funcParam, funcParam2);
-                  setOpen(false);
+                  closeModal(false);
                 }}
                 className="btn-red"
               >
