@@ -1,23 +1,33 @@
 import { FaRegUser } from "react-icons/fa";
 import Image from "../components/ui/Image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useFileUpload } from "../hooks/useFileUpload";
 import axios from "axios";
 import { useAuthStore } from "../store/useAuthStore";
 import { jwtDecode } from "jwt-decode";
+import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
 
 const UserSetting = () => {
+  const userInitialState = {
+    id: "",
+    username: "",
+    email: "",
+  };
   const { setUserImage } = useAuthStore();
   const [imageUrl, setImageUrl] = useState("");
   const { handleFileUpload } = useFileUpload();
   const [token] = useState(() => {
     const token = localStorage.getItem("authToken");
     if (token) {
+      console.log(jwtDecode(token));
       return jwtDecode(token);
     } else {
       return null;
     }
   });
+  const [user, setUser] = useState(userInitialState);
+  const [nameUpdateMode, setNameUpdateMode] = useState(false);
+  const nameRef = useRef(null);
 
   useEffect(() => {
     const getUser = async () => {
@@ -26,6 +36,7 @@ const UserSetting = () => {
           params: { id: token.id },
         });
         setImageUrl(response.data.user.imageUrl);
+        setUser(response.data.user);
       } catch (error) {
         console.log(error);
       }
@@ -48,6 +59,25 @@ const UserSetting = () => {
         console.log("error during saving image into database: " + error);
       }
     });
+  };
+
+  const onInputChange = (e) => {
+    setUser((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleNameUpdate = async () => {
+    try {
+      await axios.put("http://localhost:3000/user/update", {
+        id: user.id,
+        username: user.username,
+      });
+      setNameUpdateMode(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (!token) {
@@ -86,10 +116,35 @@ const UserSetting = () => {
             Name
           </label>
           <p className="w-full flex justify-between items-center mt-5 mb-14">
-            <span>John Doe</span>{" "}
-            <span className="text-green-500 cursor-pointer underline">
-              Edit Name
-            </span>
+            <input
+              name="username"
+              defaultValue={user.username}
+              className="outline-none cursor-pointer"
+              ref={nameRef}
+              readOnly={!nameUpdateMode}
+              onChange={onInputChange}
+            />
+            {!nameUpdateMode ? (
+              <span
+                className="text-green-500 cursor-pointer underline"
+                onClick={() => {
+                  setNameUpdateMode((prev) => !prev);
+                  nameRef.current.focus();
+                }}
+              >
+                Edit Name
+              </span>
+            ) : (
+              <ModalCheckAgreement
+                titleText={"Are you sure you want to save this name"}
+                btnText="Update"
+                func={handleNameUpdate}
+              >
+                <span className="text-green-500 cursor-pointer underline">
+                  Save
+                </span>
+              </ModalCheckAgreement>
+            )}
           </p>
 
           <label
