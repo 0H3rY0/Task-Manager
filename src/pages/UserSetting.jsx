@@ -6,7 +6,7 @@ import axios from "axios";
 import { useAuthStore } from "../store/useAuthStore";
 import { jwtDecode } from "jwt-decode";
 import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
-import * as Dialog from "@radix-ui/react-dialog";
+import ModalConfirmPassowrd from "../components/modals/ModalConfirmPassowrd";
 
 const UserSetting = () => {
   const userInitialState = {
@@ -207,9 +207,11 @@ const UserSetting = () => {
           </label>
           <p className="w-full flex justify-between items-center mt-5 mb-14">
             <span>password</span>
-            <span className="text-green-500 cursor-pointer underline">
-              Change
-            </span>
+            <ModalConfirmPassowrd id={user.id}>
+              <span className="text-green-500 cursor-pointer underline">
+                Change
+              </span>
+            </ModalConfirmPassowrd>
           </p>
 
           <label

@@ -221,4 +221,57 @@ app.delete("/user/delete/image", (req, res) => {
   });
 });
 
+app.post("/user/change-password", async (req, res) => {
+  const { currentPassword, newPassword, id } = req.body;
+
+  if (!currentPassword || !newPassword || !id) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  try {
+    // Pobierz użytkownika z bazy danych
+    const sql = "SELECT password FROM user WHERE id = ?";
+    const [user] = await new Promise((resolve, reject) => {
+      db.query(sql, [id], (err, result) => {
+        if (err) return reject(err);
+        resolve(result);
+      });
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const hashedPassword = user.password;
+
+    // Porównaj obecne hasło
+    const isPasswordValid = await bcrypt.compare(
+      currentPassword,
+      hashedPassword
+    );
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid current password" });
+    }
+
+    // Haszuj nowe hasło
+    const saltRounds = 10;
+    const newHashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+    // Zapisz nowe hasło w bazie danych
+    const updateSql = "UPDATE user SET password = ? WHERE id = ?";
+    await new Promise((resolve, reject) => {
+      db.query(updateSql, [newHashedPassword, id], (err, result) => {
+        if (err) return reject(err);
+        resolve(result);
+      });
+    });
+
+    res.status(200).json({ message: "Password changed successfully" });
+  } catch (error) {
+    console.error("Error changing password:", error.message);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));

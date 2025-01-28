@@ -106,9 +106,4 @@ function Header() {
   );
 }
 
-Header.propTypes = {
-  navbarActive: PropTypes.bool.isRequired, // Prop is required, must be boolean
-  setNavbarActive: PropTypes.func.isRequired, // Prop is required, must be a function
-};
-
 export default Header;
