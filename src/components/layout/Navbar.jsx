@@ -5,16 +5,11 @@ import { NavLink } from "react-router";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
-import { MdOutlineLogout } from "react-icons/md";
-import * as Dialog from "@radix-ui/react-dialog";
 import { useAuthStore } from "../../store/useAuthStore";
 import { FaRegUser } from "react-icons/fa";
-import { IoEyeOutline } from "react-icons/io5";
-import { useNavbarActive } from "../../store/useNavbarActive";
 
 const Navbar = ({ navbarActive }) => {
-  const { logout, isAuthenticated, setAccessFull } = useAuthStore();
-  const { setIsNavbarActive } = useNavbarActive();
+  const { isAuthenticated, setAccessFull } = useAuthStore();
 
   return (
     <div
@@ -66,56 +61,15 @@ const Navbar = ({ navbarActive }) => {
         </p>
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold">
           <FaRegUser className="text-green-500" size={32} />
-          {isAuthenticated ? (
-            <NavLink
-              to="/user-settings"
-              className={({ isActive }) => (isActive ? "text-red-500" : "")}
-            >
-              <span>User setting</span>
-            </NavLink>
-          ) : (
-            <ModalCheckAgreement
-              titleText={"Sorry, You are not logged in"}
-              btnText="Login"
-              func={setAccessFull}
-            >
-              <Dialog.Trigger>
-                <span>User setting</span>
-              </Dialog.Trigger>
-            </ModalCheckAgreement>
-          )}
+
+          <NavLink
+            to="/user-settings"
+            className={({ isActive }) => (isActive ? "text-red-500" : "")}
+          >
+            <span>User setting</span>
+          </NavLink>
         </p>
-        <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold mt-5">
-          {isAuthenticated ? (
-            <>
-              <MdOutlineLogout className="text-red-500" size={32} />
-              <label>
-                <ModalCheckAgreement
-                  titleText={"Are you sure you want to logout"}
-                  btnText={"Logout"}
-                  func={logout}
-                >
-                  {(open) => (
-                    <Dialog.Trigger>
-                      <span className={`${open ? "text-red-500" : ""}`}>
-                        Logout
-                      </span>
-                    </Dialog.Trigger>
-                  )}
-                </ModalCheckAgreement>
-              </label>
-            </>
-          ) : (
-            <>
-              <IoEyeOutline className="text-red-500" size={32} />
-              <label>
-                <span onClick={setAccessFull} className="cursor-pointer">
-                  Login
-                </span>
-              </label>
-            </>
-          )}
-        </p>
+        <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold mt-5"></p>
       </div>
     </div>
   );

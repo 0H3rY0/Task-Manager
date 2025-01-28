@@ -101,11 +101,12 @@ const AddProjectForm = () => {
         titleText={"Are you sure you want to add this proejct"}
         btnText={"Confirm"}
       >
-        <Dialog.Trigger>
-          <div className="btn-red border-8 border-red-500 mt-10" type="submit">
-            Add Project
-          </div>
-        </Dialog.Trigger>
+        <div
+          className="btn-red border-8 border-red-500 text-center mt-10"
+          type="submit"
+        >
+          Add Project
+        </div>
       </ModalCheckAgreement>
     </form>
   );

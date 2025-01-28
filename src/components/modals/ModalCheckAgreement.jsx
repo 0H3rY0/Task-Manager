@@ -2,6 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import PropTypes from "prop-types";
+import { useNavbarActive } from "../../store/useNavbarActive";
 
 const ModalCheckAgreement = ({
   children,
@@ -12,17 +13,28 @@ const ModalCheckAgreement = ({
   btnText = "Confirm",
 }) => {
   const [open, setOpen] = useState(false);
+  const { closeNavbar } = useNavbarActive();
+
+  const handleOpenModal = () => {
+    closeNavbar(false);
+
+    setTimeout(() => {
+      setOpen(true);
+    }, 100);
+  };
 
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
-      {typeof children === "function" ? children(open) : children}
+      <Dialog.Trigger asChild>
+        <span onClick={handleOpenModal} className="cursor-pointer">
+          {children}
+        </span>
+      </Dialog.Trigger>
+
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay">
           <Dialog.Content className="modal-content">
-            <div
-              className="flex justify-between items-center text-2xl font-bold
-             "
-            >
+            <div className="flex justify-between items-center text-2xl font-bold">
               <Dialog.Title>Alert!</Dialog.Title>
               <Dialog.Close>
                 <MdClose size={32} />
@@ -55,7 +67,8 @@ ModalCheckAgreement.propTypes = {
   titleText: PropTypes.string,
   btnText: PropTypes.string,
   func: PropTypes.func, // Function to remove the task
-  index: PropTypes.number, // Index of the task to be deleted
+  funcParam: PropTypes.any, // Param for func
+  funcParam2: PropTypes.any, // Param for func
 };
 
 export default ModalCheckAgreement;

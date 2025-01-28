@@ -4,4 +4,5 @@ export const useNavbarActive = create((set) => ({
   isNavbarActive: false,
   setIsNavbarActive: () =>
     set((state) => ({ isNavbarActive: !state.isNavbarActive })),
+  closeNavbar: (value) => set({ isNavbarActive: value }),
 }));

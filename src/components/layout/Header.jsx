@@ -81,13 +81,11 @@ function Header() {
             btnText={"Logout"}
             func={logout}
           >
-            <Dialog.Trigger>
-              <MdOutlineLogout
-                size={35}
-                title="logout"
-                className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
-              />
-            </Dialog.Trigger>
+            <MdOutlineLogout
+              size={35}
+              title="logout"
+              className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
+            />
           </ModalCheckAgreement>
         ) : (
           <IoEyeOutline
