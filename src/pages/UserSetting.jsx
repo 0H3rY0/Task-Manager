@@ -1,12 +1,15 @@
 import { FaRegUser } from "react-icons/fa";
 import Image from "../components/ui/Image";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useFileUpload } from "../hooks/useFileUpload";
 import axios from "axios";
 import { useAuthStore } from "../store/useAuthStore";
 import { jwtDecode } from "jwt-decode";
-import ModalCheckAgreement from "../components/modals/ModalCheckAgreement";
-import ModalConfirmPassowrd from "../components/modals/ModalConfirmPassowrd";
+import EditName from "../components/ui/EditName";
+import UploadImageButton from "../components/ui/UploadImageButton";
+import EditEmail from "../components/ui/EditEmail";
+import EditPassword from "../components/ui/EditPassword";
+import RemoveImageButton from "../components/ui/RemoveImageButton";
 
 const UserSetting = () => {
   const userInitialState = {
@@ -27,9 +30,6 @@ const UserSetting = () => {
     }
   });
   const [user, setUser] = useState(userInitialState);
-  const [nameUpdateMode, setNameUpdateMode] = useState(false);
-  const [emailMessage, setEmailMessage] = useState(null);
-  const nameRef = useRef(null);
 
   useEffect(() => {
     const getUser = async () => {
@@ -63,45 +63,6 @@ const UserSetting = () => {
     });
   };
 
-  const handleDeleteImage = async () => {
-    try {
-      const response = await axios.delete(
-        "http://localhost:3000/user/delete/image",
-        {
-          data: {
-            id: user.id,
-          },
-        }
-      );
-      setImageUrl(null);
-      console.log(response.data);
-    } catch (error) {
-      console.error(
-        "Error deleting image:",
-        error.response?.data || error.message
-      );
-    }
-  };
-
-  const onInputChange = (e) => {
-    setUser((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleNameUpdate = async () => {
-    try {
-      await axios.put("http://localhost:3000/user/update", {
-        id: user.id,
-        username: user.username,
-      });
-      setNameUpdateMode(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   if (!token) {
     return (
       <p className="text-red-500">You need to log in to access this content.</p>
@@ -122,111 +83,14 @@ const UserSetting = () => {
             color="border-green-200"
           />
           <div className="flex gap-5 justify-around mt-5">
-            {/* tutaj jest button */}
-            <input
-              type="file"
-              id="upload"
-              className="hidden"
-              onChange={handleUpdateImageUrl}
-            />
-            <label
-              htmlFor="upload"
-              className="btn text-center bg-green-500 py-2 w-3/6 rounded-full font-semibold text-lg "
-            >
-              Upload
-            </label>
-
-            <ModalCheckAgreement
-              titleText={"Are you sure you wnat to remove your image"}
-              btnText="remove"
-              ownSize={true}
-              func={handleDeleteImage}
-            >
-              <button className="btn bg-red-500 w-full py-2 w-full rounded-full font-semibold text-lg">
-                remove
-              </button>
-            </ModalCheckAgreement>
+            <UploadImageButton handleUpdateImageUrl={handleUpdateImageUrl} />
+            <RemoveImageButton user={user} setImageUrl={setImageUrl} />
           </div>
         </div>
         <div className="md:w-2/3 w-full">
-          {/* <label
-            htmlFor="username"
-            className="font-semibold text-slate-800 text-lg"
-          >
-            Name
-          </label>
-          <p className="w-full flex justify-between items-center mt-5 mb-14">
-            <input
-              name="username"
-              defaultValue={user.username}
-              className="outline-none cursor-pointer"
-              ref={nameRef}
-              readOnly={!nameUpdateMode}
-              onChange={onInputChange}
-            />
-            {!nameUpdateMode ? (
-              <span
-                className="text-green-500 cursor-pointer underline"
-                onClick={() => {
-                  setNameUpdateMode((prev) => !prev);
-                  nameRef.current.focus();
-                }}
-              >
-                Edit Name
-              </span>
-            ) : (
-              <ModalCheckAgreement
-                titleText={"Are you sure you want to save this name"}
-                btnText="Update"
-                func={handleNameUpdate}
-              >
-                <span className="text-green-500 cursor-pointer underline">
-                  Save
-                </span>
-              </ModalCheckAgreement>
-            )}
-          </p> */}
-
-          <label
-            htmlFor="username"
-            className="font-semibold text-slate-800 text-lg"
-          >
-            E-mail
-          </label>
-          <p
-            className={
-              "w-full flex justify-between items-center mt-5 mb-14 " +
-              `${emailMessage && "mb-2"}`
-            }
-          >
-            <span>John@gmail.com</span>
-            <span
-              className="text-green-500 cursor-pointer underline"
-              onClick={() => setEmailMessage((prev) => !prev)}
-            >
-              Change
-            </span>
-          </p>
-          {emailMessage && (
-            <p className="errorText mb-12">
-              If you want change e-mail conntact with support
-            </p>
-          )}
-
-          <label
-            htmlFor="username"
-            className="font-semibold text-slate-800 text-lg"
-          >
-            Password
-          </label>
-          <p className="w-full flex justify-between items-center mt-5 mb-14">
-            <span>password</span>
-            <ModalConfirmPassowrd id={user.id}>
-              <span className="text-green-500 cursor-pointer underline">
-                Change
-              </span>
-            </ModalConfirmPassowrd>
-          </p>
+          <EditName user={user} setUser={setUser} />
+          <EditEmail />
+          <EditPassword user={user} />
 
           <label
             htmlFor="username"
