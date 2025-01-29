@@ -173,7 +173,7 @@ app.get("/user", (req, res) => {
     return res.status(400).json({ error: "User ID jest wymagane" });
   }
 
-  const sql = "SELECT * FROM user WHERE id = ?";
+  const sql = "SELECT id, username ,email ,imageUrl FROM user WHERE id = ?";
   db.query(sql, [id], (err, result) => {
     if (err) {
       console.error("Błąd podczas pobierania użytkownika:", err.message);

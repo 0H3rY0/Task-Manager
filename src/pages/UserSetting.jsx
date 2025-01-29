@@ -1,62 +1,36 @@
 import { FaRegUser } from "react-icons/fa";
 import Image from "../components/ui/Image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFileUpload } from "../hooks/useFileUpload";
 import axios from "axios";
-import { useAuthStore } from "../store/useAuthStore";
 import { jwtDecode } from "jwt-decode";
 import EditName from "../components/ui/EditName";
 import UploadImageButton from "../components/ui/UploadImageButton";
 import EditEmail from "../components/ui/EditEmail";
 import EditPassword from "../components/ui/EditPassword";
 import RemoveImageButton from "../components/ui/RemoveImageButton";
+import { useUserStore } from "../store/useUserStore";
 
 const UserSetting = () => {
-  const userInitialState = {
-    id: "",
-    username: "",
-    email: "",
-  };
-  const { setUserImage } = useAuthStore();
-  const [imageUrl, setImageUrl] = useState("");
+  const { user, setUserImage } = useUserStore();
   const { handleFileUpload } = useFileUpload();
   const [token] = useState(() => {
     const token = localStorage.getItem("authToken");
     if (token) {
-      console.log(jwtDecode(token));
       return jwtDecode(token);
     } else {
       return null;
     }
   });
-  const [user, setUser] = useState(userInitialState);
-
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/user", {
-          params: { id: token.id },
-        });
-        setImageUrl(response.data.user.imageUrl);
-        setUser(response.data.user);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    getUser();
-  }, []);
 
   const handleUpdateImageUrl = (e) => {
     handleFileUpload(e, async (newImageUrl) => {
       try {
-        const data = await axios.put("http://localhost:3000/user/update", {
+        await axios.put("http://localhost:3000/user/update", {
           id: token.id,
           imageUrl: newImageUrl,
         });
-        console.log(data);
         setUserImage(newImageUrl);
-        setImageUrl(newImageUrl);
       } catch (error) {
         console.log("error during saving image into database: " + error);
       }
@@ -78,17 +52,17 @@ const UserSetting = () => {
       <div className="flex md:flex-row flex-col gap-20">
         <div className="md:w-1/3 w-full">
           <Image
-            image={imageUrl}
+            image={user.imageUrl}
             updateFunction={handleUpdateImageUrl}
             color="border-green-200"
           />
           <div className="flex gap-5 justify-around mt-5">
             <UploadImageButton handleUpdateImageUrl={handleUpdateImageUrl} />
-            <RemoveImageButton user={user} setImageUrl={setImageUrl} />
+            <RemoveImageButton user={user} setImageUrl={setUserImage} />
           </div>
         </div>
         <div className="md:w-2/3 w-full">
-          <EditName user={user} setUser={setUser} />
+          <EditName user={user} />
           <EditEmail />
           <EditPassword user={user} />
 

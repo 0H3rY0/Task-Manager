@@ -1,17 +1,12 @@
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import axios from "axios";
 import { useRef, useState } from "react";
+import { useUserStore } from "../../store/useUserStore";
 
-const EditName = ({ user, setUser }) => {
+const EditName = ({ user }) => {
   const [nameUpdateMode, setNameUpdateMode] = useState(false);
   const nameRef = useRef(null);
-
-  const onInputChange = (e) => {
-    setUser((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const { setUserName } = useUserStore();
 
   const handleNameUpdate = async () => {
     try {
@@ -40,7 +35,7 @@ const EditName = ({ user, setUser }) => {
           className="outline-none cursor-pointer"
           ref={nameRef}
           readOnly={!nameUpdateMode}
-          onChange={onInputChange}
+          onChange={(e) => setUserName(e.target.value)}
         />
         {!nameUpdateMode ? (
           <span
