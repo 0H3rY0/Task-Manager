@@ -113,8 +113,8 @@ const UserSetting = () => {
         Upcoming
         <FaRegUser className="text-green-500" size={30} />
       </h2>
-      <div className="flex gap-20">
-        <div className="w-1/3">
+      <div className="flex md:flex-row flex-col gap-20">
+        <div className="md:w-1/3 w-full">
           <Image
             image={imageUrl}
             updateFunction={handleUpdateImageUrl}
@@ -147,7 +147,7 @@ const UserSetting = () => {
             </ModalCheckAgreement>
           </div>
         </div>
-        <div className="w-2/3">
+        <div className="md:w-2/3 w-full">
           <label
             htmlFor="username"
             className="font-semibold text-slate-800 text-lg"

@@ -4,15 +4,12 @@ import { IoSearchOutline } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 import { FaRegBell } from "react-icons/fa";
 import { NavLink } from "react-router";
-import PropTypes from "prop-types";
 import profile from "../../assets/images/profile.jpg";
 import { MdOutlineLogout } from "react-icons/md";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { useAuthStore } from "../../store/useAuthStore";
 import { IoEyeOutline } from "react-icons/io5";
 import { useNavbarActive } from "../../store/useNavbarActive";
-
-// import profile from "assets/images/profile.jpg";
 
 function Header() {
   const { isAuthenticated, logout, setAccessFull } = useAuthStore();
