@@ -1,54 +1,57 @@
 import { create } from "zustand";
 import { jwtDecode } from "jwt-decode";
+import { useUserStore } from "./useUserStore"; // Import nowego stora
 
 export const useAuthStore = create((set) => ({
   isAuthenticated: false,
   access: "limited",
-  user: null,
 
   setAuthenticated: (token) => {
     try {
       const decoded = jwtDecode(token);
       localStorage.setItem("authToken", token);
-      set({
-        isAuthenticated: true,
-        access: "full",
-        user: decoded,
-      });
+      set({ isAuthenticated: true, access: "full" });
+
+      // Pobierz dane użytkownika do userStore
+      useUserStore.getState().fetchUser(decoded.id);
     } catch (error) {
       console.error("Error decoding token:", error);
-      set({ isAuthenticated: false, access: "limited", user: null });
+      set({ isAuthenticated: false, access: "limited" });
     }
   },
 
   logout: () => {
     localStorage.removeItem("authToken");
-    set({ isAuthenticated: false, access: "full", user: null });
+    set({ isAuthenticated: false, access: "limited" });
+    useUserStore.getState().resetUser(); // Wyczyść dane użytkownika
   },
 
-  initializeAuth: () => {
+  initializeAuth: async () => {
     const token = localStorage.getItem("authToken");
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        const currentTime = Math.floor(Date.now() / 1000);
+    if (!token) {
+      set({ isAuthenticated: false, access: "limited" });
+      return;
+    }
 
-        if (decoded.exp && decoded.exp < currentTime) {
-          console.warn("Token has expired.");
-          localStorage.removeItem("authToken");
-          set({ isAuthenticated: false, access: "limited", user: null });
-        } else {
-          set({
-            isAuthenticated: true,
-            access: "full",
-            user: decoded,
-          });
-        }
-      } catch (error) {
-        console.error("Invalid token:", error);
+    try {
+      const decoded = jwtDecode(token);
+      const currentTime = Math.floor(Date.now() / 1000);
+
+      if (decoded.exp && decoded.exp < currentTime) {
+        console.warn("Token has expired.");
         localStorage.removeItem("authToken");
-        set({ isAuthenticated: false, access: "limited", user: null });
+        set({ isAuthenticated: false, access: "limited" });
+        return;
       }
+
+      set({ isAuthenticated: true, access: "full" });
+
+      // Pobierz dane użytkownika
+      useUserStore.getState().fetchUser(decoded.id);
+    } catch (error) {
+      console.error("Błąd podczas autoryzacji:", error);
+      localStorage.removeItem("authToken");
+      set({ isAuthenticated: false, access: "limited" });
     }
   },
 

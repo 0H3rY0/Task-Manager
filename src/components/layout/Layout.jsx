@@ -8,22 +8,25 @@ import ErrorPage from "../../pages/ErrorPage";
 import Upcoming from "../../pages/Upcoming";
 import AllProjects from "../../pages/AllProjects";
 import UserSetting from "../../pages/UserSetting";
+import { useNavbarActive } from "../../store/useNavbarActive";
 
-const Layout = ({ navbarActive }) => {
+const Layout = () => {
+  const { isNavbarActive } = useNavbarActive();
+
   return (
     <div
       className={
         ` flex items-center justify-center  ` +
         `${
-          navbarActive
+          isNavbarActive
             ? "md:ml-[300px] mt-[300px]  md:mt-0 headerAnimation"
             : "w-full headerAnimation"
         }`
       }
     >
       <Routes>
-        <Route path="/" element={<Test />} />
         <Route path="/user-settings" element={<UserSetting />} />
+        <Route path="/" element={<Test />} />
         <Route path="/upcoming" element={<Upcoming />} />
         <Route path="/project/all" element={<AllProjects />} />
         <Route path="/project/create" element={<CreateProject />} />

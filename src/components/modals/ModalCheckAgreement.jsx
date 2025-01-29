@@ -1,7 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { useState } from "react";
 import { MdClose } from "react-icons/md";
 import PropTypes from "prop-types";
+import useModal from "../../hooks/useModal";
 
 const ModalCheckAgreement = ({
   children,
@@ -10,19 +10,25 @@ const ModalCheckAgreement = ({
   funcParam2,
   titleText,
   btnText = "Confirm",
+  ownSize = false,
 }) => {
-  const [open, setOpen] = useState(false);
+  const { open, openModal, closeModal } = useModal();
 
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
-      {typeof children === "function" ? children(open) : children}
+    <Dialog.Root open={open} onOpenChange={closeModal}>
+      <Dialog.Trigger asChild>
+        <span
+          onClick={openModal}
+          className={`cursor-pointer ` + `${ownSize && "w-3/6"}`}
+        >
+          {children}
+        </span>
+      </Dialog.Trigger>
+
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay">
           <Dialog.Content className="modal-content">
-            <div
-              className="flex justify-between items-center text-2xl font-bold
-             "
-            >
+            <div className="flex justify-between items-center text-2xl font-bold">
               <Dialog.Title>Alert!</Dialog.Title>
               <Dialog.Close>
                 <MdClose size={32} />
@@ -36,7 +42,7 @@ const ModalCheckAgreement = ({
               <button
                 onClick={() => {
                   func(funcParam, funcParam2);
-                  setOpen(false);
+                  closeModal(false);
                 }}
                 className="btn-red"
               >
@@ -55,7 +61,8 @@ ModalCheckAgreement.propTypes = {
   titleText: PropTypes.string,
   btnText: PropTypes.string,
   func: PropTypes.func, // Function to remove the task
-  index: PropTypes.number, // Index of the task to be deleted
+  funcParam: PropTypes.any, // Param for func
+  funcParam2: PropTypes.any, // Param for func
 };
 
 export default ModalCheckAgreement;

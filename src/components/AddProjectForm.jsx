@@ -1,4 +1,3 @@
-import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ProjectService from "../service/api/projects";
@@ -101,11 +100,12 @@ const AddProjectForm = () => {
         titleText={"Are you sure you want to add this proejct"}
         btnText={"Confirm"}
       >
-        <Dialog.Trigger>
-          <div className="btn-red border-8 border-red-500 mt-10" type="submit">
-            Add Project
-          </div>
-        </Dialog.Trigger>
+        <div
+          className="btn-red border-8 border-red-500 text-center mt-10"
+          type="submit"
+        >
+          Add Project
+        </div>
       </ModalCheckAgreement>
     </form>
   );

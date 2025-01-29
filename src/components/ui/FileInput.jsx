@@ -3,7 +3,7 @@ import { useRef } from "react";
 const FileInput = ({
   name,
   description,
-  onClick = "",
+  onClick = null,
   onChange,
   type = "text",
   errors = "",
@@ -26,14 +26,14 @@ const FileInput = ({
       <input
         name={name}
         id={name}
-        onClick={onClick}
+        onClick={onClick || null}
         onChange={onChange}
         ref={type === "file" ? fileInputRef : null}
         type={type}
         className={`classicInput ${errors ? "mb-0" : "mb-3"} ${
           type === "file" && "hidden"
         }`}
-        placeholder="Write a Description"
+        placeholder="You can type here"
         defaultValue={defaultValue}
       />
       {errors && (

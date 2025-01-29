@@ -14,6 +14,7 @@ import { useFileUpload } from "../hooks/useFileUpload";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import ModalModifyProject from "../components/modals/ModalModifyProject";
 import { projectSchema } from "../utils/projectSchema";
+import Image from "../components/ui/Image";
 
 const Project = () => {
   const { id } = useParams();
@@ -117,11 +118,9 @@ const Project = () => {
                 func={deleteProject}
                 funcParam={id}
               >
-                <Dialog.Trigger>
-                  <div className="btn-red flex items-center gap-2">
-                    <RiDeleteBack2Fill size={20} /> Delete Project
-                  </div>
-                </Dialog.Trigger>
+                <div className="btn-red flex items-center gap-2">
+                  <RiDeleteBack2Fill size={20} /> Delete Project
+                </div>
               </ModalCheckAgreement>
             </div>
           </div>
@@ -130,34 +129,10 @@ const Project = () => {
           <div className="flex w-full gap-10 md:flex-row flex-col">
             {/* image, title and Pioreiety container */}
             <div className="w-5/5 md:w-2/5 flex flex-col items-start gap-3">
-              <div
-                className="relative min-h-[250px] w-full p-4 border-2 rounded-lg 
-  border-orange-200 flex items-center justify-center group bg-white z-0"
-              >
-                {project.ImageUrl ? (
-                  <img
-                    src={project.ImageUrl}
-                    alt=""
-                    className="object-cover w-full h-full rounded-lg"
-                  />
-                ) : (
-                  <SiTask size={150} className="text-orange-500" />
-                )}
-                <div
-                  className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center 
-    opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
-                >
-                  <span className="text-white text-lg font-semibold cursor-pointer">
-                    <input
-                      type="file"
-                      id="fileInput"
-                      className="hidden"
-                      onChange={(e) => handleUpdateProjectImage(e)}
-                    />
-                    <label htmlFor="fileInput">Change image</label>
-                  </span>
-                </div>
-              </div>
+              <Image
+                image={project.ImageUrl}
+                updateFunction={handleUpdateProjectImage}
+              />
               {UploadImageError && (
                 <p
                   className={`text-md font-normal text-red-400 ml-1 mb-3 ${animationClass}`}
@@ -176,12 +151,10 @@ const Project = () => {
                   error={projectUpdateError}
                   setError={setProjectUpdateError}
                 >
-                  <Dialog.Trigger>
-                    <MdDriveFileRenameOutline
-                      size={30}
-                      className="text-slate-800 inline ml-2"
-                    />
-                  </Dialog.Trigger>
+                  <MdDriveFileRenameOutline
+                    size={30}
+                    className="text-slate-800 inline ml-2"
+                  />
                 </ModalModifyProject>
               </h3>
               <h4 className="text-lg font-bold text-slate-600 tracking-wide leading-relaxed">
@@ -196,12 +169,10 @@ const Project = () => {
                     error={projectUpdateError}
                     setError={setProjectUpdateError}
                   >
-                    <Dialog.Trigger>
-                      <MdDriveFileRenameOutline
-                        size={24}
-                        className="text-slate-800 inline ml-2"
-                      />
-                    </Dialog.Trigger>
+                    <MdDriveFileRenameOutline
+                      size={24}
+                      className="text-slate-800 inline ml-2"
+                    />
                   </ModalModifyProject>
                 </p>
                 <p className="flex items-center justify-start gap-2 whitespace-nowrap">
@@ -215,12 +186,10 @@ const Project = () => {
                     error={projectUpdateError}
                     setError={setProjectUpdateError}
                   >
-                    <Dialog.Trigger>
-                      <MdDriveFileRenameOutline
-                        size={24}
-                        className="text-slate-800 inline ml-2"
-                      />
-                    </Dialog.Trigger>
+                    <MdDriveFileRenameOutline
+                      size={24}
+                      className="text-slate-800 inline ml-2"
+                    />
                   </ModalModifyProject>
                 </p>
               </h4>
@@ -236,12 +205,10 @@ const Project = () => {
                   error={projectUpdateError}
                   setError={setProjectUpdateError}
                 >
-                  <Dialog.Trigger>
-                    <MdDriveFileRenameOutline
-                      size={24}
-                      className="text-slate-800 inline ml-2"
-                    />
-                  </Dialog.Trigger>
+                  <MdDriveFileRenameOutline
+                    size={24}
+                    className="text-slate-800 inline ml-2"
+                  />
                 </ModalModifyProject>
               </h3>
               <p className="font-semibold text-md text-gray-600 tracking-wide leading-relaxed">

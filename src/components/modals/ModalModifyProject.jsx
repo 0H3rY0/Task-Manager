@@ -1,6 +1,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 import { MdClose } from "react-icons/md";
+import useModal from "../../hooks/useModal";
 
 const ModalModifyProject = ({
   title,
@@ -11,17 +12,17 @@ const ModalModifyProject = ({
   error = false,
   setError,
 }) => {
-  const [open, setOpen] = useState(false);
+  const { open, openModal, closeModal } = useModal();
   const [newInputValue, setNewInputValue] = useState(defaultValue);
   const [letterCounter, setLetterCounter] = useState(defaultValue.length);
 
   const updateProject = async () => {
     await func(name, newInputValue, () => {
       if (!error) {
-        setOpen(false);
+        closeModal(false);
       } else {
         setError(false);
-        setOpen(false);
+        closeModal(false);
       }
     });
   };
@@ -35,13 +36,17 @@ const ModalModifyProject = ({
     <Dialog.Root
       open={open}
       onOpenChange={(isOpen) => {
-        setOpen(isOpen);
+        closeModal(isOpen);
         if (!isOpen) {
           setError(false);
         }
       }}
     >
-      {children}
+      <Dialog.Trigger asChild>
+        <span onClick={openModal} className="cursor-pointer">
+          {children}
+        </span>
+      </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay">
           <Dialog.Content className="modal-content flex flex-col gap-2">

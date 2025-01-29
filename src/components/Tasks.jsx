@@ -6,8 +6,8 @@ import ProjectService from "../service/api/projects";
 import { v4 as uuidv4 } from "uuid";
 import TasksList from "./ui/TasksList";
 import ModalConfigureTask from "./modals/ModalConfigureTask";
-import * as Dialog from "@radix-ui/react-dialog";
 import { taskSchema } from "../utils/taskSchema";
+import useModal from "../hooks/useModal";
 
 const Tasks = ({ id, updateFlag }) => {
   const initialTaskState = {
@@ -17,7 +17,9 @@ const Tasks = ({ id, updateFlag }) => {
     importance: "Low",
   };
   const [task, setTask] = useState(initialTaskState);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  // const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { open, openModal, closeModal } = useModal();
+
   const [projectDeadline, setProjectDeadline] = useState("");
   const [errors, setErrors] = useState({});
   const [modifyTaskErrors, setModifyTaskErrors] = useState({});
@@ -104,7 +106,7 @@ const Tasks = ({ id, updateFlag }) => {
       setTasks((prev) => [...prev, newTask]);
       setTask(initialTaskState);
       toast("Success! Your task has been added");
-      setIsDialogOpen(false);
+      closeModal(false);
       setErrors({});
     } catch (error) {
       const newError = {};
@@ -167,7 +169,7 @@ const Tasks = ({ id, updateFlag }) => {
 
   const handleEnterPress = (event) => {
     if (event.key === "Enter" && task.content.trim()) {
-      setIsDialogOpen(true);
+      openModal(true);
     }
   };
 
@@ -184,17 +186,16 @@ const Tasks = ({ id, updateFlag }) => {
       </h2>
       <div className="flex gap-3 items-center">
         <ModalConfigureTask
-          isDialogOpen={isDialogOpen}
-          setIsDialogOpen={setIsDialogOpen}
+          isDialogOpen={open}
+          setIsDialogOpen={closeModal}
+          openModal={openModal}
           addTask={addTask}
           task={task}
           onInputChange={onInputChange}
           errors={errors}
         >
           {task.content.trim() ? (
-            <Dialog.Trigger>
-              <IoMdAdd size={32} className="text-red-600" />
-            </Dialog.Trigger>
+            <IoMdAdd size={32} className="text-red-600" />
           ) : (
             <IoMdAdd
               size={32}

@@ -4,6 +4,7 @@ import { MdClose } from "react-icons/md";
 import PropTypes from "prop-types";
 import FileInput from "../ui/FileInput";
 import FileSelect from "../ui/FileSelect";
+import useModal from "../../hooks/useModal";
 
 const ModalModifyTask = ({
   children,
@@ -17,7 +18,7 @@ const ModalModifyTask = ({
   },
 }) => {
   const [newTask, setNewTask] = useState(task);
-  const [isOpen, setIsOpen] = useState(false);
+  const { open, openModal, closeModal } = useModal();
 
   // Aktualizacja newTask, jeśli task zostanie zaktualizowany w rodzicu
   useEffect(() => {
@@ -32,8 +33,12 @@ const ModalModifyTask = ({
   };
 
   return (
-    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
-      {children}
+    <Dialog.Root open={open} onOpenChange={closeModal}>
+      <Dialog.Trigger asChild>
+        <span onClick={openModal} className="cursor-pointer">
+          {children}
+        </span>
+      </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="modal-overlay">
           <Dialog.Content className="modal-content">
@@ -73,7 +78,7 @@ const ModalModifyTask = ({
               <div className="flex justify-end items-center">
                 <button
                   onClick={() => {
-                    modifyTask(taskId, newTask, setIsOpen);
+                    modifyTask(taskId, newTask, closeModal);
                   }}
                   className="btn-red "
                 >

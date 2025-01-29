@@ -118,4 +118,164 @@ app.post("/register", async (req, res) => {
   }
 });
 
+app.put("/user/update", (req, res) => {
+  const { id, username, email, password, imageUrl } = req.body;
+
+  // Walidacja wymaganych danych
+  if (!id) {
+    return res.status(400).json({ error: "User ID jest wymagane" });
+  }
+
+  // Tworzymy obiekt pól do aktualizacji
+  const updates = {};
+  if (username) updates.username = username;
+  if (email) updates.email = email;
+  if (password) updates.password = password;
+  if (imageUrl) updates.imageUrl = imageUrl;
+  ["receiveUpdatesEmails", "receiveProgressEmails"].forEach((key) => {
+    if (req.body[key] !== undefined) updates[key] = req.body[key];
+  });
+
+  // Jeśli nie ma żadnych pól do aktualizacji, zwracamy błąd
+  if (Object.keys(updates).length === 0) {
+    return res.status(400).json({ error: "Brak danych do aktualizacji" });
+  }
+
+  // Generujemy dynamiczne zapytanie SQL
+  const fields = Object.keys(updates)
+    .map((key) => `${key} = ?`)
+    .join(", ");
+  const values = Object.values(updates);
+
+  const query = `UPDATE user SET ${fields} WHERE id = ?`;
+  values.push(id); // Dodajemy `id` jako ostatni parametr do zapytania
+
+  // Wykonanie zapytania SQL
+  db.query(query, values, (err, result) => {
+    if (err) {
+      console.error("Błąd podczas aktualizacji użytkownika:", err.message);
+      return res
+        .status(500)
+        .json({ error: "Nie udało się zaktualizować użytkownika" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res
+        .status(404)
+        .json({ error: "Nie znaleziono użytkownika o podanym ID" });
+    }
+
+    res.status(200).json({ message: "Użytkownik zaktualizowany pomyślnie" });
+  });
+});
+
+app.get("/user", (req, res) => {
+  const { id } = req.query; // Używamy req.query
+
+  if (!id) {
+    return res.status(400).json({ error: "User ID jest wymagane" });
+  }
+
+  const sql =
+    "SELECT id, username ,email ,imageUrl,receiveUpdatesEmails,receiveProgressEmails  FROM user WHERE id = ?";
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error("Błąd podczas pobierania użytkownika:", err.message);
+      return res
+        .status(500)
+        .json({ error: "Nie udało się pobrać użytkownika" });
+    }
+
+    if (result.length === 0) {
+      return res
+        .status(404)
+        .json({ error: "Nie znaleziono użytkownika o podanym ID" });
+    }
+
+    res.status(200).json({ user: result[0] }); // Zwróć dane użytkownika
+  });
+});
+
+app.delete("/user/delete/image", (req, res) => {
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ error: "User ID is required." });
+  }
+
+  const sql = "UPDATE user SET imageUrl = NULL WHERE id = ?";
+
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .json({ error: "An error occurred while deleting the image." });
+    }
+
+    if (result.affectedRows > 0) {
+      return res
+        .status(200)
+        .json({ message: "Image successfully removed from user." });
+    } else {
+      return res
+        .status(404)
+        .json({ error: "User not found or no image to delete." });
+    }
+  });
+});
+
+app.post("/user/change-password", async (req, res) => {
+  const { currentPassword, newPassword, id } = req.body;
+
+  if (!currentPassword || !newPassword || !id) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  try {
+    // Pobierz użytkownika z bazy danych
+    const sql = "SELECT password FROM user WHERE id = ?";
+    const [user] = await new Promise((resolve, reject) => {
+      db.query(sql, [id], (err, result) => {
+        if (err) return reject(err);
+        resolve(result);
+      });
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const hashedPassword = user.password;
+
+    // Porównaj obecne hasło
+    const isPasswordValid = await bcrypt.compare(
+      currentPassword,
+      hashedPassword
+    );
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: "Invalid current password" });
+    }
+
+    // Haszuj nowe hasło
+    const saltRounds = 10;
+    const newHashedPassword = await bcrypt.hash(newPassword, saltRounds);
+
+    // Zapisz nowe hasło w bazie danych
+    const updateSql = "UPDATE user SET password = ? WHERE id = ?";
+    await new Promise((resolve, reject) => {
+      db.query(updateSql, [newHashedPassword, id], (err, result) => {
+        if (err) return reject(err);
+        resolve(result);
+      });
+    });
+
+    res.status(200).json({ message: "Password changed successfully" });
+  } catch (error) {
+    console.error("Error changing password:", error.message);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));
