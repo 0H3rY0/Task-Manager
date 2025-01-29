@@ -3,20 +3,6 @@
 import { useUserStore } from "../../store/useUserStore";
 
 const EditEmailSettings = ({ user }) => {
-  //   const initialEmailSettingsState = {
-  //     reciveEmailsUpdates: false,
-  //     reciveEmailsProgress: false,
-  //   };
-  //   const [emailSettings, setEmailSettings] = useState(initialEmailSettingsState);
-
-  //   console.log(emailSettings);
-
-  //   const onInputChange = (e) => {
-  //     setEmailSettings((prev) => ({
-  //       ...prev,
-  //       [e.target.name]: e.target.checked,
-  //     }));
-  //   };
   const { setUserEmailSettings } = useUserStore();
 
   return (

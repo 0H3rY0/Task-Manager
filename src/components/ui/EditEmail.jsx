@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const EditEmail = () => {
+const EditEmail = ({ user }) => {
   const [emailMessage, setEmailMessage] = useState(null);
 
   return (
@@ -17,7 +17,7 @@ const EditEmail = () => {
           `${emailMessage && "mb-2"}`
         }
       >
-        <span>John@gmail.com</span>
+        <span>{user.email}</span>
         <span
           className="text-green-500 cursor-pointer underline"
           onClick={() => setEmailMessage((prev) => !prev)}

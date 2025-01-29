@@ -119,15 +119,7 @@ app.post("/register", async (req, res) => {
 });
 
 app.put("/user/update", (req, res) => {
-  const {
-    id,
-    username,
-    email,
-    password,
-    imageUrl,
-    receiveUpdatesEmails,
-    receiveProgressEmails,
-  } = req.body;
+  const { id, username, email, password, imageUrl } = req.body;
 
   // Walidacja wymaganych danych
   if (!id) {

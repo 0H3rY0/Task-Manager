@@ -64,7 +64,7 @@ const UserSetting = () => {
         </div>
         <div className="md:w-2/3 w-full">
           <EditName user={user} />
-          <EditEmail />
+          <EditEmail user={user} />
           <EditPassword user={user} />
           <EditEmailSettings user={user} />
         </div>

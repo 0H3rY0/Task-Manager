@@ -33,7 +33,7 @@ const FileInput = ({
         className={`classicInput ${errors ? "mb-0" : "mb-3"} ${
           type === "file" && "hidden"
         }`}
-        placeholder="Write a Description"
+        placeholder="You can type here"
         defaultValue={defaultValue}
       />
       {errors && (
