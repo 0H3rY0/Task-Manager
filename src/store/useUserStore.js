@@ -7,6 +7,8 @@ export const useUserStore = create((set) => ({
     username: "",
     email: "",
     imageUrl: "",
+    receiveUpdatesEmails: false,
+    receiveProgressEmails: false,
   },
 
   fetchUser: async (id) => {
@@ -30,6 +32,14 @@ export const useUserStore = create((set) => ({
       user: {
         ...state.user,
         username: newValue,
+      },
+    })),
+
+  setUserEmailSettings: (name, newValue) =>
+    set((state) => ({
+      user: {
+        ...state.user,
+        [name]: newValue,
       },
     })),
 
