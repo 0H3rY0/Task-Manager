@@ -119,7 +119,15 @@ app.post("/register", async (req, res) => {
 });
 
 app.put("/user/update", (req, res) => {
-  const { id, username, email, password, imageUrl } = req.body;
+  const {
+    id,
+    username,
+    email,
+    password,
+    imageUrl,
+    receiveUpdatesEmails,
+    receiveProgressEmails,
+  } = req.body;
 
   // Walidacja wymaganych danych
   if (!id) {
@@ -132,6 +140,9 @@ app.put("/user/update", (req, res) => {
   if (email) updates.email = email;
   if (password) updates.password = password;
   if (imageUrl) updates.imageUrl = imageUrl;
+  ["receiveUpdatesEmails", "receiveProgressEmails"].forEach((key) => {
+    if (req.body[key] !== undefined) updates[key] = req.body[key];
+  });
 
   // Jeśli nie ma żadnych pól do aktualizacji, zwracamy błąd
   if (Object.keys(updates).length === 0) {

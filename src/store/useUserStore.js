@@ -35,13 +35,26 @@ export const useUserStore = create((set) => ({
       },
     })),
 
-  setUserEmailSettings: (name, newValue) =>
+  setUserEmailSettings: (name, newValue, userId) => {
     set((state) => ({
       user: {
         ...state.user,
         [name]: newValue,
       },
-    })),
+    }));
+
+    const payload = {
+      id: userId,
+      [name]: newValue ? 1 : 0,
+    };
+
+    axios
+      .put("http://localhost:3000/user/update", payload)
+      .then((response) => console.log("Server response:", response.data))
+      .catch((error) => {
+        console.error("Error updating user settings:", error);
+      });
+  },
 
   resetUser: () =>
     set({
