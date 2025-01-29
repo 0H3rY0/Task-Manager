@@ -28,6 +28,7 @@ const UserSetting = () => {
   });
   const [user, setUser] = useState(userInitialState);
   const [nameUpdateMode, setNameUpdateMode] = useState(false);
+  const [emailMessage, setEmailMessage] = useState(null);
   const nameRef = useRef(null);
 
   useEffect(() => {
@@ -148,7 +149,7 @@ const UserSetting = () => {
           </div>
         </div>
         <div className="md:w-2/3 w-full">
-          <label
+          {/* <label
             htmlFor="username"
             className="font-semibold text-slate-800 text-lg"
           >
@@ -184,7 +185,7 @@ const UserSetting = () => {
                 </span>
               </ModalCheckAgreement>
             )}
-          </p>
+          </p> */}
 
           <label
             htmlFor="username"
@@ -192,12 +193,25 @@ const UserSetting = () => {
           >
             E-mail
           </label>
-          <p className="w-full flex justify-between items-center mt-5 mb-14">
-            <span>John@gmail.com</span>{" "}
-            <span className="text-green-500 cursor-pointer underline">
+          <p
+            className={
+              "w-full flex justify-between items-center mt-5 mb-14 " +
+              `${emailMessage && "mb-2"}`
+            }
+          >
+            <span>John@gmail.com</span>
+            <span
+              className="text-green-500 cursor-pointer underline"
+              onClick={() => setEmailMessage((prev) => !prev)}
+            >
               Change
             </span>
           </p>
+          {emailMessage && (
+            <p className="errorText mb-12">
+              If you want change e-mail conntact with support
+            </p>
+          )}
 
           <label
             htmlFor="username"
