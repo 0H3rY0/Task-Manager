@@ -29,28 +29,6 @@
       ]
     },
     {
-      "id": "6cbc91a2-02db-49dc-920a-aa4df25656e9",
-      "Title": "abc",
-      "Description": "ddddddddd ddddddddd ddddddddd ddd ",
-      "Deadline": "2025-02-09",
-      "Importance": "Medium",
-      "ImageUrl": "http://localhost:3000/uploads/6b255079eea0707fb85f9f588080b32e",
-      "Tasks": [
-        {
-          "id": "9f6d3c7b-f397-4c48-9ce6-4c1afc285def",
-          "content": "abcd",
-          "deadline": "2025-01-30",
-          "importance": "High"
-        },
-        {
-          "id": "27f8cbda-7f53-4b8f-8584-fe9b90bc6492",
-          "content": "gh",
-          "deadline": "2025-02-08",
-          "importance": "Low"
-        }
-      ]
-    },
-    {
       "id": "71488c46-c4fd-4249-afef-ffceec7c15e4",
       "Title": "test ",
       "Description": "test ",

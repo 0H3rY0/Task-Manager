@@ -196,6 +196,18 @@
 }
 
 /* style do card */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cards {
+  display: flex;
+  gap: 1rem;
+}
+
 .card {
   width: 40%;
   display: flex;
@@ -206,12 +218,21 @@
   height: 20rem; /* h-80 */
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  opacity: 0.8;
 }
 
 .card:hover {
   transform: scale(1.05);
   border-width: 4px;
   border-color: #3b82f6; /* blue-500 */
+}
+
+.card.active {
+  transform: scale(1.1); /* Powiększenie dla aktywnej karty */
+  border-width: 4px;
+  border-color: #3b82f6; /* blue-500 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  opacity: 1;
 }
 
 .card-image {
@@ -245,4 +266,19 @@
 .card-text {
   font-size: 1rem; /* text-md */
   text-align: center;
+}
+
+.nav-button {
+  padding: 10px 20px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+.nav-button:hover {
+  background: #2563eb;
 }
