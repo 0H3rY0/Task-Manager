@@ -1,12 +1,4 @@
-import { IoCheckmarkSharp } from "react-icons/io5";
-import { IoIosArrowDown } from "react-icons/io";
-import { MdOutlinePending } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
-import { TbArticle } from "react-icons/tb";
-import profile from "../../src/assets/images/profile.jpg";
-import { FaArrowLeft } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa";
-import { useState } from "react";
 import HomeNewsSection from "../components/HomeNewsSection";
 import HomeStatisticsBar from "../components/HomeStatisticsBar";
 
