@@ -2,6 +2,8 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdOutlinePending } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
+import { TbArticle } from "react-icons/tb";
+import profile from "../../src/assets/images/profile.jpg";
 
 const Home = () => {
   return (
@@ -35,6 +37,64 @@ const Home = () => {
             </span>{" "}
             pending projects
           </p>
+        </div>
+      </div>
+
+      {/* news section  */}
+      <div className="mt-10">
+        <h2 className="font-semibold text-2xl mb-5 text-slate-800 flex items-center gap-2">
+          News <TbArticle />{" "}
+        </h2>
+        {/* cart Container */}
+        <div className="flex items-center justify-center gap-10">
+          <div className="w-2/5 flex flex-col border-2 border-gray-300 rounded-md shadow-xl h-80">
+            <div className="h-1/2">
+              <img
+                className="w-full h-full object-cover rounded-t-md"
+                src={profile}
+                alt="Profile"
+              />
+            </div>
+
+            <div className="h-1/2 flex flex-col justify-center items-center text-slate-700 p-2">
+              <p className="font-semibold text-lg">Study quickly</p>
+              <p className="text-md text-center">
+                Build your short-termm memory
+              </p>
+            </div>
+          </div>
+          <div className="w-2/5 flex flex-col border-2 border-gray-300 rounded-md shadow-xl h-80">
+            <div className="h-1/2">
+              <img
+                className="w-full h-full object-cover rounded-t-md"
+                src={profile}
+                alt="Profile"
+              />
+            </div>
+
+            <div className="h-1/2 flex flex-col justify-center items-center text-slate-700 p-2">
+              <p className="font-semibold text-lg">Study quickly</p>
+              <p className="text-md text-center">
+                Build your short-termm memory
+              </p>
+            </div>
+          </div>
+          <div className="w-2/5 flex flex-col border-2 border-gray-300 rounded-md shadow-xl h-80">
+            <div className="h-1/2">
+              <img
+                className="w-full h-full object-cover rounded-t-md"
+                src={profile}
+                alt="Profile"
+              />
+            </div>
+
+            <div className="h-1/2 flex flex-col justify-center items-center text-slate-700 p-2">
+              <p className="font-semibold text-lg">Study quickly</p>
+              <p className="text-md text-center">
+                Build your short-termm memory
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
