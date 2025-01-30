@@ -4,6 +4,8 @@ import { MdOutlinePending } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
 import { TbArticle } from "react-icons/tb";
 import profile from "../../src/assets/images/profile.jpg";
+import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 const Home = () => {
   return (
@@ -95,6 +97,14 @@ const Home = () => {
               </p>
             </div>
           </div>
+        </div>
+        <div className="flex items-center justify-center mt-5 gap-4">
+          <span className="bg-gray-200 opacity-80 text-slate-800 rounded-full p-2 btn hover:bg-gray-400 cursor-pointer">
+            <FaArrowLeft size={50} />
+          </span>
+          <span className="bg-gray-200 opacity-80 text-slate-800 rounded-full p-2 btn hover:bg-gray-400 cursor-pointer">
+            <FaArrowRight size={50} />
+          </span>
         </div>
       </div>
     </div>
