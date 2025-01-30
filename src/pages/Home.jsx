@@ -49,52 +49,33 @@ const Home = () => {
         </h2>
         {/* cart Container */}
         <div className="flex items-center justify-center gap-10">
-          <div className="w-2/5 flex flex-col border-2 border-gray-300 rounded-md shadow-xl h-80">
-            <div className="h-1/2">
-              <img
-                className="w-full h-full object-cover rounded-t-md"
-                src={profile}
-                alt="Profile"
-              />
+          <div className="card">
+            <div className="card-image">
+              <img src={profile} alt="Profile" />
             </div>
-
-            <div className="h-1/2 flex flex-col justify-center items-center text-slate-700 p-2">
-              <p className="font-semibold text-lg">Study quickly</p>
-              <p className="text-md text-center">
-                Build your short-termm memory
-              </p>
+            <div className="card-content">
+              <p className="card-title">Study quickly</p>
+              <p className="card-text">Build your short-term memory</p>
             </div>
           </div>
-          <div className="w-2/5 flex flex-col border-2 border-gray-300 rounded-md shadow-xl h-80">
-            <div className="h-1/2">
-              <img
-                className="w-full h-full object-cover rounded-t-md"
-                src={profile}
-                alt="Profile"
-              />
-            </div>
 
-            <div className="h-1/2 flex flex-col justify-center items-center text-slate-700 p-2">
-              <p className="font-semibold text-lg">Study quickly</p>
-              <p className="text-md text-center">
-                Build your short-termm memory
-              </p>
+          <div className="card">
+            <div className="card-image">
+              <img src={profile} alt="Profile" />
+            </div>
+            <div className="card-content">
+              <p className="card-title">Study quickly</p>
+              <p className="card-text">Build your short-term memory</p>
             </div>
           </div>
-          <div className="w-2/5 flex flex-col border-2 border-gray-300 rounded-md shadow-xl h-80">
-            <div className="h-1/2">
-              <img
-                className="w-full h-full object-cover rounded-t-md"
-                src={profile}
-                alt="Profile"
-              />
-            </div>
 
-            <div className="h-1/2 flex flex-col justify-center items-center text-slate-700 p-2">
-              <p className="font-semibold text-lg">Study quickly</p>
-              <p className="text-md text-center">
-                Build your short-termm memory
-              </p>
+          <div className="card">
+            <div className="card-image">
+              <img src={profile} alt="Profile" />
+            </div>
+            <div className="card-content">
+              <p className="card-title">Study quickly</p>
+              <p className="card-text">Build your short-term memory</p>
             </div>
           </div>
         </div>
