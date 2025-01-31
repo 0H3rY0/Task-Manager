@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { BsCheck2Circle } from "react-icons/bs";
 
 const HomeTasks = () => {
+  const [underlineActive, setUnderlineActive] = useState(1);
+
   return (
     <div className="w-full flex justify-center ">
       <div className="shadow-xl border-2 border-slate-200 p-4 w-4/5">
@@ -12,9 +15,42 @@ const HomeTasks = () => {
           <div>
             <p className="font-bold text-xl text-slate-800">My Tasks</p>
             <p className="flex gap-2 font-semibold text-slate-600 text-lg">
-              <span className="underline">Today</span>
-              <span>week</span>
-              <span>month</span>
+              <span
+                onClick={() => setUnderlineActive(1)}
+                className={
+                  `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
+                  ` ${
+                    underlineActive === 1 &&
+                    " underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer"
+                  } `
+                }
+              >
+                Today
+              </span>
+              <span
+                onClick={() => setUnderlineActive(2)}
+                className={
+                  `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
+                  ` ${
+                    underlineActive === 2 &&
+                    "underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer"
+                  } `
+                }
+              >
+                week
+              </span>
+              <span
+                onClick={() => setUnderlineActive(3)}
+                className={
+                  `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
+                  ` ${
+                    underlineActive === 3 &&
+                    "underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer"
+                  } `
+                }
+              >
+                month
+              </span>
             </p>
           </div>
         </div>
