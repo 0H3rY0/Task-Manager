@@ -1,5 +1,5 @@
 // import Tasks from "../pages/Tasks";
-import Test from "../../pages/Test";
+import Home from "../../pages/Home";
 import { Routes, Route } from "react-router";
 import PropTypes from "prop-types";
 import CreateProject from "../../pages/CreateProject";
@@ -26,7 +26,7 @@ const Layout = () => {
     >
       <Routes>
         <Route path="/user-settings" element={<UserSetting />} />
-        <Route path="/" element={<Test />} />
+        <Route path="/" element={<Home />} />
         <Route path="/upcoming" element={<Upcoming />} />
         <Route path="/project/all" element={<AllProjects />} />
         <Route path="/project/create" element={<CreateProject />} />

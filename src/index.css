@@ -194,3 +194,94 @@
   outline: none; /* Usuwamy domyślną ramkę focus */
   /* box-shadow: 0 0 0 4px rgba(255, 169, 93, 0.4); Fokus z czerwoną poświatą */
 }
+
+/* style do card */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cards {
+  display: flex;
+  gap: 1rem;
+}
+
+.card {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #d1d5db; /* gray-300 */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 20rem; /* h-80 */
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  border-width: 4px;
+  border-color: #3b82f6; /* blue-500 */
+}
+
+.card.active {
+  transform: scale(1.1); /* Powiększenie dla aktywnej karty */
+  border-width: 4px;
+  border-color: #3b82f6; /* blue-500 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+}
+
+.card-image {
+  height: 50%;
+  overflow: hidden;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #374151; /* slate-700 */
+  padding: 0.5rem;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.125rem; /* text-lg */
+}
+
+.card-text {
+  font-size: 1rem; /* text-md */
+  text-align: center;
+}
+
+.nav-button {
+  padding: 10px 20px;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+.nav-button:hover {
+  background: #2563eb;
+}
+
+.underline {
+}
