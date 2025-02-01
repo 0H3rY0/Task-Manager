@@ -1,8 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsCheck2Circle } from "react-icons/bs";
+import ProjectService from "../service/api/projects";
 
 const HomeTasks = () => {
   const [underlineActive, setUnderlineActive] = useState(1);
+  const [allTasks, setAllTasks] = useState([]);
+  const [dependTimeTasks, setDependTimeTasks] = useState([]);
+
+  useEffect(() => {
+    const getTasks = async () => {
+      const response = await ProjectService.getAllTasks();
+      setAllTasks(response);
+    };
+
+    getTasks();
+  });
+
+  const todayTasks = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    setDependTimeTasks(
+      allTasks.filter((task) => {
+        const taskDate = new Date(task.deadline);
+        taskDate.setHours(0, 0, 0, 0);
+
+        if (taskDate.getTime() === today.getTime()) {
+          console.log(task);
+          return task;
+        }
+      })
+    );
+    console.log(dependTimeTasks);
+  };
 
   return (
     <div className="w-full flex justify-center ">
@@ -40,7 +70,10 @@ const HomeTasks = () => {
                 week
               </span>
               <span
-                onClick={() => setUnderlineActive(3)}
+                onClick={() => {
+                  todayTasks();
+                  setUnderlineActive(3);
+                }}
                 className={
                   `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
                   ` ${
