@@ -54,10 +54,41 @@
       "id": "871387ba-f178-490f-8c00-2b71aada6d59",
       "Title": "ssss",
       "Description": "sss",
-      "Deadline": "2025-01-30",
+      "Deadline": "2025-05-01",
       "Importance": "High",
       "ImageUrl": "",
-      "Tasks": []
+      "Tasks": [
+        {
+          "id": "dd8d27d0-c698-4f81-bef2-ca65aebf6d18",
+          "content": "month task 1",
+          "deadline": "2025-02-27",
+          "importance": "Low"
+        },
+        {
+          "id": "72641937-a517-49b3-89cd-71ead7134303",
+          "content": "mont task 2",
+          "deadline": "2025-02-23",
+          "importance": "Low"
+        },
+        {
+          "id": "55f946fc-98c1-4a19-b21d-50dfc4932b6c",
+          "content": "month task out of range 1",
+          "deadline": "2025-03-02",
+          "importance": "Low"
+        },
+        {
+          "id": "d33d1a70-6f2a-4b26-bc06-9f36afff62a2",
+          "content": "mont task out of range 2",
+          "deadline": "2025-03-03",
+          "importance": "Low"
+        },
+        {
+          "id": "7cd8275d-5000-4b45-94f0-a18fae7004ad",
+          "content": "100% out of range",
+          "deadline": "2025-04-23",
+          "importance": "Low"
+        }
+      ]
     },
     {
       "id": "842c6644-7089-4631-8f1e-ce2bcb579425",

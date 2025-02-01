@@ -16,6 +16,10 @@ const HomeTasks = () => {
     getTasks();
   }, []);
 
+  useEffect(() => {
+    todayTasks();
+  }, [allTasks]);
+
   const todayTasks = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -46,6 +50,25 @@ const HomeTasks = () => {
         taskDate.setHours(0, 0, 0, 0); // Ustawienie początku dnia dla porównania
 
         if (taskDate >= today && taskDate < nextWeek) {
+          return task;
+        }
+      })
+    );
+  };
+
+  const monthTasks = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const nextMonht = new Date(today);
+    nextMonht.setDate(today.getDate() + 30);
+
+    setDependTimeTasks(
+      allTasks.filter((task) => {
+        const taskDate = new Date(task.deadline);
+        taskDate.setHours(0, 0, 0, 0);
+
+        if (taskDate >= today && taskDate <= nextMonht) {
           return task;
         }
       })
@@ -95,6 +118,7 @@ const HomeTasks = () => {
               </span>
               <span
                 onClick={() => {
+                  monthTasks();
                   setUnderlineActive(3);
                 }}
                 className={
@@ -105,7 +129,7 @@ const HomeTasks = () => {
                   } `
                 }
               >
-                month
+                30 days
               </span>
             </p>
           </div>
