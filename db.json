@@ -66,7 +66,20 @@
       "Deadline": "2025-02-05",
       "Importance": "Low",
       "ImageUrl": "",
-      "Tasks": []
+      "Tasks": [
+        {
+          "id": "1ace9b86-c9e4-458c-8b00-3ad05de5af4a",
+          "content": "week task",
+          "deadline": "2025-02-05",
+          "importance": "Low"
+        },
+        {
+          "id": "4d20f695-0a99-4b9b-ad74-a45291ecfed6",
+          "content": "anather week task",
+          "deadline": "2025-02-02",
+          "importance": "Low"
+        }
+      ]
     }
   ]
 }

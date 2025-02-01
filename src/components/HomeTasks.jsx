@@ -33,6 +33,25 @@ const HomeTasks = () => {
     console.log(dependTimeTasks);
   };
 
+  const weekTasks = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Ustawienie początku dnia
+
+    const nextWeek = new Date(today);
+    nextWeek.setDate(today.getDate() + 7); // Dodanie 7 dni
+
+    setDependTimeTasks(
+      allTasks.filter((task) => {
+        const taskDate = new Date(task.deadline);
+        taskDate.setHours(0, 0, 0, 0); // Ustawienie początku dnia dla porównania
+
+        if (taskDate >= today && taskDate < nextWeek) {
+          return task;
+        }
+      })
+    );
+  };
+
   return (
     <div className="w-full flex justify-center ">
       <div className="shadow-xl border-2 border-slate-200 p-4 w-4/5">
@@ -60,7 +79,10 @@ const HomeTasks = () => {
                 Today
               </span>
               <span
-                onClick={() => setUnderlineActive(2)}
+                onClick={() => {
+                  weekTasks();
+                  setUnderlineActive(2);
+                }}
                 className={
                   `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
                   ` ${
