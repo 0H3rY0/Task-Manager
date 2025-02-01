@@ -14,7 +14,7 @@ const HomeTasks = () => {
     };
 
     getTasks();
-  });
+  }, []);
 
   const todayTasks = () => {
     const today = new Date();
@@ -26,7 +26,6 @@ const HomeTasks = () => {
         taskDate.setHours(0, 0, 0, 0);
 
         if (taskDate.getTime() === today.getTime()) {
-          console.log(task);
           return task;
         }
       })
@@ -46,7 +45,10 @@ const HomeTasks = () => {
             <p className="font-bold text-xl text-slate-800">My Tasks</p>
             <p className="flex gap-2 font-semibold text-slate-600 text-lg">
               <span
-                onClick={() => setUnderlineActive(1)}
+                onClick={() => {
+                  todayTasks();
+                  setUnderlineActive(1);
+                }}
                 className={
                   `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
                   ` ${
@@ -71,7 +73,6 @@ const HomeTasks = () => {
               </span>
               <span
                 onClick={() => {
-                  todayTasks();
                   setUnderlineActive(3);
                 }}
                 className={
@@ -90,45 +91,24 @@ const HomeTasks = () => {
         {/* dol */}
         <div className="w-full mt-4">
           <ul>
-            <li className="border-b-2 border-slate-200 px-2 py-1 mb-2 flex gap-2 items-center justify-between text-lg text-slate-700">
-              <p className="flex items-center justify-start gap-2">
-                <BsCheck2Circle size={30} /> Twitter Content Plan
-              </p>
+            {dependTimeTasks.map((item) => (
+              <li
+                key={item.id}
+                className="border-b-2 border-slate-200 px-2 py-1 mb-2 flex gap-2 items-center justify-between text-lg text-slate-700"
+              >
+                <p className="flex items-center justify-start gap-2">
+                  <BsCheck2Circle size={30} /> {item.content}
+                </p>
 
-              <div className="flex items-center gap-4">
-                <button className="btn bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md">
-                  show
-                </button>
-                <p className="font-semibold">19-10-2025</p>
-                <p className="font-semibold">Medium</p>
-              </div>
-            </li>
-            <li className="border-b-2 border-slate-200 px-2 py-1 mb-2 flex gap-2 items-center justify-between text-lg text-slate-700">
-              <p className="flex items-center justify-start gap-2">
-                <BsCheck2Circle size={30} /> Twitter Content Plan
-              </p>
-
-              <div className="flex items-center gap-4">
-                <button className="btn bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md">
-                  show
-                </button>
-                <p className="font-semibold">19-10-2025</p>
-                <p className="font-semibold">Medium</p>
-              </div>
-            </li>
-            <li className="border-b-2 border-slate-200 px-2 py-1 mb-2 flex gap-2 items-center justify-between text-lg text-slate-700">
-              <p className="flex items-center justify-start gap-2">
-                <BsCheck2Circle size={30} /> Twitter Content Plan
-              </p>
-
-              <div className="flex items-center gap-4">
-                <button className="btn bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md">
-                  show
-                </button>
-                <p className="font-semibold">19-10-2025</p>
-                <p className="font-semibold">Medium</p>
-              </div>
-            </li>
+                <div className="flex items-center gap-4">
+                  <button className="btn bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md">
+                    show
+                  </button>
+                  <p className="font-semibold">{item.deadline}</p>
+                  <p className="font-semibold">{item.importance}</p>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
