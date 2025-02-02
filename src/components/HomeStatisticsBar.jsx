@@ -5,9 +5,12 @@ import { days } from "../service/data/days";
 import { months } from "../service/data/months";
 import { useUserStore } from "../store/useUserStore";
 import { useAuthStore } from "../store/useAuthStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import ProjectService from "../service/api/projects";
 
 const HomeStatisticsBar = () => {
+  const [allTasks, setAllTasks] = useState([]);
+  const [dependTasks, setDependTasks] = useState([]);
   const todayDate = new Date();
   const day = days[todayDate.getDay()];
   const month = months[todayDate.getMonth()];
@@ -15,8 +18,37 @@ const HomeStatisticsBar = () => {
 
   const { user } = useUserStore();
   const { isAuthenticated } = useAuthStore();
-  console.log(user.username);
-  console.log(user);
+
+  useEffect(() => {
+    const getTasks = async () => {
+      const response = await ProjectService.getAllTasks();
+      setAllTasks(response);
+    };
+
+    getTasks();
+  }, []);
+
+  useEffect(() => {
+    weekStats();
+  }, [allTasks]);
+
+  const weekStats = () => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const nextWeek = new Date(today);
+    nextWeek.setDate(today.getDate() + 7);
+
+    setDependTasks(
+      allTasks.filter((task) => {
+        const taskDate = new Date(task.deadline);
+        taskDate.setHours(0, 0, 0, 0);
+        console.log(task.done);
+
+        return taskDate >= today && taskDate < nextWeek && task.done;
+      })
+    );
+  };
 
   return (
     <div className="flex flex-col gap-4 items-center">
@@ -29,7 +61,7 @@ const HomeStatisticsBar = () => {
         <OwnSelectDayList />
         <p className="font-semibold text-slate-800 px-6 py-1 flex items-center justify-center gap-2 border-r-2 border-gray-400">
           <span className="font-bold text-2xl flex justify-center items-center gap-1">
-            <IoCheckmarkSharp size={30} /> 0
+            <IoCheckmarkSharp size={30} /> {dependTasks.length}
           </span>
           Tasks completed
         </p>

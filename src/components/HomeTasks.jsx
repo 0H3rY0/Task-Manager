@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { BsCheck2Circle } from "react-icons/bs";
 import ProjectService from "../service/api/projects";
 import HomeTaskList from "./HomeTaskList";
 

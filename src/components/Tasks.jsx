@@ -15,6 +15,7 @@ const Tasks = ({ id, updateFlag }) => {
     content: "",
     deadline: "",
     importance: "Low",
+    done: false,
   };
   const [task, setTask] = useState(initialTaskState);
   // const [isDialogOpen, setIsDialogOpen] = useState(false);
