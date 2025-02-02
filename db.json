@@ -7,7 +7,19 @@
       "Deadline": "2025-02-09",
       "Importance": "High",
       "ImageUrl": "http://localhost:3000/uploads/42b752542c17f289d140c015f5f6e35f",
-      "Tasks": []
+      "Tasks": [
+        {
+          "id": "2a5dbfc1-ea89-4d56-abc2-102833b40cd1",
+          "content": "check another task completed",
+          "deadline": "2025-02-07",
+          "importance": "Low",
+          "createdAt": "2025-02-02T22:03:59.621Z",
+          "status": {
+            "done": false,
+            "lastUpdatedAt": "2025-02-02T22:04:05.085Z"
+          }
+        }
+      ]
     },
     {
       "id": "71488c46-c4fd-4249-afef-ffceec7c15e4",
@@ -34,7 +46,18 @@
           "createdAt": "2025-02-02T20:37:45.132Z",
           "status": {
             "done": true,
-            "lastUpdatedAt": "2025-02-02T22:00:39.419Z"
+            "lastUpdatedAt": "2025-02-02T22:04:48.885Z"
+          }
+        },
+        {
+          "id": "aec0dd67-1e77-4370-be0e-f2565919c3cc",
+          "content": "a",
+          "deadline": "2025-02-05",
+          "importance": "High",
+          "createdAt": "2025-02-02T22:02:42.994Z",
+          "status": {
+            "done": true,
+            "lastUpdatedAt": "2025-02-02T22:04:49.379Z"
           }
         }
       ]
