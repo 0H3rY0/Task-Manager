@@ -25,7 +25,19 @@
       "Deadline": "2025-05-01",
       "Importance": "High",
       "ImageUrl": "",
-      "Tasks": []
+      "Tasks": [
+        {
+          "id": "37fb90b3-ac58-4b82-84b8-ed9eb4ac6d27",
+          "content": "new date task",
+          "deadline": "2025-02-21",
+          "importance": "High",
+          "createdAt": "2025-02-02T20:37:45.132Z",
+          "status": {
+            "done": false,
+            "lastUpdatedAt": ""
+          }
+        }
+      ]
     },
     {
       "id": "842c6644-7089-4631-8f1e-ce2bcb579425",

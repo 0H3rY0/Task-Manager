@@ -15,7 +15,11 @@ const Tasks = ({ id, updateFlag }) => {
     content: "",
     deadline: "",
     importance: "Low",
-    done: false,
+    createdAt: "",
+    status: {
+      done: false,
+      lastUpdatedAt: "",
+    },
   };
   const [task, setTask] = useState(initialTaskState);
   // const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -96,6 +100,7 @@ const Tasks = ({ id, updateFlag }) => {
     const newTask = {
       ...task,
       id: uuidv4(),
+      createdAt: new Date(),
     };
     try {
       await taskSchema.validate(newTask, {
