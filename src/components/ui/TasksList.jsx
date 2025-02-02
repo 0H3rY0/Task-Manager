@@ -5,16 +5,18 @@ import ModalModifyTask from "../modals/ModalModifyTask";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
 import ProjectService from "../../service/api/projects";
+import { useState } from "react";
 
 const TasksList = ({
   tasks = [],
   removeTask,
-  modifyTask,
+  modifyTask = () => {},
   id,
   modifyTaskErrors,
   isPurple = false,
 }) => {
   const navigate = useNavigate();
+  const [taskStatus, setTaskStatus] = useState(false);
 
   const getProjectByTaskId = async (taskId) => {
     try {
@@ -40,6 +42,24 @@ const TasksList = ({
     console.log(id);
     navigate(`/project/${id}`);
   };
+
+  const updateTasksStatus = async (e, taskId, task) => {
+    const newTask = {
+      ...task,
+      status: {
+        done: e.target.checked,
+        lastUpdatedAt: new Date(),
+      },
+    };
+    setTaskStatus(e.target.checked);
+    ProjectService.updateProjectTask(
+      newTask.id,
+      "871387ba-f178-490f-8c00-2b71aada6d59",
+      newTask
+    );
+  };
+
+  console.log(tasks);
 
   return (
     <ul className="flex flex-col">
@@ -135,14 +155,9 @@ const TasksList = ({
                         name="receiveUpdatesEmails"
                         type="checkbox"
                         className="sr-only peer"
-                        // checked={user.receiveUpdatesEmails}
-                        // onChange={(e) =>
-                        //   setUserEmailSettings(
-                        //     e.target.name,
-                        //     e.target.checked,
-                        //     user.id
-                        //   )
-                        // }
+                        defaultChecked={item.status.done}
+                        // checked={item.status.done}
+                        onChange={(e) => updateTasksStatus(e, item.id, item)}
                       />
                       <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500 dark:peer-checked:bg-green-500"></div>
                     </label>

@@ -29,12 +29,12 @@
         {
           "id": "37fb90b3-ac58-4b82-84b8-ed9eb4ac6d27",
           "content": "new date task",
-          "deadline": "2025-02-21",
-          "importance": "High",
+          "deadline": "2025-02-22",
+          "importance": "Medium",
           "createdAt": "2025-02-02T20:37:45.132Z",
           "status": {
-            "done": false,
-            "lastUpdatedAt": ""
+            "done": true,
+            "lastUpdatedAt": "2025-02-02T22:00:39.419Z"
           }
         }
       ]
@@ -46,22 +46,7 @@
       "Deadline": "2025-02-05",
       "Importance": "Low",
       "ImageUrl": "",
-      "Tasks": [
-        {
-          "id": "b821be7c-1107-41cb-8b64-89884e105a49",
-          "content": "new task 1",
-          "deadline": "2025-02-03",
-          "importance": "Medium",
-          "done": true
-        },
-        {
-          "id": "65643bab-5a0f-4c44-9f36-edcfd3cc3814",
-          "content": "new task 2",
-          "deadline": "2025-02-04",
-          "importance": "Low",
-          "done": false
-        }
-      ]
+      "Tasks": []
     }
   ]
 }

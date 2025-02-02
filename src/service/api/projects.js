@@ -92,7 +92,7 @@ class ProjectService {
 
     const updatedTasks = project.Tasks.map((task) => {
       if (task.id === taskId) {
-        return { ...task, content: newTask.content };
+        return { ...newTask };
       }
       return task;
     });
