@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
-const OwnSelectDayList = ({ createdProjectsStats, completedTasksStats }) => {
+const OwnSelectDayList = ({ handleStatsUpdate }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("My week");
   const selectRef = useRef(null);
@@ -9,8 +9,7 @@ const OwnSelectDayList = ({ createdProjectsStats, completedTasksStats }) => {
   const handleSelectOption = (value, days) => {
     setSelectedOption(value);
     setIsOpen(false);
-    createdProjectsStats(days);
-    completedTasksStats(days);
+    handleStatsUpdate(days);
   };
 
   useEffect(() => {
