@@ -16,17 +16,15 @@ const CompletedTasks = () => {
   }, []);
 
   useEffect(() => {
-    yearStats();
-    // monthStats();
-    // weekStats();
+    completedTasksStats(30);
   }, [allTasks]);
 
-  const weekStats = () => {
+  const completedTasksStats = (lastUpdate = 7) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const lastWeek = new Date(today);
-    lastWeek.setDate(today.getDate() - 7);
+    const lastUpdatedAt = new Date(today);
+    lastUpdatedAt.setDate(today.getDate() - lastUpdate);
 
     setDependTasks(
       allTasks.filter((task) => {
@@ -34,43 +32,7 @@ const CompletedTasks = () => {
         taskLastUpdateDate.setHours(0, 0, 0, 0);
         console.log(task.done);
 
-        return taskLastUpdateDate > lastWeek && task.status.done;
-      })
-    );
-  };
-
-  const monthStats = () => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const lastMonth = new Date(today);
-    lastMonth.setDate(today.getDate() - 30);
-
-    setDependTasks(
-      allTasks.filter((task) => {
-        const taskLastUpdateDate = new Date(task.status.lastUpdatedAt);
-        taskLastUpdateDate.setHours(0, 0, 0, 0);
-        console.log(task.done);
-
-        return taskLastUpdateDate > lastMonth && task.status.done;
-      })
-    );
-  };
-
-  const yearStats = () => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const lastYear = new Date(today);
-    lastYear.setDate(today.getDate() - 365);
-
-    setDependTasks(
-      allTasks.filter((task) => {
-        const taskLastUpdateDate = new Date(task.status.lastUpdatedAt);
-        taskLastUpdateDate.setHours(0, 0, 0, 0);
-        console.log(task.done);
-
-        return taskLastUpdateDate > lastYear && task.status.done;
+        return taskLastUpdateDate > lastUpdatedAt && task.status.done;
       })
     );
   };
