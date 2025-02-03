@@ -1,14 +1,16 @@
 import { useEffect, useState, useRef } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
-const OwnSelectDayList = () => {
+const OwnSelectDayList = ({ createdProjectsStats, completedTasksStats }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("My week");
   const selectRef = useRef(null);
 
-  const handleSelectOption = (value) => {
+  const handleSelectOption = (value, days) => {
     setSelectedOption(value);
     setIsOpen(false);
+    createdProjectsStats(days);
+    completedTasksStats(days);
   };
 
   useEffect(() => {
@@ -41,19 +43,19 @@ const OwnSelectDayList = () => {
         <div className="absolute z-50 left-0 w-full mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
           <ul className="space-y-2">
             <li
-              onClick={() => handleSelectOption("My week")}
+              onClick={() => handleSelectOption("My week", 7)}
               className="py-2 px-4 cursor-pointer hover:bg-blue-500 hover:text-white"
             >
               My week
             </li>
             <li
-              onClick={() => handleSelectOption("My month")}
+              onClick={() => handleSelectOption("My month", 30)}
               className="py-2 px-4 cursor-pointer hover:bg-blue-500 hover:text-white"
             >
               My month
             </li>
             <li
-              onClick={() => handleSelectOption("My year")}
+              onClick={() => handleSelectOption("My year", 365)}
               className="py-2 px-4 cursor-pointer hover:bg-blue-500 hover:text-white"
             >
               My year

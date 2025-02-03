@@ -34,7 +34,6 @@ const HomeTasks = () => {
         }
       })
     );
-    console.log(dependTimeTasks);
   };
 
   const weekTasks = () => {
