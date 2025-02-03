@@ -16,7 +16,7 @@ const CompletedTasks = () => {
   }, []);
 
   useEffect(() => {
-    completedTasksStats(30);
+    completedTasksStats(7);
   }, [allTasks]);
 
   const completedTasksStats = (lastUpdate = 7) => {

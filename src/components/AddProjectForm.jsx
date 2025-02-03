@@ -17,6 +17,7 @@ const AddProjectForm = () => {
     Deadline: "",
     Importance: "Low",
     ImageUrl: "",
+    CreatedAt: "",
     Tasks: [],
   };
 
@@ -42,6 +43,7 @@ const AddProjectForm = () => {
         ...project,
         id: uuidv4(),
         ImageUrl: uploadedFileUrl,
+        CreatedAt: new Date(),
       };
 
       ProjectService.createProject(newProject);
