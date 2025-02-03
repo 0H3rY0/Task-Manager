@@ -1,5 +1,5 @@
 import { IoMdTimer } from "react-icons/io";
-import TasksList from "../components/ui/TasksList";
+import TasksList from "../components/TasksList";
 import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
 import ProjectList from "../components/ProjectList";

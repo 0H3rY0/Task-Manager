@@ -36,16 +36,16 @@ const HomeStatisticsBar = () => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const nextWeek = new Date(today);
-    nextWeek.setDate(today.getDate() + 7);
+    const lastWeek = new Date(today);
+    lastWeek.setDate(today.getDate() - 7);
 
     setDependTasks(
       allTasks.filter((task) => {
-        const taskDate = new Date(task.deadline);
-        taskDate.setHours(0, 0, 0, 0);
+        const taskLastUpdateDate = new Date(task.status.lastUpdatedAt);
+        taskLastUpdateDate.setHours(0, 0, 0, 0);
         console.log(task.done);
 
-        return taskDate >= today && taskDate < nextWeek && task.done;
+        return taskLastUpdateDate > lastWeek && task.status.done;
       })
     );
   };
@@ -69,7 +69,7 @@ const HomeStatisticsBar = () => {
           <span className="font-bold text-2xl flex justify-center items-center gap-1">
             <MdOutlinePending size={30} /> 1
           </span>{" "}
-          pending projects
+          Created projects
         </p>
       </div>
     </div>

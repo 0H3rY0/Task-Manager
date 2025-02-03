@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { toast } from "react-toastify";
 import ProjectService from "../service/api/projects";
 import { v4 as uuidv4 } from "uuid";
-import TasksList from "./ui/TasksList";
+import TasksList from "./TasksList";
 import ModalConfigureTask from "./modals/ModalConfigureTask";
 import { taskSchema } from "../utils/taskSchema";
 import useModal from "../hooks/useModal";

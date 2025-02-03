@@ -15,8 +15,8 @@
           "importance": "Low",
           "createdAt": "2025-02-02T22:03:59.621Z",
           "status": {
-            "done": false,
-            "lastUpdatedAt": "2025-02-02T22:04:05.085Z"
+            "done": true,
+            "lastUpdatedAt": "2025-02-03T16:00:13.625Z"
           }
         }
       ]
@@ -25,10 +25,22 @@
       "id": "71488c46-c4fd-4249-afef-ffceec7c15e4",
       "Title": "test ",
       "Description": "test ",
-      "Deadline": "2025-01-30",
+      "Deadline": "2025-02-04",
       "Importance": "Medium",
       "ImageUrl": "http://localhost:3000/uploads/7b0b8c1d3b3e629a28e650322240dcd1",
-      "Tasks": []
+      "Tasks": [
+        {
+          "id": "538e035d-12e1-4a69-b0a1-de7520548cdb",
+          "content": "g",
+          "deadline": "2025-02-04",
+          "importance": "Medium",
+          "createdAt": "2025-02-03T15:55:26.520Z",
+          "status": {
+            "done": true,
+            "lastUpdatedAt": "2025-02-03T15:56:17.486Z"
+          }
+        }
+      ]
     },
     {
       "id": "871387ba-f178-490f-8c00-2b71aada6d59",
@@ -45,8 +57,8 @@
           "importance": "Medium",
           "createdAt": "2025-02-02T20:37:45.132Z",
           "status": {
-            "done": true,
-            "lastUpdatedAt": "2025-02-02T22:04:48.885Z"
+            "done": false,
+            "lastUpdatedAt": "2025-02-03T15:59:03.009Z"
           }
         },
         {
@@ -57,7 +69,7 @@
           "createdAt": "2025-02-02T22:02:42.994Z",
           "status": {
             "done": true,
-            "lastUpdatedAt": "2025-02-02T22:04:49.379Z"
+            "lastUpdatedAt": "2025-02-02T22:05:43.093Z"
           }
         }
       ]

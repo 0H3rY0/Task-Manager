@@ -1,11 +1,10 @@
 import { TiDelete } from "react-icons/ti";
 import { RxUpdate } from "react-icons/rx";
 import * as Dialog from "@radix-ui/react-dialog";
-import ModalModifyTask from "../modals/ModalModifyTask";
-import ModalCheckAgreement from "../modals/ModalCheckAgreement";
+import ModalModifyTask from "./modals/ModalModifyTask";
+import ModalCheckAgreement from "./modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
-import ProjectService from "../../service/api/projects";
-import { useState } from "react";
+import ProjectService from "../service/api/projects";
 
 const TasksList = ({
   tasks = [],
@@ -16,7 +15,6 @@ const TasksList = ({
   isPurple = false,
 }) => {
   const navigate = useNavigate();
-  const [taskStatus, setTaskStatus] = useState(false);
 
   const getProjectByTaskId = async (taskId) => {
     try {
@@ -51,7 +49,6 @@ const TasksList = ({
         lastUpdatedAt: new Date(),
       },
     };
-    setTaskStatus(e.target.checked);
     modifyTask(taskId, newTask);
   };
 
