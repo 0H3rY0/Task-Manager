@@ -32,7 +32,7 @@ const HomeNewsSection = () => {
           News <TbArticle />
         </h2>
         {/* cart Container */}
-        <div className="flex items-center justify-center gap-10">
+        <div className="flex md:flex-row flex-col items-center justify-center gap-10">
           {data ? (
             data.allNewsarticles.map((card, index) => (
               <HomeCard
@@ -49,7 +49,7 @@ const HomeNewsSection = () => {
 
         {/* buttons */}
         {data && (
-          <div className="flex items-center justify-center mt-5 gap-4">
+          <div className=" items-center justify-center mt-5 gap-4 lg:flex hidden">
             <LeftSwitchButton
               setActiveIndex={setActiveIndex}
               cards={data.allNewsarticles}
