@@ -1,4 +1,4 @@
-import OwnSelectDayList from "./ui/OwnSelectDayList";
+import OwnSelectDayList from "./OwnSelectDayList";
 import WelcomeUsername from "./ui/WelcomeUsername";
 import CompletedTasks from "./CompletedTasks";
 import CreatedProjects from "./CreatedProjects";

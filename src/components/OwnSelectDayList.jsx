@@ -1,5 +1,7 @@
 import { useEffect, useState, useRef } from "react";
-import { IoIosArrowDown } from "react-icons/io";
+// import { IoIosArrowDown } from "react-icons/io";
+import SelectStatisticBarListOption from "./ui/SelectStatisticBarListOption";
+import SelectStatisticsBarListText from "./ui/SelectStatisticsBarListText";
 
 const OwnSelectDayList = ({ handleStatsUpdate }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,37 +30,30 @@ const OwnSelectDayList = ({ handleStatsUpdate }) => {
       className="w-full relative md:w-40 font-semibold text-slate-800 md:border-gray-400 md:border-r-2"
       ref={selectRef}
     >
-      <div
-        className=" w-full border-none px-2 py-2 bg-gray-200 text-gray-700 border border-gray-300 rounded-md flex items-center justify-center gap-2 cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <span className="font-semibold text-slate-800 text-md">
-          {selectedOption}
-        </span>
-        <IoIosArrowDown size={20} />
-      </div>
+      <SelectStatisticsBarListText
+        setIsOpen={setIsOpen}
+        isOpen={isOpen}
+        selectedOption={selectedOption}
+      />
 
       {isOpen && (
         <div className="absolute z-50 left-0 w-full mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
           <ul className="space-y-2">
-            <li
-              onClick={() => handleSelectOption("My week", 7)}
-              className="py-2 px-4 cursor-pointer hover:bg-blue-500 hover:text-white"
-            >
-              My week
-            </li>
-            <li
-              onClick={() => handleSelectOption("My month", 30)}
-              className="py-2 px-4 cursor-pointer hover:bg-blue-500 hover:text-white"
-            >
-              My month
-            </li>
-            <li
-              onClick={() => handleSelectOption("My year", 365)}
-              className="py-2 px-4 cursor-pointer hover:bg-blue-500 hover:text-white"
-            >
-              My year
-            </li>
+            <SelectStatisticBarListOption
+              onClick={handleSelectOption}
+              text="week"
+              numberOfDays={7}
+            />
+            <SelectStatisticBarListOption
+              onClick={handleSelectOption}
+              text="month"
+              numberOfDays={30}
+            />
+            <SelectStatisticBarListOption
+              onClick={handleSelectOption}
+              text="year"
+              numberOfDays={365}
+            />
           </ul>
         </div>
       )}
