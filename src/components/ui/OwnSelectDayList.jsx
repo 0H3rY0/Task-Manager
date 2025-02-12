@@ -25,7 +25,7 @@ const OwnSelectDayList = ({ handleStatsUpdate }) => {
 
   return (
     <div
-      className="relative w-40 font-semibold text-slate-800 border-gray-400 border-r-2"
+      className="w-full relative md:w-40 font-semibold text-slate-800 md:border-gray-400 md:border-r-2"
       ref={selectRef}
     >
       <div

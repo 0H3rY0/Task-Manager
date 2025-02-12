@@ -33,7 +33,10 @@ const HomeStatisticsBar = () => {
   return (
     <div className="flex flex-col gap-4 items-center">
       <WelcomeUsername />
-      <div className="flex px-5 py-4 shadow-xl rounded-full bg-gray-200">
+      <div
+        className="flex md:flex-row flex-col md:px-5 px-2 md:py-4 py-1 shadow-xl md:rounded-full 
+      rounded-md bg-gray-200 justify-center md:w-4/5 md:2 w-full gap-4"
+      >
         <OwnSelectDayList handleStatsUpdate={handleStatsUpdate} />
         <CompletedTasks dependTasks={dependTasks} />
         <CreatedProjects dependProjects={dependProjects} />
