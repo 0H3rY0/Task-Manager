@@ -4,7 +4,8 @@ import * as Dialog from "@radix-ui/react-dialog";
 import ModalModifyTask from "./modals/ModalModifyTask";
 import ModalCheckAgreement from "./modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
-import ProjectService from "../service/api/projects";
+// import ProjectService from "../service/api/projects";
+import { getProjectByTaskId } from "../utils/functions/getProjectByTaskId";
 
 const TasksList = ({
   tasks = [],
@@ -16,24 +17,24 @@ const TasksList = ({
 }) => {
   const navigate = useNavigate();
 
-  const getProjectByTaskId = async (taskId) => {
-    try {
-      const projects = await ProjectService.getAll();
+  // const getProjectByTaskId = async (taskId) => {
+  //   try {
+  //     const projects = await ProjectService.getAll();
 
-      const foundProject = projects.find((project) =>
-        project.Tasks.some((task) => task.id === taskId)
-      );
+  //     const foundProject = projects.find((project) =>
+  //       project.Tasks.some((task) => task.id === taskId)
+  //     );
 
-      if (foundProject) {
-        console.log("znaleziono projekt: " + foundProject.id);
-        return foundProject.id;
-      } else {
-        console.log("nie znaleziono projektu ");
-      }
-    } catch (error) {
-      console.log("error with project id: " + error);
-    }
-  };
+  //     if (foundProject) {
+  //       console.log("znaleziono projekt: " + foundProject.id);
+  //       return foundProject.id;
+  //     } else {
+  //       console.log("nie znaleziono projektu ");
+  //     }
+  //   } catch (error) {
+  //     console.log("error with project id: " + error);
+  //   }
+  // };
 
   const goToProject = async (taskId) => {
     const id = await getProjectByTaskId(taskId);

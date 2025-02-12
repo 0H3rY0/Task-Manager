@@ -1,6 +1,15 @@
 import { BsCheck2Circle } from "react-icons/bs";
+import { useNavigate } from "react-router";
+import { getProjectByTaskId } from "../utils/functions/getProjectByTaskId";
 
 const HomeTaskList = ({ dependTimeTasks }) => {
+  const navigate = useNavigate();
+
+  const handleGoToProject = async (taskId) => {
+    const projectID = await getProjectByTaskId(taskId);
+    navigate(`project/${projectID}`);
+  };
+
   return (
     <div className="w-full mt-4">
       <ul>
@@ -21,7 +30,10 @@ const HomeTaskList = ({ dependTimeTasks }) => {
             <p className="font-semibold items-end lg:text-center text-start">
               {item.importance}
             </p>
-            <button className="btn items-end bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md">
+            <button
+              className="btn items-end bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md"
+              onClick={() => handleGoToProject(item.id)}
+            >
               show
             </button>
             {/* </div> */}
