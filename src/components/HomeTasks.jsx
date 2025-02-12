@@ -5,6 +5,15 @@ import HomeTaskTableTodayOption from "./ui/HomeTaskTableTodayOption";
 import HomeTaskTableWeekOption from "./ui/HomeTaskTableWeekOption";
 import HomeTaskTableMonth30DaysOption from "./ui/HomeTaskTableMonth30DaysOption";
 
+const filterTasksByDateRange = (tasks, startDate, endDate) => {
+  return tasks.filter((task) => {
+    const taskDate = new Date(task.deadline);
+    taskDate.setHours(0, 0, 0, 0);
+
+    return taskDate >= startDate && taskDate <= endDate;
+  });
+};
+
 const HomeTasks = () => {
   const [underlineActive, setUnderlineActive] = useState(1);
   const [allTasks, setAllTasks] = useState([]);
@@ -20,65 +29,32 @@ const HomeTasks = () => {
   }, []);
 
   useEffect(() => {
-    todayTasks();
-  }, [allTasks]);
+    handleTimeFilter("today");
+  });
 
-  const todayTasks = () => {
+  const handleTimeFilter = (timePeriod) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    setDependTimeTasks(
-      allTasks.filter((task) => {
-        const taskDate = new Date(task.deadline);
-        taskDate.setHours(0, 0, 0, 0);
+    let startDate = today;
+    let endDate = today;
 
-        if (taskDate.getTime() === today.getTime()) {
-          return task;
-        }
-      })
-    );
-  };
+    if (timePeriod === "today") {
+      endDate = new Date(today);
+    } else if (timePeriod === "week") {
+      endDate = new Date(today);
+      endDate.setDate(today.getDate() + 7);
+    } else if (timePeriod === "month") {
+      endDate = new Date(today);
+      endDate.setDate(today.getDate() + 30);
+    }
 
-  const weekTasks = () => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); // Ustawienie początku dnia
-
-    const nextWeek = new Date(today);
-    nextWeek.setDate(today.getDate() + 7); // Dodanie 7 dni
-
-    setDependTimeTasks(
-      allTasks.filter((task) => {
-        const taskDate = new Date(task.deadline);
-        taskDate.setHours(0, 0, 0, 0); // Ustawienie początku dnia dla porównania
-
-        if (taskDate >= today && taskDate < nextWeek) {
-          return task;
-        }
-      })
-    );
-  };
-
-  const monthTasks = () => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    const nextMonht = new Date(today);
-    nextMonht.setDate(today.getDate() + 30);
-
-    setDependTimeTasks(
-      allTasks.filter((task) => {
-        const taskDate = new Date(task.deadline);
-        taskDate.setHours(0, 0, 0, 0);
-
-        if (taskDate >= today && taskDate <= nextMonht) {
-          return task;
-        }
-      })
-    );
+    const filteredTasks = filterTasksByDateRange(allTasks, startDate, endDate);
+    setDependTimeTasks(filteredTasks);
   };
 
   return (
-    <div className="w-full flex justify-center ">
+    <div className="w-full flex justify-center">
       <div className="shadow-xl border-2 border-slate-200 p-4 w-full">
         <div className="flex gap-4">
           <div className="bg-black rounded-full text-white flex items-center justify-center">
@@ -88,19 +64,22 @@ const HomeTasks = () => {
             <p className="font-bold text-xl text-slate-800">My Tasks</p>
             <p className="flex gap-2 font-semibold text-slate-600 text-lg">
               <HomeTaskTableTodayOption
-                todayTasks={todayTasks}
+                handleTimeFilter={handleTimeFilter}
                 setUnderlineActive={setUnderlineActive}
                 underlineActive={underlineActive}
+                timePeriod="today"
               />
               <HomeTaskTableWeekOption
-                weekTasks={weekTasks}
+                handleTimeFilter={handleTimeFilter}
                 setUnderlineActive={setUnderlineActive}
                 underlineActive={underlineActive}
+                timePeriod="week"
               />
               <HomeTaskTableMonth30DaysOption
-                monthTasks={monthTasks}
+                handleTimeFilter={handleTimeFilter}
                 setUnderlineActive={setUnderlineActive}
                 underlineActive={underlineActive}
+                timePeriod="month"
               />
             </p>
           </div>

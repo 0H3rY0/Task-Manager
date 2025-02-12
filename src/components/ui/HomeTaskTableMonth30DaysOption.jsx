@@ -1,12 +1,13 @@
 const HomeTaskTableMonth30DaysOption = ({
-  monthTasks,
+  handleTimeFilter,
   setUnderlineActive,
   underlineActive,
+  timePeriod,
 }) => {
   return (
     <span
       onClick={() => {
-        monthTasks();
+        handleTimeFilter(timePeriod);
         setUnderlineActive(3);
       }}
       className={

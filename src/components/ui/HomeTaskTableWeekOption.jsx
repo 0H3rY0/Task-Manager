@@ -1,12 +1,13 @@
 const HomeTaskTableWeekOption = ({
-  weekTasks,
+  handleTimeFilter,
   setUnderlineActive,
   underlineActive,
+  timePeriod,
 }) => {
   return (
     <span
       onClick={() => {
-        weekTasks();
+        handleTimeFilter(timePeriod);
         setUnderlineActive(2);
       }}
       className={

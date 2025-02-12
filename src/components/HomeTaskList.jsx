@@ -22,21 +22,20 @@ const HomeTaskList = ({ dependTimeTasks }) => {
               <BsCheck2Circle size={30} /> {item.content}
             </p>
 
-            {/* <div className="flex items-center gap-4"> */}
-
             <p className="font-semibold items-end lg:text-center text-start text-nowrap">
               {item.deadline}
             </p>
+
             <p className="font-semibold items-end lg:text-center text-start">
               {item.importance}
             </p>
+
             <button
               className="btn items-end bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md"
               onClick={() => handleGoToProject(item.id)}
             >
               show
             </button>
-            {/* </div> */}
           </li>
         ))}
       </ul>

@@ -1,12 +1,13 @@
 const HomeTaskTableOption = ({
-  todayTasks,
+  handleTimeFilter,
   setUnderlineActive,
   underlineActive,
+  timePeriod,
 }) => {
   return (
     <span
       onClick={() => {
-        todayTasks();
+        handleTimeFilter(timePeriod);
         setUnderlineActive(1);
       }}
       className={
