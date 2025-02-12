@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import ProjectService from "../service/api/projects";
 import HomeTaskList from "./HomeTaskList";
+import HomeTaskTableTodayOption from "./ui/HomeTaskTableTodayOption";
+import HomeTaskTableWeekOption from "./ui/HomeTaskTableWeekOption";
+import HomeTaskTableMonth30DaysOption from "./ui/HomeTaskTableMonth30DaysOption";
 
 const HomeTasks = () => {
   const [underlineActive, setUnderlineActive] = useState(1);
@@ -77,7 +80,6 @@ const HomeTasks = () => {
   return (
     <div className="w-full flex justify-center ">
       <div className="shadow-xl border-2 border-slate-200 p-4 w-full">
-        {/* gora */}
         <div className="flex gap-4">
           <div className="bg-black rounded-full text-white flex items-center justify-center">
             image
@@ -85,55 +87,24 @@ const HomeTasks = () => {
           <div>
             <p className="font-bold text-xl text-slate-800">My Tasks</p>
             <p className="flex gap-2 font-semibold text-slate-600 text-lg">
-              <span
-                onClick={() => {
-                  todayTasks();
-                  setUnderlineActive(1);
-                }}
-                className={
-                  `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
-                  ` ${
-                    underlineActive === 1 &&
-                    " underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer"
-                  } `
-                }
-              >
-                Today
-              </span>
-              <span
-                onClick={() => {
-                  weekTasks();
-                  setUnderlineActive(2);
-                }}
-                className={
-                  `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
-                  ` ${
-                    underlineActive === 2 &&
-                    "underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer"
-                  } `
-                }
-              >
-                week
-              </span>
-              <span
-                onClick={() => {
-                  monthTasks();
-                  setUnderlineActive(3);
-                }}
-                className={
-                  `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
-                  ` ${
-                    underlineActive === 3 &&
-                    "underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer"
-                  } `
-                }
-              >
-                30 days
-              </span>
+              <HomeTaskTableTodayOption
+                todayTasks={todayTasks}
+                setUnderlineActive={setUnderlineActive}
+                underlineActive={underlineActive}
+              />
+              <HomeTaskTableWeekOption
+                weekTasks={weekTasks}
+                setUnderlineActive={setUnderlineActive}
+                underlineActive={underlineActive}
+              />
+              <HomeTaskTableMonth30DaysOption
+                monthTasks={monthTasks}
+                setUnderlineActive={setUnderlineActive}
+                underlineActive={underlineActive}
+              />
             </p>
           </div>
         </div>
-        {/* dol */}
         <HomeTaskList dependTimeTasks={dependTimeTasks} />
       </div>
     </div>
