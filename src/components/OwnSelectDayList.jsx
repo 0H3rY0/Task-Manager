@@ -1,29 +1,10 @@
-import { useEffect, useState, useRef } from "react";
-// import { IoIosArrowDown } from "react-icons/io";
 import SelectStatisticBarListOption from "./ui/SelectStatisticBarListOption";
 import SelectStatisticsBarListText from "./ui/SelectStatisticsBarListText";
+import useSelect from "../hooks/useSelect";
 
 const OwnSelectDayList = ({ handleStatsUpdate }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("My week");
-  const selectRef = useRef(null);
-
-  const handleSelectOption = (value, days) => {
-    setSelectedOption(value);
-    setIsOpen(false);
-    handleStatsUpdate(days);
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (selectRef.current && !selectRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const { isOpen, setIsOpen, selectRef, selectedOption, handleSelectOption } =
+    useSelect(handleStatsUpdate);
 
   return (
     <div
