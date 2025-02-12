@@ -3,6 +3,8 @@ import HomeNewsSection from "../components/HomeNewsSection";
 import HomeStatisticsBar from "../components/HomeStatisticsBar";
 import { BsCheck2Circle } from "react-icons/bs";
 import HomeTasks from "../components/HomeTasks";
+import { ApolloProvider } from "@apollo/client";
+import client from "../utils/apolloClient";
 
 const Home = () => {
   return (
@@ -13,7 +15,9 @@ const Home = () => {
         </h2>
       </div>
       <HomeStatisticsBar />
-      <HomeNewsSection />
+      <ApolloProvider client={client}>
+        <HomeNewsSection />
+      </ApolloProvider>
       <h2 className="font-semibold text-2xl mb-2 text-slate-800 flex items-center gap-2 mt-5">
         Tasks <BsCheck2Circle size={30} />
       </h2>

@@ -29,7 +29,7 @@ const RemoveImageButton = ({ user, setImageUrl }) => {
       ownSize={true}
       func={handleDeleteImage}
     >
-      <button className="btn bg-red-500 w-full py-2 w-full rounded-full font-semibold text-lg">
+      <button className="btn bg-red-500 py-2 w-full rounded-full font-semibold text-lg">
         remove
       </button>
     </ModalCheckAgreement>

@@ -1,6 +1,6 @@
 import { FaArrowLeft } from "react-icons/fa";
 
-const LeftSwitchButton = ({ setActiveIndex, cards }) => {
+const LeftSwitchButton = ({ setActiveIndex, cards = [] }) => {
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + cards.length) % cards.length);
   };
