@@ -7,19 +7,24 @@ const HomeTaskList = ({ dependTimeTasks }) => {
         {dependTimeTasks.map((item) => (
           <li
             key={item.id}
-            className="border-b-2 border-slate-200 px-2 py-1 mb-2 flex gap-2 items-center justify-between text-lg text-slate-700"
+            className="border-b-2 border-slate-200 px-2 py-1 mb-2 grid grid-cols-1 lg:grid-cols-8  gap-2 items-center justify-between text-lg text-slate-700"
           >
-            <p className="flex items-center justify-start gap-2">
+            <p className="flex items-center justify-start gap-2 lg:col-span-5 md:col-span-6 ">
               <BsCheck2Circle size={30} /> {item.content}
             </p>
 
-            <div className="flex items-center gap-4">
-              <button className="btn bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md">
-                show
-              </button>
-              <p className="font-semibold">{item.deadline}</p>
-              <p className="font-semibold">{item.importance}</p>
-            </div>
+            {/* <div className="flex items-center gap-4"> */}
+
+            <p className="font-semibold items-end lg:text-center text-start text-nowrap">
+              {item.deadline}
+            </p>
+            <p className="font-semibold items-end lg:text-center text-start">
+              {item.importance}
+            </p>
+            <button className="btn items-end bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md">
+              show
+            </button>
+            {/* </div> */}
           </li>
         ))}
       </ul>

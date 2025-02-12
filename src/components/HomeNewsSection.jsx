@@ -1,20 +1,8 @@
 import { TbArticle } from "react-icons/tb";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import HomeCard from "./ui/HomeCard";
 import LeftSwitchButton from "./ui/LeftSwitchButton";
 import RightSwitchButton from "./ui/RightSwitchButton";
-
-// query {
-//   allNewsarticles {
-//     id
-//     title
-//     description
-//     fulldescription
-//     image {
-//       url
-//     }
-//   }
-// }
 
 import { useQuery, gql } from "@apollo/client";
 

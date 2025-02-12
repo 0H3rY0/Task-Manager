@@ -76,7 +76,7 @@ const HomeTasks = () => {
 
   return (
     <div className="w-full flex justify-center ">
-      <div className="shadow-xl border-2 border-slate-200 p-4 w-4/5">
+      <div className="shadow-xl border-2 border-slate-200 p-4 w-full">
         {/* gora */}
         <div className="flex gap-4">
           <div className="bg-black rounded-full text-white flex items-center justify-center">
