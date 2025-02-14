@@ -30,7 +30,7 @@ const HomeTasks = () => {
 
   useEffect(() => {
     handleTimeFilter("today");
-  });
+  }, [allTasks]);
 
   const handleTimeFilter = (timePeriod) => {
     const today = new Date();
