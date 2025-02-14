@@ -1,13 +1,61 @@
-import { useState } from "react";
-import { BsCheck2Circle } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import ProjectService from "../service/api/projects";
+import HomeTaskList from "./HomeTaskList";
+import HomeTaskTableTodayOption from "./ui/HomeTaskTableTodayOption";
+import HomeTaskTableWeekOption from "./ui/HomeTaskTableWeekOption";
+import HomeTaskTableMonth30DaysOption from "./ui/HomeTaskTableMonth30DaysOption";
+
+const filterTasksByDateRange = (tasks, startDate, endDate) => {
+  return tasks.filter((task) => {
+    const taskDate = new Date(task.deadline);
+    taskDate.setHours(0, 0, 0, 0);
+
+    return taskDate >= startDate && taskDate <= endDate;
+  });
+};
 
 const HomeTasks = () => {
   const [underlineActive, setUnderlineActive] = useState(1);
+  const [allTasks, setAllTasks] = useState([]);
+  const [dependTimeTasks, setDependTimeTasks] = useState([]);
+
+  useEffect(() => {
+    const getTasks = async () => {
+      const response = await ProjectService.getAllTasks();
+      setAllTasks(response);
+    };
+
+    getTasks();
+  }, []);
+
+  useEffect(() => {
+    handleTimeFilter("today");
+  }, [allTasks]);
+
+  const handleTimeFilter = (timePeriod) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let startDate = today;
+    let endDate = today;
+
+    if (timePeriod === "today") {
+      endDate = new Date(today);
+    } else if (timePeriod === "week") {
+      endDate = new Date(today);
+      endDate.setDate(today.getDate() + 7);
+    } else if (timePeriod === "month") {
+      endDate = new Date(today);
+      endDate.setDate(today.getDate() + 30);
+    }
+
+    const filteredTasks = filterTasksByDateRange(allTasks, startDate, endDate);
+    setDependTimeTasks(filteredTasks);
+  };
 
   return (
-    <div className="w-full flex justify-center ">
-      <div className="shadow-xl border-2 border-slate-200 p-4 w-4/5">
-        {/* gora */}
+    <div className="w-full flex justify-center">
+      <div className="shadow-xl border-2 border-slate-200 p-4 w-full">
         <div className="flex gap-4">
           <div className="bg-black rounded-full text-white flex items-center justify-center">
             image
@@ -15,89 +63,28 @@ const HomeTasks = () => {
           <div>
             <p className="font-bold text-xl text-slate-800">My Tasks</p>
             <p className="flex gap-2 font-semibold text-slate-600 text-lg">
-              <span
-                onClick={() => setUnderlineActive(1)}
-                className={
-                  `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
-                  ` ${
-                    underlineActive === 1 &&
-                    " underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer"
-                  } `
-                }
-              >
-                Today
-              </span>
-              <span
-                onClick={() => setUnderlineActive(2)}
-                className={
-                  `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
-                  ` ${
-                    underlineActive === 2 &&
-                    "underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer"
-                  } `
-                }
-              >
-                week
-              </span>
-              <span
-                onClick={() => setUnderlineActive(3)}
-                className={
-                  `hover:underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer ` +
-                  ` ${
-                    underlineActive === 3 &&
-                    "underline decoration-blue-500 decoration-2 underline-offset-8 cursor-pointer"
-                  } `
-                }
-              >
-                month
-              </span>
+              <HomeTaskTableTodayOption
+                handleTimeFilter={handleTimeFilter}
+                setUnderlineActive={setUnderlineActive}
+                underlineActive={underlineActive}
+                timePeriod="today"
+              />
+              <HomeTaskTableWeekOption
+                handleTimeFilter={handleTimeFilter}
+                setUnderlineActive={setUnderlineActive}
+                underlineActive={underlineActive}
+                timePeriod="week"
+              />
+              <HomeTaskTableMonth30DaysOption
+                handleTimeFilter={handleTimeFilter}
+                setUnderlineActive={setUnderlineActive}
+                underlineActive={underlineActive}
+                timePeriod="month"
+              />
             </p>
           </div>
         </div>
-        {/* dol */}
-        <div className="w-full mt-4">
-          <ul>
-            <li className="border-b-2 border-slate-200 px-2 py-1 mb-2 flex gap-2 items-center justify-between text-lg text-slate-700">
-              <p className="flex items-center justify-start gap-2">
-                <BsCheck2Circle size={30} /> Twitter Content Plan
-              </p>
-
-              <div className="flex items-center gap-4">
-                <button className="btn bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md">
-                  show
-                </button>
-                <p className="font-semibold">19-10-2025</p>
-                <p className="font-semibold">Medium</p>
-              </div>
-            </li>
-            <li className="border-b-2 border-slate-200 px-2 py-1 mb-2 flex gap-2 items-center justify-between text-lg text-slate-700">
-              <p className="flex items-center justify-start gap-2">
-                <BsCheck2Circle size={30} /> Twitter Content Plan
-              </p>
-
-              <div className="flex items-center gap-4">
-                <button className="btn bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md">
-                  show
-                </button>
-                <p className="font-semibold">19-10-2025</p>
-                <p className="font-semibold">Medium</p>
-              </div>
-            </li>
-            <li className="border-b-2 border-slate-200 px-2 py-1 mb-2 flex gap-2 items-center justify-between text-lg text-slate-700">
-              <p className="flex items-center justify-start gap-2">
-                <BsCheck2Circle size={30} /> Twitter Content Plan
-              </p>
-
-              <div className="flex items-center gap-4">
-                <button className="btn bg-white border-2 border-blue-500 rounded-md px-2 py-1 font-semibold text-md">
-                  show
-                </button>
-                <p className="font-semibold">19-10-2025</p>
-                <p className="font-semibold">Medium</p>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <HomeTaskList dependTimeTasks={dependTimeTasks} />
       </div>
     </div>
   );

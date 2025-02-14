@@ -1,5 +1,3 @@
-import profile from "../../assets/images/profile.jpg";
-
 const HomeCard = ({ card, index, activeIndex }) => {
   return (
     <div
@@ -7,11 +5,11 @@ const HomeCard = ({ card, index, activeIndex }) => {
       className={`card ${index === activeIndex ? "active" : ""}`}
     >
       <div className="card-image">
-        <img src={profile} alt="Card" />
+        <img src={card.image.url} alt="Card" />
       </div>
       <div className="card-content">
         <p className="card-title">{card.title}</p>
-        <p className="card-text">{card.text}</p>
+        <p className="card-text">{card.description}</p>
       </div>
     </div>
   );

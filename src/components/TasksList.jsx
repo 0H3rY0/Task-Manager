@@ -1,45 +1,59 @@
 import { TiDelete } from "react-icons/ti";
 import { RxUpdate } from "react-icons/rx";
 import * as Dialog from "@radix-ui/react-dialog";
-import ModalModifyTask from "../modals/ModalModifyTask";
-import ModalCheckAgreement from "../modals/ModalCheckAgreement";
+import ModalModifyTask from "./modals/ModalModifyTask";
+import ModalCheckAgreement from "./modals/ModalCheckAgreement";
 import { useNavigate } from "react-router";
-import ProjectService from "../../service/api/projects";
+// import ProjectService from "../service/api/projects";
+import { getProjectByTaskId } from "../utils/functions/getProjectByTaskId";
 
 const TasksList = ({
   tasks = [],
   removeTask,
-  modifyTask,
+  modifyTask = () => {},
   id,
   modifyTaskErrors,
   isPurple = false,
 }) => {
   const navigate = useNavigate();
 
-  const getProjectByTaskId = async (taskId) => {
-    try {
-      const projects = await ProjectService.getAll();
+  // const getProjectByTaskId = async (taskId) => {
+  //   try {
+  //     const projects = await ProjectService.getAll();
 
-      const foundProject = projects.find((project) =>
-        project.Tasks.some((task) => task.id === taskId)
-      );
+  //     const foundProject = projects.find((project) =>
+  //       project.Tasks.some((task) => task.id === taskId)
+  //     );
 
-      if (foundProject) {
-        console.log("znaleziono projekt: " + foundProject.id);
-        return foundProject.id;
-      } else {
-        console.log("nie znaleziono projektu ");
-      }
-    } catch (error) {
-      console.log("error with project id: " + error);
-    }
-  };
+  //     if (foundProject) {
+  //       console.log("znaleziono projekt: " + foundProject.id);
+  //       return foundProject.id;
+  //     } else {
+  //       console.log("nie znaleziono projektu ");
+  //     }
+  //   } catch (error) {
+  //     console.log("error with project id: " + error);
+  //   }
+  // };
 
   const goToProject = async (taskId) => {
     const id = await getProjectByTaskId(taskId);
     console.log(id);
     navigate(`/project/${id}`);
   };
+
+  const updateTasksStatus = async (e, taskId, task) => {
+    const newTask = {
+      ...task,
+      status: {
+        done: e.target.checked,
+        lastUpdatedAt: new Date(),
+      },
+    };
+    modifyTask(taskId, newTask);
+  };
+
+  console.log(tasks);
 
   return (
     <ul className="flex flex-col">
@@ -128,6 +142,19 @@ const TasksList = ({
                       {item.importance}
                     </span>
                   </p>
+                  <div className="flex items-center justify-between gap-2">
+                    <p>Completed: </p>
+                    <label className="inline-flex  items-center cursor-pointer">
+                      <input
+                        name="receiveUpdatesEmails"
+                        type="checkbox"
+                        className="sr-only peer"
+                        defaultChecked={item.status.done}
+                        onChange={(e) => updateTasksStatus(e, item.id, item)}
+                      />
+                      <div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500 dark:peer-checked:bg-green-500"></div>
+                    </label>
+                  </div>
                 </div>
               </div>
             </li>

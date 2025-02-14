@@ -1,6 +1,6 @@
 import { FaArrowRight } from "react-icons/fa";
 
-const RightSwitchButton = ({ setActiveIndex, cards }) => {
+const RightSwitchButton = ({ setActiveIndex, cards = [] }) => {
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % cards.length);
   };

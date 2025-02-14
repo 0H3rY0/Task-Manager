@@ -4,38 +4,62 @@ import HomeCard from "./ui/HomeCard";
 import LeftSwitchButton from "./ui/LeftSwitchButton";
 import RightSwitchButton from "./ui/RightSwitchButton";
 
-const HomeNewsSection = () => {
-  const cards = [
-    { id: 1, title: "Card 1", text: "Description 1" },
-    { id: 2, title: "Card 2", text: "Description 2" },
-    { id: 3, title: "Card 3", text: "Description 3" },
-  ];
+import { useQuery, gql } from "@apollo/client";
 
+const GET_NEWS_ARTICLES = gql`
+  query {
+    allNewsarticles {
+      id
+      title
+      description
+      fulldescription
+      image {
+        url
+      }
+    }
+  }
+`;
+
+const HomeNewsSection = () => {
   const [activeIndex, setActiveIndex] = useState(1);
+  const { data } = useQuery(GET_NEWS_ARTICLES);
 
   return (
     <>
       <div className="mt-10">
         {/* News section description */}
         <h2 className="font-semibold text-2xl mb-5 text-slate-800 flex items-center gap-2">
-          News <TbArticle />{" "}
+          News <TbArticle />
         </h2>
         {/* cart Container */}
-        <div className="flex items-center justify-center gap-10">
-          {cards.map((card, index) => (
-            <HomeCard
-              key={card.id}
-              card={card}
-              index={index}
-              activeIndex={activeIndex}
-            />
-          ))}
+        <div className="flex md:flex-row flex-col items-center justify-center gap-10">
+          {data ? (
+            data.allNewsarticles.map((card, index) => (
+              <HomeCard
+                key={card.id}
+                card={card}
+                index={index}
+                activeIndex={activeIndex}
+              />
+            ))
+          ) : (
+            <p className="text-gray-500 text-lg">No news available</p>
+          )}
         </div>
+
         {/* buttons */}
-        <div className="flex items-center justify-center mt-5 gap-4">
-          <LeftSwitchButton setActiveIndex={setActiveIndex} cards={cards} />
-          <RightSwitchButton setActiveIndex={setActiveIndex} cards={cards} />
-        </div>
+        {data && (
+          <div className=" items-center justify-center mt-5 gap-4 lg:flex hidden">
+            <LeftSwitchButton
+              setActiveIndex={setActiveIndex}
+              cards={data.allNewsarticles}
+            />
+            <RightSwitchButton
+              setActiveIndex={setActiveIndex}
+              cards={data.allNewsarticles}
+            />
+          </div>
+        )}
       </div>
     </>
   );

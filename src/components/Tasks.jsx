@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { toast } from "react-toastify";
 import ProjectService from "../service/api/projects";
 import { v4 as uuidv4 } from "uuid";
-import TasksList from "./ui/TasksList";
+import TasksList from "./TasksList";
 import ModalConfigureTask from "./modals/ModalConfigureTask";
 import { taskSchema } from "../utils/taskSchema";
 import useModal from "../hooks/useModal";
@@ -15,6 +15,11 @@ const Tasks = ({ id, updateFlag }) => {
     content: "",
     deadline: "",
     importance: "Low",
+    createdAt: "",
+    status: {
+      done: false,
+      lastUpdatedAt: "",
+    },
   };
   const [task, setTask] = useState(initialTaskState);
   // const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -95,6 +100,7 @@ const Tasks = ({ id, updateFlag }) => {
     const newTask = {
       ...task,
       id: uuidv4(),
+      createdAt: new Date(),
     };
     try {
       await taskSchema.validate(newTask, {

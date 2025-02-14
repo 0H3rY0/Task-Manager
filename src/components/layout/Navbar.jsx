@@ -5,11 +5,14 @@ import { NavLink } from "react-router";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
+import { useNavbarActive } from "../../store/useNavbarActive";
 
 const Navbar = ({ navbarActive }) => {
+  const { closeNavbar } = useNavbarActive();
+
   return (
     <div
-      className={`w-full bg-white top-18 md:w-[300px] left-0 md:h-full shadow-xl slide-right px-10 py-6 pb-10 transition-all duration-300 ease-in-out ${
+      className={`w-full z-50 bg-white top-18 md:w-[300px] left-0 md:h-full shadow-xl slide-right px-10 py-6 pb-10 transition-all duration-300 ease-in-out ${
         navbarActive ? "fixed md:top-0 top-18" : "hidden"
       } z-50`}
     >
@@ -67,6 +70,13 @@ const Navbar = ({ navbarActive }) => {
         </p>
         <p className="flex items-center gap-2 text-lg cursor-pointer text-slate-700 font-semibold mt-5"></p>
       </div>
+
+      {navbarActive && (
+        <div
+          className="md:hidden block z-40 fixed top-[30rem] left-0 w-full h-full"
+          onClick={() => closeNavbar(false)}
+        ></div>
+      )}
     </div>
   );
 };
