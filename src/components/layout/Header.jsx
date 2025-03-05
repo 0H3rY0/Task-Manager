@@ -10,10 +10,12 @@ import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { useAuthStore } from "../../store/useAuthStore";
 import { IoEyeOutline } from "react-icons/io5";
 import { useNavbarActive } from "../../store/useNavbarActive";
+import { useUserStore } from "../../store/useUserStore";
 
 function Header() {
   const { isAuthenticated, logout, setAccessFull } = useAuthStore();
   const { isNavbarActive, setIsNavbarActive } = useNavbarActive();
+  const { user } = useUserStore();
 
   const navigate = useNavigate();
 
@@ -100,7 +102,7 @@ function Header() {
           className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
         />
         <img
-          src={profile}
+          src={user.imageUrl}
           className="w-8 h-8 rounded-full"
           title="profile"
           onClick={() => navigate("/user-settings")}
