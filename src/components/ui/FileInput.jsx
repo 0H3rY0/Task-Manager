@@ -9,12 +9,11 @@ const FileInput = ({
   errors = "",
   defaultValue = "",
 }) => {
-  // Tworzymy referencję do ukrytego inputa typu file
   const fileInputRef = useRef(null);
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click(); // Programowo wywołujemy kliknięcie na ukrytym input
+      fileInputRef.current.click();
     }
   };
 
@@ -30,7 +29,7 @@ const FileInput = ({
         onChange={onChange}
         ref={type === "file" ? fileInputRef : null}
         type={type}
-        className={`classicInput ${errors ? "mb-0" : "mb-3"} ${
+        className={`classicInput text-slate-400 ${errors ? "mb-0" : "mb-3"} ${
           type === "file" && "hidden"
         }`}
         placeholder="You can type here"

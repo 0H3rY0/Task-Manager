@@ -16,7 +16,6 @@ const SelectImportance = ({
       <select
         className="block text-slate-400"
         name={name}
-        // value={value}
         onChange={onChange}
         defaultValue={defaultValue}
       >
