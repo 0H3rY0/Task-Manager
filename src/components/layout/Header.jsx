@@ -3,7 +3,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 import { FaRegBell } from "react-icons/fa";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import profile from "../../assets/images/profile.jpg";
 import { MdOutlineLogout } from "react-icons/md";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
@@ -14,6 +14,8 @@ import { useNavbarActive } from "../../store/useNavbarActive";
 function Header() {
   const { isAuthenticated, logout, setAccessFull } = useAuthStore();
   const { isNavbarActive, setIsNavbarActive } = useNavbarActive();
+
+  const navigate = useNavigate();
 
   return (
     <header
@@ -97,7 +99,12 @@ function Header() {
           title="notifications"
           className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
         />
-        <img src={profile} className="w-8 h-8 rounded-full" title="profile" />
+        <img
+          src={profile}
+          className="w-8 h-8 rounded-full"
+          title="profile"
+          onClick={() => navigate("/user-settings")}
+        />
       </div>
     </header>
   );

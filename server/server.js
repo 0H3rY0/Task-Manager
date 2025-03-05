@@ -170,7 +170,7 @@ app.put("/user/update", (req, res) => {
 });
 
 app.get("/user", (req, res) => {
-  const { id } = req.query; // Używamy req.query
+  const { id } = req.query;
 
   if (!id) {
     return res.status(400).json({ error: "User ID jest wymagane" });
@@ -192,7 +192,7 @@ app.get("/user", (req, res) => {
         .json({ error: "Nie znaleziono użytkownika o podanym ID" });
     }
 
-    res.status(200).json({ user: result[0] }); // Zwróć dane użytkownika
+    res.status(200).json({ user: result[0] });
   });
 });
 
