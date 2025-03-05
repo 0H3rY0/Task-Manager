@@ -4,6 +4,7 @@ import HomeTaskList from "./HomeTaskList";
 import HomeTaskTableTodayOption from "./ui/HomeTaskTableTodayOption";
 import HomeTaskTableWeekOption from "./ui/HomeTaskTableWeekOption";
 import HomeTaskTableMonth30DaysOption from "./ui/HomeTaskTableMonth30DaysOption";
+import userProfile from "../assets/images/userProfile.webp";
 import { useUserStore } from "../store/useUserStore";
 
 const filterTasksByDateRange = (tasks, startDate, endDate) => {
@@ -60,7 +61,10 @@ const HomeTasks = () => {
       <div className="shadow-xl border-2 border-slate-200 p-4 w-full">
         <div className="flex gap-4">
           <div className="w-14 h-14 bg-white shadow-lg rounded-full text-white flex items-center justify-center">
-            <img src={user.imageUrl} alt="profilImage" />
+            <img
+              src={user.imageUrl ? user.imageUrl : userProfile}
+              alt="profilImage"
+            />
           </div>
           <div>
             <p className="font-bold text-xl text-slate-800">My Tasks</p>

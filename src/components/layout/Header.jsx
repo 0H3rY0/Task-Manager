@@ -4,7 +4,8 @@ import { IoSearchOutline } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 import { FaRegBell } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router";
-import profile from "../../assets/images/profile.jpg";
+// import profile from "../../assets/images/profile.jpg";
+import userProfile from "../../assets/images/userProfile.webp";
 import { MdOutlineLogout } from "react-icons/md";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { useAuthStore } from "../../store/useAuthStore";
@@ -102,7 +103,7 @@ function Header() {
           className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
         />
         <img
-          src={user.imageUrl}
+          src={user.imageUrl ? user.imageUrl : userProfile}
           className="w-8 h-8 rounded-full"
           title="profile"
           onClick={() => navigate("/user-settings")}
