@@ -104,7 +104,7 @@ function Header() {
         />
         <img
           src={user.imageUrl ? user.imageUrl : userProfile}
-          className="w-8 h-8 rounded-full"
+          className="w-8 h-8 object-cover rounded-full border-2 border-gray-300 shadow-md"
           title="profile"
           onClick={() => navigate("/user-settings")}
         />
