@@ -13,3 +13,4 @@ things to do:
 -search bar
 -user page login error
 ...
+zmiena
