@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { jwtDecode } from "jwt-decode";
-import { useUserStore } from "./useUserStore"; // Import nowego stora
+import { useUserStore } from "./useUserStore";
 
 export const useAuthStore = create((set) => ({
   isAuthenticated: false,
@@ -12,7 +12,6 @@ export const useAuthStore = create((set) => ({
       localStorage.setItem("authToken", token);
       set({ isAuthenticated: true, access: "full" });
 
-      // Pobierz dane użytkownika do userStore
       useUserStore.getState().fetchUser(decoded.id);
     } catch (error) {
       console.error("Error decoding token:", error);
@@ -23,7 +22,7 @@ export const useAuthStore = create((set) => ({
   logout: () => {
     localStorage.removeItem("authToken");
     set({ isAuthenticated: false, access: "limited" });
-    useUserStore.getState().resetUser(); // Wyczyść dane użytkownika
+    useUserStore.getState().resetUser();
   },
 
   initializeAuth: async () => {
@@ -46,7 +45,6 @@ export const useAuthStore = create((set) => ({
 
       set({ isAuthenticated: true, access: "full" });
 
-      // Pobierz dane użytkownika
       useUserStore.getState().fetchUser(decoded.id);
     } catch (error) {
       console.error("Błąd podczas autoryzacji:", error);

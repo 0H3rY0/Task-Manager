@@ -40,7 +40,9 @@ const UserSetting = () => {
 
   if (!token) {
     return (
-      <p className="text-red-500">You need to log in to access this content.</p>
+      <p className="text-red-500 absolute top-1/2">
+        You need to log in to access this content.
+      </p>
     );
   }
 

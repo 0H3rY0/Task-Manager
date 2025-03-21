@@ -3,17 +3,22 @@ import { IoHomeOutline } from "react-icons/io5";
 import { IoSearchOutline } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 import { FaRegBell } from "react-icons/fa";
-import { NavLink } from "react-router";
-import profile from "../../assets/images/profile.jpg";
+import { NavLink, useNavigate } from "react-router";
+// import profile from "../../assets/images/profile.jpg";
+import userProfile from "../../assets/images/userProfile.webp";
 import { MdOutlineLogout } from "react-icons/md";
 import ModalCheckAgreement from "../modals/ModalCheckAgreement";
 import { useAuthStore } from "../../store/useAuthStore";
 import { IoEyeOutline } from "react-icons/io5";
 import { useNavbarActive } from "../../store/useNavbarActive";
+import { useUserStore } from "../../store/useUserStore";
 
 function Header() {
   const { isAuthenticated, logout, setAccessFull } = useAuthStore();
   const { isNavbarActive, setIsNavbarActive } = useNavbarActive();
+  const { user } = useUserStore();
+
+  const navigate = useNavigate();
 
   return (
     <header
@@ -97,7 +102,12 @@ function Header() {
           title="notifications"
           className="p-1 hover:bg-white hover:bg-opacity-45 hover:rounded-sm"
         />
-        <img src={profile} className="w-8 h-8 rounded-full" title="profile" />
+        <img
+          src={user.imageUrl ? user.imageUrl : userProfile}
+          className="w-8 h-8 object-cover rounded-full border-2 border-gray-300 shadow-md"
+          title="profile"
+          onClick={() => navigate("/user-settings")}
+        />
       </div>
     </header>
   );
