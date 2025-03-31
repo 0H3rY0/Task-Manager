@@ -4,8 +4,21 @@
 TaskManager is a project management tool that allows users to create, organize, and track tasks efficiently. It helps collaborate with other, set deadlines, and monitor progress in a streamlined way.
 
 ## ⚙️ Installation
-type this commands in the terminal:
 
+### Database Setup
+
+1. Download the database file: [taskmanager.sql](database/taskmanager.sql)
+2. Open **phpMyAdmin** or any MySQL client.
+3. Create a new database named `task-manager`.
+4. Import the downloaded file into the `task-manager` database.
+5. Update your `.env` or configuration file with database credentials:
+   ```env
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=yourpassword
+   DB_NAME=task-manager
+
+### Terminal Setup
 frontend: 
 
 ```bash
