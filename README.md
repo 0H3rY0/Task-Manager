@@ -1,7 +1,10 @@
 ![image alt](https://github.com/0H3rY0/Task-Manager/blob/0f329a1a7b83b96758e630a23297637144cb7a5b/%F0%9F%92%BBTaskManager.png)
 
 ## ✍️ Description
-TaskManager is a project management tool that allows users to create, organize, and track tasks efficiently. It helps collaborate with other, set deadlines, and monitor progress in a streamlined way. __(This project is not finished yet but will be continued soon)__
+TaskManager is a project management tool that allows users to create, organize, and track tasks efficiently. It helps users collaborate with others, set deadlines, and monitor progress in a streamlined way.
+(This project is not finished yet but will be continued soon.)
+
+⚠️ PS: Currently, the displayed data is not personalized per user, and not all features are fully implemented yet.
 
 ## ⚙️ Installation
 
@@ -36,11 +39,11 @@ npm start
 backend: 
 
 ```bash
-npm install
+cd server
 ```
 
 ```bash
-cd server
+npm install
 ```
 
 ```bash
