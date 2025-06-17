@@ -7,7 +7,7 @@ TaskManager is a project management tool that allows users to create, organize, 
 
 ### Database Setup
 
-1. Download the database file: [taskmanager.sql](database/taskmanager.sql)
+1. Download the database file: [taskmanager.sql](database/task-manager.sql)
 2. Open **phpMyAdmin** or any MySQL client.
 3. Create a new database named `task-manager`.
 4. Import the downloaded file into the `task-manager` database.
