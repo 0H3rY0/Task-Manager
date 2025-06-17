@@ -49,7 +49,7 @@ const UserSetting = () => {
   return (
     <div className="w-10/12 flex flex-col justify-between py-16 gap-6">
       <h2 className="font-bold text-2xl text-slate-700 flex gap-2 items-center">
-        Upcoming
+        User
         <FaRegUser className="text-green-500" size={30} />
       </h2>
       <div className="flex md:flex-row flex-col gap-20">

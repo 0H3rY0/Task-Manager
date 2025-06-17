@@ -20,7 +20,6 @@ const ModalModifyTask = ({
   const [newTask, setNewTask] = useState(task);
   const { open, openModal, closeModal } = useModal();
 
-  // Aktualizacja newTask, jeśli task zostanie zaktualizowany w rodzicu
   useEffect(() => {
     setNewTask(task);
   }, [task]);

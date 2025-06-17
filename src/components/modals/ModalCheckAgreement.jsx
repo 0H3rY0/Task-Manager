@@ -57,12 +57,12 @@ const ModalCheckAgreement = ({
 };
 
 ModalCheckAgreement.propTypes = {
-  children: PropTypes.node.isRequired, // Any renderable React content
+  children: PropTypes.node.isRequired,
   titleText: PropTypes.string,
   btnText: PropTypes.string,
-  func: PropTypes.func, // Function to remove the task
-  funcParam: PropTypes.any, // Param for func
-  funcParam2: PropTypes.any, // Param for func
+  func: PropTypes.func,
+  funcParam: PropTypes.any,
+  funcParam2: PropTypes.any,
 };
 
 export default ModalCheckAgreement;

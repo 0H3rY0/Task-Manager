@@ -58,14 +58,10 @@ app.post("/login", (req, res) => {
         return res.status(401).json({ error: "Invalid password" });
       }
 
-      // Tworzenie tokena JWT
-      const token = jwt.sign(
-        { id: user.id, email: user.email }, // Payload tokena
-        SECRET_KEY, // Sekretny klucz
-        { expiresIn: "1h" } // Ważność tokena
-      );
+      const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, {
+        expiresIn: "1h",
+      });
 
-      // Zwrot tokena i danych użytkownika
       return res.status(200).json({
         message: "Login successful",
         token,
@@ -121,12 +117,10 @@ app.post("/register", async (req, res) => {
 app.put("/user/update", (req, res) => {
   const { id, username, email, password, imageUrl } = req.body;
 
-  // Walidacja wymaganych danych
   if (!id) {
     return res.status(400).json({ error: "User ID jest wymagane" });
   }
 
-  // Tworzymy obiekt pól do aktualizacji
   const updates = {};
   if (username) updates.username = username;
   if (email) updates.email = email;
@@ -136,21 +130,18 @@ app.put("/user/update", (req, res) => {
     if (req.body[key] !== undefined) updates[key] = req.body[key];
   });
 
-  // Jeśli nie ma żadnych pól do aktualizacji, zwracamy błąd
   if (Object.keys(updates).length === 0) {
     return res.status(400).json({ error: "Brak danych do aktualizacji" });
   }
 
-  // Generujemy dynamiczne zapytanie SQL
   const fields = Object.keys(updates)
     .map((key) => `${key} = ?`)
     .join(", ");
   const values = Object.values(updates);
 
   const query = `UPDATE user SET ${fields} WHERE id = ?`;
-  values.push(id); // Dodajemy `id` jako ostatni parametr do zapytania
+  values.push(id);
 
-  // Wykonanie zapytania SQL
   db.query(query, values, (err, result) => {
     if (err) {
       console.error("Błąd podczas aktualizacji użytkownika:", err.message);
@@ -233,7 +224,6 @@ app.post("/user/change-password", async (req, res) => {
   }
 
   try {
-    // Pobierz użytkownika z bazy danych
     const sql = "SELECT password FROM user WHERE id = ?";
     const [user] = await new Promise((resolve, reject) => {
       db.query(sql, [id], (err, result) => {
@@ -248,7 +238,6 @@ app.post("/user/change-password", async (req, res) => {
 
     const hashedPassword = user.password;
 
-    // Porównaj obecne hasło
     const isPasswordValid = await bcrypt.compare(
       currentPassword,
       hashedPassword
@@ -258,11 +247,9 @@ app.post("/user/change-password", async (req, res) => {
       return res.status(401).json({ message: "Invalid current password" });
     }
 
-    // Haszuj nowe hasło
     const saltRounds = 10;
     const newHashedPassword = await bcrypt.hash(newPassword, saltRounds);
 
-    // Zapisz nowe hasło w bazie danych
     const updateSql = "UPDATE user SET password = ? WHERE id = ?";
     await new Promise((resolve, reject) => {
       db.query(updateSql, [newHashedPassword, id], (err, result) => {

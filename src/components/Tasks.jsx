@@ -72,7 +72,6 @@ const Tasks = ({ id, updateFlag }) => {
         const data = await ProjectService.getProject(id);
         const newDeadline = data.Deadline;
 
-        // Aktualizujemy stan 'projectDeadline' tylko jeśli uległ zmianie
         if (newDeadline !== projectDeadline) {
           setProjectDeadline(newDeadline);
           console.log("Zaktualizowany deadline:", newDeadline);
@@ -82,11 +81,9 @@ const Tasks = ({ id, updateFlag }) => {
       }
     };
 
-    // Wywołujemy funkcję getProject za każdym razem, gdy zmienia się 'id'
     getProject();
-  }, [id]); // Effect wywoła się, gdy zmieni się 'id'
+  }, [id]);
 
-  // Jeśli chcesz wykonać jakąś logikę po zmianie 'projectDeadline', użyj drugiego useEffect
   useEffect(() => {
     if (projectDeadline) {
       console.log(
@@ -94,7 +91,7 @@ const Tasks = ({ id, updateFlag }) => {
         projectDeadline
       );
     }
-  }, [projectDeadline]); // Ten efekt będzie wywoływany, gdy 'projectDeadline' się zmieni
+  }, [projectDeadline]);
 
   const addTask = async () => {
     const newTask = {
@@ -104,7 +101,7 @@ const Tasks = ({ id, updateFlag }) => {
     };
     try {
       await taskSchema.validate(newTask, {
-        context: { projectDeadline: new Date(projectDeadline) }, // Przykładowa maksymalna data
+        context: { projectDeadline: new Date(projectDeadline) },
         abortEarly: false,
       });
 

@@ -116,12 +116,10 @@ class ProjectService {
         newProject
       );
 
-      // Zwróć tylko dane projektu, jeśli potrzebujesz
       return response.data;
     } catch (error) {
-      // Obsługuje błąd, jeśli coś pójdzie nie tak
       console.error("Error updating project:", error);
-      throw error; // Możesz wyrzucić błąd, żeby obsługiwać go wyżej
+      throw error;
     }
   }
 
